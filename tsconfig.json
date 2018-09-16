@@ -4,6 +4,16 @@
     "jsxFactory": "h",
     "target": "es6",
     "module": "commonjs",
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "declaration": true,
+    "declarationDir": "./lib/types"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "src/entry.dev.tsx"
+  ]
 }
