@@ -16,7 +16,7 @@ export default class Message extends Component<IMessageProps, {}> {
         <article class={classes}>
           <div class="message-header">
             <p>{props.title}</p>
-            {props.canDelete && (
+            {props.canClose && (
               <button
                 class="delete"
                 aria-label="delete"
