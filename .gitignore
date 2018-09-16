@@ -71,3 +71,6 @@ typings/
 
 # Serverless directories
 .serverless
+
+# Compiled library code
+lib
