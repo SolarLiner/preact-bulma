@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "parcel src/index.dev.html",
     "build": "tsc --build",
-    "docs": "parcel build src/index.dev.html -d docs --out-file index.html --target browser",
+    "docs": "build-storybook -c .storybook -o docs",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "peerDependencies": {
