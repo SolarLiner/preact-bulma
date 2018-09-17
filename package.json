@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Preact components for the Bulma framework",
   "main": "lib/entry.module.js",
-  "types":"lib/types/entry.module.d.ts",
+  "types": "lib/types/entry.module.d.ts",
   "author": "Nathan Graule",
   "license": "MIT",
   "private": false,
@@ -16,8 +16,10 @@
     "preact": "^8.3.1"
   },
   "devDependencies": {
+    "@storybook/react": "^3.4.10",
     "@types/node": "^10.9.4",
     "parcel-bundler": "^1.9.7",
+    "preact-compat": "^3.18.4",
     "typescript": "^3.0.3"
   },
   "dependencies": {
