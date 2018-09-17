@@ -16,22 +16,24 @@ interface INavbarBrandProps {
 }
 
 export function NavbarBrand(props: RenderableProps<INavbarBrandProps>) {
-  <div class="navbar-brand">
-    <a class="navbar-item" href={props.href}>
-      {props.children}
-    </a>
-    <a
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded={!!props.expanded}
-      onClick={_ev => props.onToggleExpand && props.onToggleExpand()}
-    >
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-    </a>
-  </div>;
+  return (
+    <div class="navbar-brand">
+      <a class="navbar-item" href={props.href || "#"}>
+        {props.children}
+      </a>
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded={!!props.expanded}
+        onClick={_ev => props.onToggleExpand && props.onToggleExpand()}
+      >
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+      </a>
+    </div>
+  );
 }
 
 interface INavbarMenuProps {
@@ -40,9 +42,26 @@ interface INavbarMenuProps {
 }
 
 export function NavbarMenu(props: RenderableProps<INavbarMenuProps>) {
-  const classes = classnames("navbar-menu", {
-    "is-active": !!props.active,
-    [`is-${props.side}`]: !!props.side
+  const classes = classnames({
+    "navbar-menu": !props.side,
+    "is-active": !props.side && props.active,
+    [`navbar-${props.side}`]: props.side
   });
   return <div class={classes}>{props.children}</div>;
+}
+
+interface INavbarMenuItemProps {
+  href?: string;
+}
+
+export function NavbarMenuItem(props: RenderableProps<INavbarMenuItemProps>) {
+  if (props.href)
+    return (
+      <div class="navbar-item">
+        <a class="navbar-link" href={props.href}>
+          {props.children}
+        </a>
+      </div>
+    );
+  else return <div class="navbar-item">{props.children}</div>;
 }
