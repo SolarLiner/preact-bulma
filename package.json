@@ -3,22 +3,29 @@
   "version": "1.0.0",
   "description": "Preact components for the Bulma framework",
   "main": "lib/entry.module.js",
-  "types":"lib/types/entry.module.d.ts",
+  "types": "lib/types/entry.module.d.ts",
   "author": "Nathan Graule",
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "parcel src/index.dev.html",
     "build": "tsc --build",
-    "docs": "parcel build src/index.dev.html -d docs --out-file index.html --target browser"
+    "docs": "parcel build src/index.dev.html -d docs --out-file index.html --target browser",
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "peerDependencies": {
     "preact": "^8.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "@storybook/react": "^3.4.10",
     "@types/node": "^10.9.4",
+    "node-sass": "^4.9.3",
     "parcel-bundler": "^1.9.7",
-    "typescript": "^3.0.3"
+    "preact-compat": "^3.18.4",
+    "ts-loader": "^3.0.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.19.0"
   },
   "dependencies": {
     "bulma": "^0.7.1",
