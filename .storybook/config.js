@@ -5,11 +5,7 @@ import "bulma/css/bulma.min.css";
 
 addDecorator(story => (
   <section className="section">
-    <div className="container">
-      <div className="level">
-        <div className="level-item">{story()}</div>
-      </div>
-    </div>
+    <div className="container">{story()}</div>
   </section>
 ));
 
