@@ -1,9 +1,21 @@
-import NavbarWidget, { NavbarBrand, NavbarMenu } from "./Navbar";
+import NavbarWidget, {
+  NavbarBrand,
+  NavbarMenu,
+  NavbarMenuItem
+} from "./Navbar";
+import NavbarDropdown, {
+  NavbarDropdownItem,
+  NavbarDropdownDivider
+} from "./NavbarDropdown";
 
 const Navbar = {
   Navbar: NavbarWidget,
   Brand: NavbarBrand,
-  Menu: NavbarMenu
+  Dropdown: NavbarDropdown,
+  DropdownItem: NavbarDropdownItem,
+  DropdownDivider: NavbarDropdownDivider,
+  Menu: NavbarMenu,
+  MenuItem: NavbarMenuItem
 };
 
 export default Navbar;
