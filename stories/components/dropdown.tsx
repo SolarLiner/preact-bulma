@@ -5,13 +5,22 @@ import Dropdown from "../../src/components/Dropdown";
 
 storiesOf("Dropdown", module)
   .add("Simple", () => (
-    <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down">
-      <Dropdown.Item>Link</Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item isContent>
-        Hello, <b>friend</b>!
-      </Dropdown.Item>
-    </Dropdown.Dropdown>
+    <div>
+      <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down">
+        <Dropdown.Item>Link</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item isContent>
+          Hello, <b>friend</b>!
+        </Dropdown.Item>
+      </Dropdown.Dropdown>
+      <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down" active>
+        <Dropdown.Item>Link</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item isContent>
+          Hello, <b>friend</b>!
+        </Dropdown.Item>
+      </Dropdown.Dropdown>
+    </div>
   ))
   .add("Hoverable", () => (
     <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down" hoverable>
