@@ -2,11 +2,16 @@ import { h, RenderableProps } from "preact";
 import classnames from "classnames";
 import randomString from "../../utils/rndString";
 
+const ALIGNMENT = {
+  left: "",
+  right: 'is-right'
+}
+
 interface IDropdownProps {
   active?: boolean;
   hoverable?: boolean;
   dropup?: boolean;
-  align?: "right";
+  align?: keyof typeof ALIGNMENT;
   title: string;
   icon?: string;
 }
@@ -19,7 +24,7 @@ export default function Dropdown({
     "is-active": props.active,
     "is-hoverable": props.hoverable,
     "is-up": props.dropup,
-    "is-right": props.align === "right"
+    [ALIGNMENT[props.align]]: !!props.align
   });
   const menuID = `dropdown-${randomString(8)}`;
   return (
