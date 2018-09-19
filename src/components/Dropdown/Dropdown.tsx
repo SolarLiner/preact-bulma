@@ -1,5 +1,6 @@
 import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import randomString from "../../utils/rndString";
 
 interface IDropdownProps {
   active?: boolean;
@@ -20,10 +21,11 @@ export default function Dropdown({
     "is-up": props.dropup,
     "is-right": props.align === "right"
   });
+  const menuID = `dropdown-${randomString(8)}`;
   return (
     <div class={classes}>
       <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown">
+        <button class="button" aria-haspopup="true" aria-controls={menuID}>
           <span>{props.title}</span>
           {props.icon && (
             <span class="icon is-small">
@@ -32,7 +34,7 @@ export default function Dropdown({
           )}
         </button>
       </div>
-      <div class="dropdown-menu" id="dropdown">
+      <div class="dropdown-menu" id={menuID} role="menu">
         <div class="dropdown-content">{children}</div>
       </div>
     </div>
