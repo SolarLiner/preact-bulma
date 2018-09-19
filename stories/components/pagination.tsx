@@ -45,7 +45,7 @@ storiesOf("Pagination", module)
   .add("Rounded", () => (
     <div>
       <Pagination
-        pages={[2, 3, 4, 5, null]}
+        pages={[1, 2, 3, 4, 5, null]}
         current={4}
         class="is-rounded"
         onPageChange={action("pageChange")}
