@@ -1,3 +1,3 @@
-const req = require.context("./components", true, /\.[tj]sx?$/);
+const reqs = [require.context("./components", true, /\.[tj]sx?$/)];
 
-req.keys().forEach(filename => req(filename));
+reqs.forEach(req => req.keys().forEach(filename => req(filename)));
