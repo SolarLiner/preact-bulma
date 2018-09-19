@@ -1,13 +1,19 @@
 import { h, RenderableProps } from "preact";
 import classnames from "classnames";
 
+const ALIGNMENT = {
+  left: "",
+  center: "is-centered",
+  right: "is-right"
+}
+
 interface ITabsProps {
-  align?: "centered" | "right";
+  align?: keyof typeof ALIGNMENT;
 }
 
 export function Tabs(props: RenderableProps<ITabsProps>) {
   const classes = classnames("tabs", {
-    [`is-${props.align}`]: !!props.align
+    [ALIGNMENT[props.align]]: !!props.align
   });
   return (
     <div class={classes}>

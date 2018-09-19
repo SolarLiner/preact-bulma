@@ -24,7 +24,7 @@ storiesOf("Tabs", module)
   ))
   .add("Alignment", () => (
     <div>
-      <Tabs.Tabs align="centered">
+      <Tabs.Tabs align="center">
         <Tabs.Tab active icon="far fa-file-alt">Documents</Tabs.Tab>
         <Tabs.Tab icon="fas fa-music">Music</Tabs.Tab>
         <Tabs.Tab icon="fas fa-image">
