@@ -38,15 +38,21 @@ export function MenuSubList({
 
 interface IMenuItemProps {
   active?: boolean;
+  onClick?(ev: MouseEvent): void;
 }
 
 export function MenuItem({
-  active,
-  children
+  children,
+  ...props
 }: RenderableProps<IMenuItemProps>) {
   return (
     <li>
-      <a class={classnames({ "is-active": active })}>{children}</a>
+      <a
+        class={classnames({ "is-active": props.active })}
+        onClick={ev => props.onClick && props.onClick(ev)}
+      >
+        {children}
+      </a>
     </li>
   );
 }

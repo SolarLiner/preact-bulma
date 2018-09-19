@@ -23,7 +23,7 @@ export default function Dropdown({
   return (
     <div class={classes}>
       <div class="dropdown-trigger">
-        <button class="button">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown">
           <span>{props.title}</span>
           {props.icon && (
             <span class="icon is-small">
@@ -32,7 +32,7 @@ export default function Dropdown({
           )}
         </button>
       </div>
-      <div class="dropdown-menu">
+      <div class="dropdown-menu" id="dropdown">
         <div class="dropdown-content">{children}</div>
       </div>
     </div>
@@ -43,6 +43,7 @@ interface IDropdownItemProps {
   active?: boolean;
   href?: string;
   isContent?: boolean;
+  onClick?(ev: MouseEvent): void;
 }
 
 export function DropdownItem({
@@ -58,7 +59,11 @@ export function DropdownItem({
     );
   } else {
     return (
-      <a href={props.href || "#"} class={classes}>
+      <a
+        href={props.href || "#"}
+        class={classes}
+        onClick={ev => props.onClick && props.onClick(ev)}
+      >
         {children}
       </a>
     );
