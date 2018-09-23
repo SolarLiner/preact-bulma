@@ -31,6 +31,34 @@ storiesOf("Dropdown", module)
       </Dropdown.Item>
     </Dropdown.Dropdown>
   ))
+  .add("Left/Right aligned", () => (
+    <div class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          <Dropdown.Dropdown
+            title="Left-aligned"
+            icon="fas fa-angle-down"
+            align="left"
+            hoverable
+          >
+            <Dropdown.Item>Link</Dropdown.Item>
+          </Dropdown.Dropdown>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level item">
+          <Dropdown.Dropdown
+            title="Right-aligned"
+            icon="fas fa-angle-down"
+            align="right"
+            hoverable
+          >
+            <Dropdown.Item>Link</Dropdown.Item>
+          </Dropdown.Dropdown>
+        </div>
+      </div>
+    </div>
+  ))
   .add("Dropup", () => (
     <div style="margin-top: 120px;">
       <Dropdown.Dropdown

@@ -1,11 +1,11 @@
-import { h, RenderableProps } from "preact";
+import { h, RenderableProps, Component } from "preact";
 import classnames from "classnames";
 import randomString from "../../utils/rndString";
 
 const ALIGNMENT = {
   left: "",
-  right: 'is-right'
-}
+  right: "is-right"
+};
 
 interface IDropdownProps {
   active?: boolean;
@@ -16,34 +16,64 @@ interface IDropdownProps {
   icon?: string;
 }
 
-export default function Dropdown({
-  children,
-  ...props
-}: RenderableProps<IDropdownProps>) {
-  const classes = classnames("dropdown", {
-    "is-active": props.active,
-    "is-hoverable": props.hoverable,
-    "is-up": props.dropup,
-    [ALIGNMENT[props.align]]: !!props.align
-  });
-  const menuID = `dropdown-${randomString(8)}`;
-  return (
-    <div class={classes}>
-      <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls={menuID}>
-          <span>{props.title}</span>
-          {props.icon && (
-            <span class="icon is-small">
-              <i class={props.icon} />
-            </span>
-          )}
-        </button>
+interface IDropdownState {
+  active: boolean;
+  menuID: string;
+}
+
+export default class Dropdown extends Component<
+  IDropdownProps,
+  IDropdownState
+> {
+  constructor(props?: IDropdownProps, context?: any) {
+    super(props, context);
+    this.setState({
+      active: !!props.active,
+      menuID: `dropdown-${randomString(8)}`
+    });
+    console.log("[Dropdown] Constructor(props, context)");
+    console.log("[Dropdown] Constructor state", this.state);
+  }
+
+  public render(props: RenderableProps<IDropdownProps>, state: IDropdownState) {
+    const classes = classnames("dropdown", {
+      "is-active": state.active,
+      [ALIGNMENT[props.align]]: !!props.align,
+      "is-hoverable": props.hoverable,
+      "is-up": props.dropup
+    });
+    return (
+      <div class={classes}>
+        <div class="dropdown-trigger">
+          <a
+            class="button"
+            aria-haspopup="true"
+            aria-controls={state.menuID}
+            onClick={_ev => this.toggleActive.bind(this)}
+          >
+            <span>{props.title}</span>
+            {props.icon && (
+              <span class="icon is-small">
+                <i class={props.icon} />
+              </span>
+            )}
+          </a>
+        </div>
+        <div class="dropdown-menu" id={state.menuID} role="menu">
+          <div class="dropdown-content">{props.children}</div>
+        </div>
       </div>
-      <div class="dropdown-menu" id={menuID} role="menu">
-        <div class="dropdown-content">{children}</div>
-      </div>
-    </div>
-  );
+    );
+  }
+
+  private toggleActive(override?: boolean) {
+    let active = override;
+    if (typeof active === "undefined") {
+      active = !this.state.active;
+    }
+    console.log("[Dropdown] new state", active);
+    this.setState({ active });
+  }
 }
 
 interface IDropdownItemProps {
