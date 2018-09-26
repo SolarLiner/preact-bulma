@@ -1,6 +1,7 @@
 import { h, RenderableProps, Component } from "preact";
 import classnames from "classnames";
 import randomString from "../../utils/rndString";
+import "../../utils/array_include";
 
 const ALIGNMENT = {
   left: "",
@@ -25,14 +26,13 @@ export default class Dropdown extends Component<
   IDropdownProps,
   IDropdownState
 > {
+  private triggerWhitelist: Element[];
   constructor(props?: IDropdownProps, context?: any) {
     super(props, context);
     this.setState({
       active: !!props.active,
       menuID: `dropdown-${randomString(8)}`
     });
-    console.log("[Dropdown] Constructor(props, context)");
-    console.log("[Dropdown] Constructor state", this.state);
   }
 
   public render(props: RenderableProps<IDropdownProps>, state: IDropdownState) {
@@ -49,7 +49,7 @@ export default class Dropdown extends Component<
             class="button"
             aria-haspopup="true"
             aria-controls={state.menuID}
-            onClick={_ev => this.toggleActive.bind(this)}
+            onClick={_ev => this.toggleActive()}
           >
             <span>{props.title}</span>
             {props.icon && (
@@ -66,13 +66,36 @@ export default class Dropdown extends Component<
     );
   }
 
+  public componentDidMount() {
+    if (window.document)
+      document.addEventListener("click", this.clickedOutside.bind(this));
+    const menuEl = this.base.querySelector(`#${this.state.menuID}`);
+    const triggerEl = this.base.querySelector(".dropdown-trigger");
+    this.triggerWhitelist = [
+      ...triggerEl.querySelectorAll("*").values(),
+      ...menuEl.querySelectorAll("*").values(),
+      triggerEl,
+      menuEl
+    ];
+  }
+
+  public componentWillUnmount() {
+    if (window.document)
+      document.removeEventListener("click", this.clickedOutside.bind(this));
+  }
+
   private toggleActive(override?: boolean) {
     let active = override;
     if (typeof active === "undefined") {
       active = !this.state.active;
     }
-    console.log("[Dropdown] new state", active);
     this.setState({ active });
+  }
+
+  private clickedOutside(ev: MouseEvent) {
+    console.log("[Dropdown] testing click outside", ev);
+    if (!this.triggerWhitelist.includes(ev.srcElement))
+      this.toggleActive(false);
   }
 }
 
