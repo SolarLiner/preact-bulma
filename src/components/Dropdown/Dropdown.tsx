@@ -93,7 +93,6 @@ export default class Dropdown extends Component<
   }
 
   private clickedOutside(ev: MouseEvent) {
-    console.log("[Dropdown] testing click outside", ev);
     if (!this.triggerWhitelist.includes(ev.srcElement))
       this.toggleActive(false);
   }
