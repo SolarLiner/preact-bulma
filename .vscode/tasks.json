@@ -23,6 +23,11 @@
             "type": "npm",
             "script": "storybook",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "docs",
+            "problemMatcher": []
         }
     ]
 }
