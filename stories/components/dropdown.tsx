@@ -39,7 +39,6 @@ storiesOf("Dropdown", module)
             title="Left-aligned"
             icon="fas fa-angle-down"
             align="left"
-            hoverable
           >
             <Dropdown.Item>Link</Dropdown.Item>
           </Dropdown.Dropdown>
@@ -51,7 +50,6 @@ storiesOf("Dropdown", module)
             title="Right-aligned"
             icon="fas fa-angle-down"
             align="right"
-            hoverable
           >
             <Dropdown.Item>Link</Dropdown.Item>
           </Dropdown.Dropdown>
@@ -64,7 +62,6 @@ storiesOf("Dropdown", module)
       <Dropdown.Dropdown
         title="Dropdown"
         icon="fas fa-angle-up"
-        hoverable
         dropup
       >
         <Dropdown.Item>Link</Dropdown.Item>
