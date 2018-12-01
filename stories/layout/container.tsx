@@ -1,5 +1,5 @@
-import { h } from "preact";
 import { storiesOf } from "@storybook/react";
+import { h } from "preact";
 import { Container } from "../../src/layout";
 
 storiesOf("Layout/Container", module)

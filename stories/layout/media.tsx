@@ -1,7 +1,7 @@
-import { h } from "preact";
 import { storiesOf } from "@storybook/react";
+import { h } from "preact";
 
-import { Media, Level } from "../../src/layout";
+import { Level, Media } from "../../src/layout";
 
 storiesOf("Layout/Media Object", module)
   .add("Simple", () => (

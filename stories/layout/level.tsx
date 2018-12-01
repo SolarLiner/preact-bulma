@@ -1,5 +1,5 @@
-import { h } from "preact";
 import { storiesOf } from "@storybook/react";
+import { h } from "preact";
 
 import { Level } from "../../src/layout";
 

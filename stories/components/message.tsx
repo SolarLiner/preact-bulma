@@ -1,5 +1,5 @@
+import { action, storiesOf } from "@storybook/react";
 import { h } from "preact";
-import { storiesOf, action } from "@storybook/react";
 
 import Message from "../../src/components/Message";
 

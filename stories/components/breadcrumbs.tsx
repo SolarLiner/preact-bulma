@@ -1,5 +1,5 @@
-import { h } from "preact";
 import { storiesOf } from "@storybook/react";
+import { h } from "preact";
 
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 
