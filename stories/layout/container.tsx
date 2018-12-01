@@ -2,7 +2,7 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import { Container } from "../../src/layout";
 
-storiesOf("Container", module)
+storiesOf("Layout/Container", module)
   .add("Simple", () => (
     <Container>
       <p class="notification content">

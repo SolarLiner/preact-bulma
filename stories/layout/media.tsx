@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import { Media, Level } from "../../src/layout";
 
-storiesOf("Media Object", module)
+storiesOf("Layout/Media Object", module)
   .add("Simple", () => (
     <Media.Media>
       <Media.Left>

@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import { Level } from "../../src/layout";
 
-storiesOf("Level", module)
+storiesOf("Layout/Level", module)
   .add("Simple", () => (
     <Level.Level>
       <Level.Left>
