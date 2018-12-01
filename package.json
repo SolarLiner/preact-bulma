@@ -14,6 +14,8 @@
   "scripts": {
     "dev": "parcel src/index.dev.html",
     "build": "tsc --build",
+    "lint": "tslint -p tsconfig.json",
+    "lint:fix": "tslint -p tsconfig.json --fix",
     "docs": "build-storybook -c .storybook -o docs",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
