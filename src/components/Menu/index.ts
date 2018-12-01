@@ -1,4 +1,4 @@
-import MenuWidget, {MenuList, MenuLabel, MenuItem, MenuSubList} from "./Menu";
+import MenuWidget, {MenuItem, MenuLabel, MenuList, MenuSubList} from "./Menu";
 
 const Menu = {
   Menu: MenuWidget,

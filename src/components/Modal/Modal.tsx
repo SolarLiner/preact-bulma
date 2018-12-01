@@ -1,5 +1,5 @@
-import { h, RenderableProps, Component } from "preact";
 import classnames from "classnames";
+import { Component, h, RenderableProps } from "preact";
 
 interface IModalProps {
   active?: boolean;

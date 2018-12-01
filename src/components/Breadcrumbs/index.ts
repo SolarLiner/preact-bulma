@@ -1,4 +1,4 @@
-import { BreadcrumbLink, Breadcrumb } from "./Breadcrumbs";
+import { Breadcrumb, BreadcrumbLink } from "./Breadcrumbs";
 
 const Breadcrumbs = {
   Breadcrumb,

@@ -1,4 +1,4 @@
-import PanelWidget, { PanelHeading, PanelBlock } from "./Panel";
+import PanelWidget, { PanelBlock, PanelHeading } from "./Panel";
 
 const Panel = {
   Panel: PanelWidget,

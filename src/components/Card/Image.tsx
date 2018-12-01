@@ -1,5 +1,5 @@
-import { h, RenderableProps } from "preact";
 import classname from "classnames";
+import { h, RenderableProps } from "preact";
 
 interface ICardImageProps {
   src: string;

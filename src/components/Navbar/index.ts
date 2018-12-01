@@ -4,8 +4,8 @@ import NavbarWidget, {
   NavbarMenuItem
 } from "./Navbar";
 import NavbarDropdown, {
-  NavbarDropdownItem,
-  NavbarDropdownDivider
+  NavbarDropdownDivider,
+  NavbarDropdownItem
 } from "./NavbarDropdown";
 
 const Navbar = {

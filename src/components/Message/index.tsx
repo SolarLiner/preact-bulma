@@ -1,11 +1,11 @@
-import { h, RenderableProps, Component } from "preact";
 import classnames from "classnames";
+import { Component, h, RenderableProps } from "preact";
 
 interface IMessageProps {
   canClose?: boolean;
-  onClose?(): void;
   title?: string;
   class?: string;
+  onClose?(): void;
 }
 
 export default class Message extends Component<IMessageProps, {}> {

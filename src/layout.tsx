@@ -1,5 +1,5 @@
-import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import { h, RenderableProps } from "preact";
 
 interface IContainerProps {
   fluid?: boolean;

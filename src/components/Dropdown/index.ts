@@ -1,4 +1,4 @@
-import DropdownWidget, { DropdownItem, DropdownDivider } from "./Dropdown";
+import DropdownWidget, { DropdownDivider, DropdownItem } from "./Dropdown";
 
 const Dropdown = {
   Dropdown: DropdownWidget,
