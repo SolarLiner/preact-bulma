@@ -8,6 +8,7 @@ import NavbarDropdown, {
   NavbarDropdownItem
 } from "./NavbarDropdown";
 
+// tslint:disable-next-line:variable-name
 const Navbar = {
   Navbar: NavbarWidget,
   Brand: NavbarBrand,
