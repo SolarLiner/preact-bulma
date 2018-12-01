@@ -3,7 +3,7 @@ import { storiesOf, action } from "@storybook/react";
 
 import Pagination from "../../src/components/Pagination";
 
-storiesOf("Pagination", module)
+storiesOf("Components/Pagination", module)
   .add("Few pages", () => (
     <div>
       <Pagination

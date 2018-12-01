@@ -3,7 +3,7 @@ import { storiesOf, action } from "@storybook/react";
 
 import Navbar from "../../src/components/Navbar";
 
-storiesOf("Navbar", module).add("Simple", () => (
+storiesOf("Components/Navbar", module).add("Simple", () => (
   <Navbar.Navbar>
     <Navbar.Brand onToggleExpand={action("toggleExpand")}>
       <span>Preact Bulma</span>

@@ -4,7 +4,7 @@ import { storiesOf, action } from "@storybook/react";
 import Modal from "../../src/components/Modal";
 
 storiesOf("Modal", module)
-  .add("Simple", () => (
+  .add("Components/Simple", () => (
     <Modal.Modal active onClose={action("close")}>
       <div class="box">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat

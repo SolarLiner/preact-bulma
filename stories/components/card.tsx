@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import Card from "../../src/components/Card";
 
-storiesOf("Card", module)
+storiesOf("Components/Card", module)
   .add("Simple", () => (
     <Card.Card>
       <Card.Header

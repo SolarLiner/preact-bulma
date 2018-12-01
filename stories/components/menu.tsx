@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import Menu from "../../src/components/Menu";
 
-storiesOf("Side menu", module).add("Simple", () => (
+storiesOf("Components/Side menu", module).add("Simple", () => (
   <Menu.Menu>
     <Menu.Label>Community</Menu.Label>
     <Menu.List>

@@ -3,7 +3,7 @@ import { storiesOf, action } from "@storybook/react";
 
 import Message from "../../src/components/Message";
 
-storiesOf("Message", module)
+storiesOf("Components/Message", module)
   .add("Simple", () => (
     <Message canClose title="You've got mail!" onClose={action("close")}>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt,

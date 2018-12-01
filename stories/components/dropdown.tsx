@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import Dropdown from "../../src/components/Dropdown";
 
-storiesOf("Dropdown", module)
+storiesOf("Components/Dropdown", module)
   .add("Simple", () => (
     <div>
       <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down">
