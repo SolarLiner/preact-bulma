@@ -27,6 +27,8 @@ export default class Dropdown extends Component<
   IDropdownState
 > {
   private triggerWhitelist: Element[];
+  private menu?: HTMLDivElement;
+  private trigger?: HTMLDivElement;
   constructor(props?: IDropdownProps, context?: any) {
     super(props, context);
     this.setState({
@@ -44,7 +46,7 @@ export default class Dropdown extends Component<
     });
     return (
       <div class={classes}>
-        <div class="dropdown-trigger">
+        <div class="dropdown-trigger" ref={el => this.trigger = el}>
           <a
             class="button"
             aria-haspopup="true"
@@ -59,7 +61,7 @@ export default class Dropdown extends Component<
             )}
           </a>
         </div>
-        <div class="dropdown-menu" id={state.menuID} role="menu">
+        <div class="dropdown-menu" id={state.menuID} ref={el => this.menu = el} role="menu">
           <div class="dropdown-content">{props.children}</div>
         </div>
       </div>
@@ -69,13 +71,11 @@ export default class Dropdown extends Component<
   public componentDidMount() {
     if (window.document)
       document.addEventListener("click", this.clickedOutside.bind(this));
-    const menuEl = this.base.querySelector(`#${this.state.menuID}`);
-    const triggerEl = this.base.querySelector(".dropdown-trigger");
     this.triggerWhitelist = [
-      ...triggerEl.querySelectorAll("*").values(),
-      ...menuEl.querySelectorAll("*").values(),
-      triggerEl,
-      menuEl
+      ...this.trigger.querySelectorAll("*").values(),
+      ...this.menu.querySelectorAll("*").values(),
+      this.trigger,
+      this.menu
     ];
   }
 
