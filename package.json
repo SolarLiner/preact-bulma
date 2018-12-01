@@ -7,6 +7,10 @@
   "author": "Nathan Graule",
   "license": "MIT",
   "private": false,
+  "files": [
+    "lib/**/*.js",
+    "lib/types/*.d.ts"
+  ],
   "scripts": {
     "dev": "parcel src/index.dev.html",
     "build": "tsc --build",
