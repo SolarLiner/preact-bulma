@@ -64,7 +64,7 @@ build/master:
   stage: build
   script:
     - yarn build
-    - npm package
+    - npm pack
     - rm -rf lib
   artifacts:
     untracked: true
