@@ -52,16 +52,20 @@ export function NavbarMenu(props: RenderableProps<INavbarMenuProps>) {
 
 interface INavbarMenuItemProps {
   href?: string;
+  active?: boolean;
 }
 
 export function NavbarMenuItem(props: RenderableProps<INavbarMenuItemProps>) {
+  const classes = classnames("navbar-item", {
+    "is-active": props.active
+  });
   if (props.href)
     return (
-      <div class="navbar-item">
+      <div class={classes}>
         <a class="navbar-link" href={props.href}>
           {props.children}
         </a>
       </div>
     );
-  else return <div class="navbar-item">{props.children}</div>;
+  else return <div class={classes}>{props.children}</div>;
 }
