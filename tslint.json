@@ -7,7 +7,8 @@
     "jsRules": {},
     "rules": {
       "object-literal-sort-keys": false,
-      "curly": false
+      "curly": false,
+      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
     },
     "rulesDirectory": ["tslint-plugin-prettier"]
 }
