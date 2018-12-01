@@ -12,7 +12,6 @@
     "lib/types/*.d.ts"
   ],
   "scripts": {
-    "dev": "parcel src/index.dev.html",
     "build": "tsc --build",
     "lint": "tslint -p tsconfig.json",
     "lint:fix": "tslint -p tsconfig.json --fix",
@@ -27,7 +26,6 @@
     "@storybook/react": "^3.4.10",
     "@types/node": "^10.9.4",
     "node-sass": "^4.9.3",
-    "parcel-bundler": "^1.9.7",
     "preact-compat": "^3.18.4",
     "prettier": "^1.15.3",
     "ts-loader": "^3.0.0",
