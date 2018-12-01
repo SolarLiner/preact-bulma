@@ -1,5 +1,5 @@
-import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import { h, RenderableProps } from "preact";
 
 export default function Menu({ children }: RenderableProps<{}>) {
   return <aside class="menu">{children}</aside>;

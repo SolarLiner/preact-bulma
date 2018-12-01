@@ -1,5 +1,5 @@
-import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import { h, RenderableProps } from "preact";
 
 const ALIGNMENT = {
   left: "",
@@ -44,6 +44,6 @@ export function TabsTab(props: RenderableProps<ITabsTabProps>) {
 }
 
 export default {
-  Tabs: Tabs,
+  Tabs,
   Tab: TabsTab
 }

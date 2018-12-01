@@ -4,10 +4,11 @@ import NavbarWidget, {
   NavbarMenuItem
 } from "./Navbar";
 import NavbarDropdown, {
-  NavbarDropdownItem,
-  NavbarDropdownDivider
+  NavbarDropdownDivider,
+  NavbarDropdownItem
 } from "./NavbarDropdown";
 
+// tslint:disable-next-line:variable-name
 const Navbar = {
   Navbar: NavbarWidget,
   Brand: NavbarBrand,

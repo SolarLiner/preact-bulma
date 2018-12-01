@@ -1,5 +1,5 @@
-import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import { h, RenderableProps } from "preact";
 
 interface IPaginationProps {
   class?: string;
@@ -19,11 +19,11 @@ function generatePages(
         <li>
           <a
             class={classnames("pagination-link", {
-              "is-current": page == current
+              "is-current": page === current
             })}
             aria-label={`Page ${page}`}
             onClick={_ev =>
-              onPageChange && page != current && onPageChange(page)
+              onPageChange && page !== current && onPageChange(page)
             }
           >
             {page}

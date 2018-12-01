@@ -1,5 +1,5 @@
-import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import { h, RenderableProps } from "preact";
 
 interface IContainerProps {
   fluid?: boolean;
@@ -39,6 +39,7 @@ function LevelSide({ children, side }: RenderableProps<ILevelSideProps>) {
   return <div class={classes}>{children}</div>;
 }
 
+// tslint:disable-next-line:variable-name
 export const Level = {
   Level: LevelWidget,
   Item: LevelItem,
@@ -63,6 +64,7 @@ function MediaContent({ children }: RenderableProps<{}>) {
   return <div class="media-content">{children}</div>
 }
 
+// tslint:disable-next-line:variable-name
 export const Media = {
   Media: MediaWidget,
   Content: MediaContent,
@@ -97,6 +99,7 @@ function HeroFoot({ children }: RenderableProps<{}>) {
   return <div class="hero-foot">{children}</div>;
 }
 
+// tslint:disable-next-line:variable-name
 export const Hero = {
   Hero: HeroWidget,
   Body: HeroBody,

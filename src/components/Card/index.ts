@@ -1,9 +1,10 @@
 import CardWidget from "./Card";
-import Header from "./Header";
 import Content from "./Content";
-import Image from "./Image";
 import Footer, { CardFooterItem } from "./Footer";
+import Header from "./Header";
+import Image from "./Image";
 
+// tslint:disable-next-line:variable-name
 const Card = {
   Card: CardWidget,
   Header,

@@ -1,7 +1,7 @@
-import { h, RenderableProps, Component } from "preact";
 import classnames from "classnames";
-import randomString from "../../utils/rndString";
+import { Component, h, RenderableProps } from "preact";
 import "../../utils/array_include";
+import randomString from "../../utils/rndString";
 
 const ALIGNMENT = {
   left: "",

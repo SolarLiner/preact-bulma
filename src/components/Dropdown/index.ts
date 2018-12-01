@@ -1,5 +1,6 @@
-import DropdownWidget, { DropdownItem, DropdownDivider } from "./Dropdown";
+import DropdownWidget, { DropdownDivider, DropdownItem } from "./Dropdown";
 
+// tslint:disable-next-line:variable-name
 const Dropdown = {
   Dropdown: DropdownWidget,
   Item: DropdownItem,

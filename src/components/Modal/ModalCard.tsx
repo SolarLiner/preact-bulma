@@ -1,5 +1,5 @@
-import { h, Component, RenderableProps } from "preact";
 import classnames from "classnames";
+import { Component, h, RenderableProps } from "preact";
 
 interface IModalCardProps {
   active?: boolean;
