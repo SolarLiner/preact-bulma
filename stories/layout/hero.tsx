@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import { h } from "preact";
 
-import { Hero } from "../../src/layout";
 import Navbar from "../../src/components/Navbar";
+import { Hero } from "../../src/layout";
 
 storiesOf("Layout/Hero", module)
   .addDecorator(story => story())
