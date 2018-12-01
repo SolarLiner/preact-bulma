@@ -79,7 +79,7 @@ function HeroWidget({ children, ...props }: RenderableProps<IHeroProps>) {
   const classes = classnames("hero", {
     "is-bold": props.bold,
     [`is-${props.color}`]: !!props.color,
-    [`is-${props.size.toLowerCase()}`]: !!props.size
+    [`is-${props.size && props.size.toLowerCase()}`]: !!props.size
   });
   return <section class={classes}>{children}</section>;
 }
