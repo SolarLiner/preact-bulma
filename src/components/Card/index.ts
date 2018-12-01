@@ -12,6 +12,6 @@ const Card = {
   Image,
   Footer,
   FooterItem: CardFooterItem
-}
+};
 
 export default Card;

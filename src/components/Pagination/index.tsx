@@ -8,11 +8,7 @@ interface IPaginationProps {
   onPageChange?(page: number): void;
 }
 
-function generatePages(
-  pages: number[],
-  current: number,
-  onPageChange: (page: number) => void
-) {
+function generatePages(pages: number[], current: number, onPageChange: (page: number) => void) {
   return pages.map(page => {
     if (typeof page === "number") {
       return (
@@ -22,9 +18,7 @@ function generatePages(
               "is-current": page === current
             })}
             aria-label={`Page ${page}`}
-            onClick={_ev =>
-              onPageChange && page !== current && onPageChange(page)
-            }
+            onClick={_ev => onPageChange && page !== current && onPageChange(page)}
           >
             {page}
           </a>

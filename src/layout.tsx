@@ -6,10 +6,7 @@ interface IContainerProps {
   fullwidth?: string;
 }
 
-export function Container({
-  children,
-  ...props
-}: RenderableProps<IContainerProps>) {
+export function Container({ children, ...props }: RenderableProps<IContainerProps>) {
   const classes = classnames("container", {
     "is-fluid": !!props.fluid,
     [`is-${props.fullwidth}`]: !!props.fullwidth
@@ -61,7 +58,7 @@ function MediaRight({ children }: RenderableProps<{}>) {
 }
 
 function MediaContent({ children }: RenderableProps<{}>) {
-  return <div class="media-content">{children}</div>
+  return <div class="media-content">{children}</div>;
 }
 
 // tslint:disable-next-line:variable-name
@@ -111,10 +108,7 @@ interface ISectionProps {
   size?: "medium" | "large";
 }
 
-export function Section({
-  children,
-  ...props
-}: RenderableProps<ISectionProps>) {
+export function Section({ children, ...props }: RenderableProps<ISectionProps>) {
   const classes = classnames("section", { [`is-${props.size}`]: !!props.size });
   return <section class="section">{children}</section>;
 }
@@ -129,19 +123,7 @@ interface ITileProps {
   child?: boolean;
   vertical?: boolean;
   color?: string;
-  size?:
-    | "1"
-    | "2"
-    | "3"
-    | "4"
-    | "5"
-    | "6"
-    | "7"
-    | "8"
-    | "9"
-    | "10"
-    | "11"
-    | "12";
+  size?: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12";
 }
 
 export function Tile({ children, ...props }: RenderableProps<ITileProps>) {

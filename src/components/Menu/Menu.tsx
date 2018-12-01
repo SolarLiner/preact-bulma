@@ -19,16 +19,10 @@ interface IMenuSubListProps {
   active?: boolean;
 }
 
-export function MenuSubList({
-  children,
-  ...props
-}: RenderableProps<IMenuSubListProps>) {
+export function MenuSubList({ children, ...props }: RenderableProps<IMenuSubListProps>) {
   return (
     <li>
-      <a
-        href={props.href || "#"}
-        class={classnames({ "is-active": props.active })}
-      >
+      <a href={props.href || "#"} class={classnames({ "is-active": props.active })}>
         {props.title}
       </a>
       <ul>{children}</ul>
@@ -41,16 +35,10 @@ interface IMenuItemProps {
   onClick?(ev: MouseEvent): void;
 }
 
-export function MenuItem({
-  children,
-  ...props
-}: RenderableProps<IMenuItemProps>) {
+export function MenuItem({ children, ...props }: RenderableProps<IMenuItemProps>) {
   return (
     <li>
-      <a
-        class={classnames({ "is-active": props.active })}
-        onClick={ev => props.onClick && props.onClick(ev)}
-      >
+      <a class={classnames({ "is-active": props.active })} onClick={ev => props.onClick && props.onClick(ev)}>
         {children}
       </a>
     </li>

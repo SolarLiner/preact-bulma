@@ -5,7 +5,7 @@ const ALIGNMENT = {
   left: "",
   center: "is-centered",
   right: "is-right"
-}
+};
 
 interface ITabsProps {
   align?: keyof typeof ALIGNMENT;
@@ -46,4 +46,4 @@ export function TabsTab(props: RenderableProps<ITabsTabProps>) {
 export default {
   Tabs,
   Tab: TabsTab
-}
+};

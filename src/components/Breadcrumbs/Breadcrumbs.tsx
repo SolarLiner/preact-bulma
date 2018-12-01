@@ -21,11 +21,7 @@ interface IBreadcrumbProps {
 }
 
 export function Breadcrumb(props: RenderableProps<IBreadcrumbProps>) {
-  const classes = classnames(
-    "breadcrumb",
-    ALIGNMENT[props.align],
-    SEPARATORS[props.separator]
-  );
+  const classes = classnames("breadcrumb", ALIGNMENT[props.align], SEPARATORS[props.separator]);
   return (
     <nav class={classes}>
       <ul>{props.children}</ul>
