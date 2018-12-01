@@ -3,8 +3,8 @@ import { storiesOf, action } from "@storybook/react";
 
 import Modal from "../../src/components/Modal";
 
-storiesOf("Modal", module)
-  .add("Components/Simple", () => (
+storiesOf("Components/Modal", module)
+  .add("Simple", () => (
     <Modal.Modal active onClose={action("close")}>
       <div class="box">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
