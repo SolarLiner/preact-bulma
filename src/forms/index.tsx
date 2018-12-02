@@ -176,12 +176,20 @@ export function Textarea(props: RenderableProps<ITextareaProps>) {
 
 interface ISelectProps {
   options: string[];
+  multiple?: boolean;
   fullWidth?: boolean;
+  color?: string;
+  rounded?: boolean;
+  size?: "small" | "medium" | "large";
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
   const classes = classnames("select", {
-    "is-fullwidth": props.fullWidth
+    "is-fullwidth": props.fullWidth,
+    "is-multiple": !!props.multiple,
+    "is-rounded": !!props.rounded,
+    [`is-${props.color}`]: !!props.color,
+    [`is-${props.size}`]: !!props.size
   });
   return (
     <div class={classes}>
