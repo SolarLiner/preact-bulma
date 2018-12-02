@@ -1,57 +1,113 @@
 import classnames from "classnames";
 import { h, PreactHTMLAttributes, RenderableProps } from "preact";
 
-interface IControlProps {
+const GROUP_ALIGNMENTS = {
+  left: "",
+  center: "centered",
+  right: "right",
+  multiline: "multiline"
+};
+
+interface IFieldProps {
+  hasAddons?: boolean;
+  group?: keyof typeof GROUP_ALIGNMENTS;
+  horizontal?: boolean;
   label?: string;
-  help?: string;
+  help?: string | string[];
   helpColor?: string;
-  size?: "small" | "medium" | "large";
-  iconsLeft?: string;
-  iconsRight?: string;
-  inputAttr?: PreactHTMLAttributes;
 }
 
-function ControlWrapper(props: RenderableProps<IControlProps>) {
+function VerticalField(props: RenderableProps<IFieldProps>) {
+  let label;
+  let help;
+  const classes = classnames("field", {
+    "has-addons": !!props.hasAddons,
+    [`is-grouped-${GROUP_ALIGNMENTS[props.group]}`]: !!props.group
+  });
+  if (props.label) {
+    label = <label class="label">{props.label}</label>;
+  }
+  if (props.help) {
+    const helpClasses = classnames("help", {
+      [`is-${props.helpColor}`]: !!props.helpColor
+    });
+    help = <p class={helpClasses}>{props.help}</p>;
+  }
+  return (
+    <div class={classes}>
+      {label}
+      {props.children}
+      {help}
+    </div>
+  );
+}
+
+function HorizontalField(props: RenderableProps<IFieldProps>) {
+  const classes = classnames("field is-horizontal");
+  let label;
+  if (props.label) {
+    label = (<div class="field-label is-normal">
+      <label class="label">{props.label}</label>
+    </div>);
+  }
+  const innerFieldProps: IFieldProps = Object.assign({}, props);
+  delete innerFieldProps.label;
+  delete innerFieldProps.help;
+  return (<div class={classes}>
+    {label}
+    <div class="field-body">
+      {(props.children as any[]).map((el, i) => <VerticalField {...innerFieldProps} help={props.help && props.help[i]}>{el}</VerticalField>)}
+    </div>
+  </div>)
+}
+
+export function Field(props: RenderableProps<IFieldProps>) {
+  if (props.horizontal) {
+    return HorizontalField(props);
+  } else {
+    return VerticalField(props);
+  }
+}
+interface IControlProps {
+  expanded?: boolean;
+  iconsLeft?: string;
+  iconsRight?: string;
+  size?: "small" | "medium" | "large";
+}
+
+export function Control(props: RenderableProps<IControlProps>) {
   let iconsLeft;
   let iconsRight;
-  let help;
-  const controlClasses = classnames("control", {
+  const classes = classnames("control", {
     "has-icons-left": !!props.iconsLeft,
     "has-icons-right": !!props.iconsRight,
+    "is-expanded": !!props.expanded,
     [`is-${props.size}`]: !!props.size
   });
-  const helpClasses = classnames("help", { [`is-${props.helpColor}`]: !!props.helpColor });
   if (props.iconsLeft) {
     iconsLeft = (
-      <span class="small is-icon is-left">
+      <span class="icon is-small is-left">
         <i class={props.iconsLeft} />
       </span>
     );
   }
   if (props.iconsRight) {
     iconsRight = (
-      <span class="small is-icon is-right">
+      <span class="icon is-small is-right">
         <i class={props.iconsRight} />
       </span>
     );
   }
-  if (props.help) {
-    help = <p class={helpClasses}>{props.help}</p>;
-  }
   return (
-    <div class="field">
-      <label class="label">{props.label}</label>
-      <div class={controlClasses}>
-        {props.children}
-        {iconsLeft}
-        {iconsRight}
-      </div>
-      {help}
+    <div class={classes}>
+      {props.children}
+      {iconsLeft}
+      {iconsRight}
     </div>
   );
 }
 
-interface IInputProps extends IControlProps {
+interface IInputProps {
   type?: "text" | "password" | "email" | "tel";
   color?: string;
   active?: boolean;
@@ -71,11 +127,27 @@ export function TextInput(props: RenderableProps<IInputProps>) {
     "is-rounded": !!props.rounded,
     "is-loading": !!props.loading,
     "is-focuded": !!props.focused,
-    [`is-${props.size}`]: !!props.size
+    [`is-${props.color}`]: !!props.color
   });
   return (
-    <ControlWrapper {...props}>
-      <input {...props.inputAttr} onFocus={props.onFocus} onBlur={props.onBlur} onInput={props.onInput} class={classes} />
-    </ControlWrapper>
+    <input
+      onFocus={props.onFocus}
+      onBlur={props.onBlur}
+      onInput={props.onInput}
+      class={classes}
+      value={props.value}
+      placeholder={props.placeholder}
+      type={props.type}
+    />
+  );
+}
+
+export function SingleInput(props: RenderableProps<IFieldProps & IControlProps & IInputProps>) {
+  return (
+    <Field {...props as any}>
+      <Control {...props as any}>
+        <TextInput {...props as any} />
+      </Control>
+    </Field>
   );
 }
