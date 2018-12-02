@@ -22,4 +22,14 @@ storiesOf("Forms/Textarea", module)
       <SingleTextarea label="Medium size" placeholder="Lorem ipsum etc." size="medium" />
       <SingleTextarea label="Large size" placeholder="Am loading..." size="large" loading />
     </div>
+  ))
+  .add("States", () => (
+    <div>
+      <SingleTextarea placeholder="Default state" />
+      <SingleTextarea disabled placeholder="Disabled state" />
+      <SingleTextarea readOnly placeholder="Read-only state" />
+      <SingleTextarea static placeholder="Static state" />
+      <SingleTextarea readOnly static placeholder="Read-only &amp; Static state" />
+      <SingleTextarea fixed placeholder="Fixed size" />
+    </div>
   ));
