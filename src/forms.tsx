@@ -72,6 +72,7 @@ interface IControlProps {
   expanded?: boolean;
   iconsLeft?: string;
   iconsRight?: string;
+  loading?: boolean;
   size?: "small" | "medium" | "large";
 }
 
@@ -82,6 +83,7 @@ export function Control(props: RenderableProps<IControlProps>) {
     "has-icons-left": !!props.iconsLeft,
     "has-icons-right": !!props.iconsRight,
     "is-expanded": !!props.expanded,
+    "is-loading": !!props.loading,
     [`is-${props.size}`]: !!props.size
   });
   if (props.iconsLeft) {
@@ -112,7 +114,6 @@ interface IInputProps {
   color?: string;
   disabled?: boolean;
   focused?: boolean;
-  loading?: boolean;
   onBlur?: (ev: Event) => void;
   onFocus?: (ev: Event) => void;
   onInput?: (ev: Event) => void;
@@ -128,7 +129,6 @@ export function TextInput(props: RenderableProps<IInputProps>) {
   const classes = classnames("input", {
     "is-active": !!props.active,
     "is-focuded": !!props.focused,
-    "is-loading": !!props.loading,
     "is-rounded": !!props.rounded,
     "is-static": !!props.static,
     [`is-${props.color}`]: !!props.color
@@ -167,14 +167,12 @@ interface ITextAreaProps {
   placeholder?: string;
   color?: string;
   size?: "small" | "medium" | "large";
-  loading?: boolean;
   cols?: number;
   rows?: number;
 }
 
 export function Textarea(props: RenderableProps<ITextAreaProps>) {
   const classes = classnames("textarea", {
-    "is-loading": !!props.loading,
     [`is-${props.color}`]: !!props.color,
     [`is-${props.size}`]: !!props.size
   });
