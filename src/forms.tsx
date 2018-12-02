@@ -20,6 +20,7 @@ interface IFieldProps {
 }
 
 export function Field(props: RenderableProps<IFieldProps>) {
+  // TODO: Fix weird layout of has-addon fields with labels and/or help
   let label;
   let help;
   const classes = classnames("field", {
