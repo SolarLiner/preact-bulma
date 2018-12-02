@@ -1,28 +1,32 @@
 import classnames from "classnames";
-import { h, PreactHTMLAttributes, RenderableProps } from "preact";
+import { Component, ComponentChild, h, RenderableProps } from "preact";
 
 const GROUP_ALIGNMENTS = {
   left: "",
-  center: "centered",
-  right: "right",
-  multiline: "multiline"
+  center: "-centered",
+  right: "-right",
+  multiline: "-multiline"
 };
 
 interface IFieldProps {
-  hasAddons?: boolean;
+  expanded?: boolean;
   group?: keyof typeof GROUP_ALIGNMENTS;
-  horizontal?: boolean;
-  label?: string;
+  hasAddons?: boolean;
   help?: string | string[];
   helpColor?: string;
+  horizontal?: boolean;
+  label?: string;
+  narrow?: boolean;
 }
 
-function VerticalField(props: RenderableProps<IFieldProps>) {
+export function Field(props: RenderableProps<IFieldProps>) {
   let label;
   let help;
   const classes = classnames("field", {
     "has-addons": !!props.hasAddons,
-    [`is-grouped-${GROUP_ALIGNMENTS[props.group]}`]: !!props.group
+    "is-expanded": !!props.expanded,
+    "is-narrow": !!props.narrow,
+    [`is-grouped${GROUP_ALIGNMENTS[props.group]}`]: !!props.group
   });
   if (props.label) {
     label = <label class="label">{props.label}</label>;
@@ -42,32 +46,27 @@ function VerticalField(props: RenderableProps<IFieldProps>) {
   );
 }
 
-function HorizontalField(props: RenderableProps<IFieldProps>) {
+export function HorizontalGroup(props: RenderableProps<IFieldProps>) {
   const classes = classnames("field is-horizontal");
   let label;
   if (props.label) {
-    label = (<div class="field-label is-normal">
-      <label class="label">{props.label}</label>
-    </div>);
+    label = (
+      <div class="field-label is-normal">
+        <label class="label">{props.label}</label>
+      </div>
+    );
   }
   const innerFieldProps: IFieldProps = Object.assign({}, props);
   delete innerFieldProps.label;
   delete innerFieldProps.help;
-  return (<div class={classes}>
-    {label}
-    <div class="field-body">
-      {(props.children as any[]).map((el, i) => <VerticalField {...innerFieldProps} help={props.help && props.help[i]}>{el}</VerticalField>)}
+  return (
+    <div class={classes}>
+      {label}
+      <div class="field-body">{props.children}</div>
     </div>
-  </div>)
+  );
 }
 
-export function Field(props: RenderableProps<IFieldProps>) {
-  if (props.horizontal) {
-    return HorizontalField(props);
-  } else {
-    return VerticalField(props);
-  }
-}
 interface IControlProps {
   expanded?: boolean;
   iconsLeft?: string;
@@ -108,17 +107,18 @@ export function Control(props: RenderableProps<IControlProps>) {
 }
 
 interface IInputProps {
-  type?: "text" | "password" | "email" | "tel";
-  color?: string;
   active?: boolean;
-  rounded?: boolean;
-  loading?: boolean;
+  color?: string;
+  disabled?: boolean;
   focused?: boolean;
-  value?: string;
-  placeholder?: string;
-  onFocus?: (ev: Event) => void;
+  loading?: boolean;
   onBlur?: (ev: Event) => void;
+  onFocus?: (ev: Event) => void;
   onInput?: (ev: Event) => void;
+  placeholder?: string;
+  rounded?: boolean;
+  type?: "text" | "password" | "email" | "tel";
+  value?: string;
 }
 
 export function TextInput(props: RenderableProps<IInputProps>) {
@@ -131,13 +131,14 @@ export function TextInput(props: RenderableProps<IInputProps>) {
   });
   return (
     <input
-      onFocus={props.onFocus}
-      onBlur={props.onBlur}
-      onInput={props.onInput}
       class={classes}
-      value={props.value}
+      disabled={props.disabled}
+      onBlur={props.onBlur}
+      onFocus={props.onFocus}
+      onInput={props.onInput}
       placeholder={props.placeholder}
       type={props.type}
+      value={props.value}
     />
   );
 }
@@ -157,6 +158,16 @@ interface ISelectProps {
   fullWidth?: boolean;
 }
 
+interface ITextAreaProps {
+  placeholder?: string;
+  cols?: number;
+  rows?: number;
+}
+
+export function TextArea(props: RenderableProps<ITextAreaProps>) {
+  return <textarea class="textarea" {...props}>{props.children}</textarea>;
+}
+
 export function Select(props: RenderableProps<ISelectProps>) {
   const classes = classnames("select", {
     "is-fullwidth": props.fullWidth
@@ -171,4 +182,3 @@ export function Select(props: RenderableProps<ISelectProps>) {
     </div>
   );
 }
-
