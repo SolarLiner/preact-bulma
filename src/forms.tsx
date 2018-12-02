@@ -166,15 +166,23 @@ interface ISelectProps {
 interface ITextAreaProps {
   placeholder?: string;
   color?: string;
+  size?: "small" | "medium" | "large";
+  loading?: boolean;
   cols?: number;
   rows?: number;
 }
 
 export function Textarea(props: RenderableProps<ITextAreaProps>) {
   const classes = classnames("textarea", {
-    [`is-${props.color}`]: !!props.color
+    "is-loading": !!props.loading,
+    [`is-${props.color}`]: !!props.color,
+    [`is-${props.size}`]: !!props.size
   });
-  return <textarea class={classes} {...props}>{props.children}</textarea>;
+  return (
+    <textarea class={classes} {...props as any}>
+      {props.children}
+    </textarea>
+  );
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
