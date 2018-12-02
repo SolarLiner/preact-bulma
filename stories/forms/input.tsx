@@ -33,6 +33,12 @@ storiesOf("Forms/Input", module)
       <SingleInput label="Telephone" type="tel" />
     </div>
   ))
+  .add("States", () => (
+    <div>
+      <SingleInput label="Disabled" disabled />
+      <SingleInput label="Read-only" disabled readonly />
+    </div>
+  ))
   .add("Addons", () => (
     <Field hasAddons group="center" label="Donation amount" help="Any amount is appreciated! :)">
       <Control>
