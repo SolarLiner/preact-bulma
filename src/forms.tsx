@@ -151,3 +151,24 @@ export function SingleInput(props: RenderableProps<IFieldProps & IControlProps &
     </Field>
   );
 }
+
+interface ISelectProps {
+  options: string[];
+  fullWidth?: boolean;
+}
+
+export function Select(props: RenderableProps<ISelectProps>) {
+  const classes = classnames("select", {
+    "is-fullwidth": props.fullWidth
+  });
+  return (
+    <div class={classes}>
+      <select>
+        {props.options.map(el => (
+          <option>{el}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
