@@ -1,17 +1,8 @@
 import { storiesOf } from "@storybook/react";
-import { h, RenderableProps } from "preact";
+import { h } from "preact";
 
 import { Control, Field, Textarea } from "../../src/forms";
-
-function SingleTextarea(props: RenderableProps<any>) {
-  return (
-    <Control {...props}>
-      <Field {...props}>
-        <Textarea {...props}>{props.children}</Textarea>
-      </Field>
-    </Control>
-  );
-}
+import { SingleTextarea } from "../../src/forms/singles";
 
 storiesOf("Forms/Textarea", module)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)

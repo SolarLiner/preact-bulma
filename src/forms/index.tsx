@@ -8,7 +8,7 @@ const GROUP_ALIGNMENTS = {
   multiline: "-multiline"
 };
 
-interface IFieldProps {
+export interface IFieldProps {
   expanded?: boolean;
   group?: keyof typeof GROUP_ALIGNMENTS;
   hasAddons?: boolean;
@@ -68,7 +68,7 @@ export function HorizontalGroup(props: RenderableProps<IFieldProps>) {
   );
 }
 
-interface IControlProps {
+export interface IControlProps {
   expanded?: boolean;
   iconsLeft?: string;
   iconsRight?: string;
@@ -109,7 +109,7 @@ export function Control(props: RenderableProps<IControlProps>) {
   );
 }
 
-interface IInputProps {
+export interface IInputProps {
   active?: boolean;
   color?: string;
   disabled?: boolean;
@@ -148,22 +148,7 @@ export function TextInput(props: RenderableProps<IInputProps>) {
   );
 }
 
-export function SingleInput(props: RenderableProps<IFieldProps & IControlProps & IInputProps>) {
-  return (
-    <Field {...props as any}>
-      <Control {...props as any}>
-        <TextInput {...props as any} />
-      </Control>
-    </Field>
-  );
-}
-
-interface ISelectProps {
-  options: string[];
-  fullWidth?: boolean;
-}
-
-interface ITextAreaProps {
+export interface ITextareaProps {
   placeholder?: string;
   color?: string;
   size?: "small" | "medium" | "large";
@@ -171,7 +156,7 @@ interface ITextAreaProps {
   rows?: number;
 }
 
-export function Textarea(props: RenderableProps<ITextAreaProps>) {
+export function Textarea(props: RenderableProps<ITextareaProps>) {
   const classes = classnames("textarea", {
     [`is-${props.color}`]: !!props.color,
     [`is-${props.size}`]: !!props.size
@@ -181,6 +166,11 @@ export function Textarea(props: RenderableProps<ITextAreaProps>) {
       {props.children}
     </textarea>
   );
+}
+
+interface ISelectProps {
+  options: string[];
+  fullWidth?: boolean;
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
