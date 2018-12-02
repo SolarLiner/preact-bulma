@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { h } from "preact";
 
 import { Control, Field, Textarea } from "../../src/forms";
-import { SingleTextarea } from "../../src/forms/singles";
+import { Textarea as SingleTextarea } from "../../src/forms/singles";
 
 storiesOf("Forms/Textarea", module)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)

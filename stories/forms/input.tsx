@@ -2,12 +2,12 @@ import { action, storiesOf } from "@storybook/react";
 import { h } from "preact";
 
 import { Control, Field, TextInput } from "../../src/forms";
-import { SingleInput } from "../../src/forms/singles";
+import { Input } from "../../src/forms/singles";
 
 storiesOf("Forms/Input", module)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)
   .add("Simple", () => (
-    <SingleInput
+    <Input
       label="Name"
       placeholder="John Doe"
       help="Enter your name here."
@@ -19,27 +19,27 @@ storiesOf("Forms/Input", module)
   ))
   .add("Colors / Loading / Rounded", () => (
     <div>
-      <SingleInput label="Default Input" />
-      <SingleInput label="Primary input" color="primary" loading placeholder="Am loading..." />
-      <SingleInput label="Info input" color="info" rounded placeholder="Am rounded!" />
-      <SingleInput label="Warning input" color="warning" loading placeholder="Am loading..." />
-      <SingleInput label="Danger input" color="danger" />
+      <Input label="Default Input" />
+      <Input label="Primary input" color="primary" loading placeholder="Am loading..." />
+      <Input label="Info input" color="info" rounded placeholder="Am rounded!" />
+      <Input label="Warning input" color="warning" loading placeholder="Am loading..." />
+      <Input label="Danger input" color="danger" />
     </div>
   ))
   .add("Types", () => (
     <div>
-      <SingleInput label="Default" />
-      <SingleInput label="Email" type="email" />
-      <SingleInput label="Password" type="password" />
-      <SingleInput label="Telephone" type="tel" />
+      <Input label="Default" />
+      <Input label="Email" type="email" />
+      <Input label="Password" type="password" />
+      <Input label="Telephone" type="tel" />
     </div>
   ))
   .add("States", () => (
     <div>
-      <SingleInput label="Disabled" value="Can't touch this" disabled />
-      <SingleInput label="Read-only" value="Can't touch this" disabled readOnly />
-      <SingleInput label="Static" value="Can touch this" static />
-      <SingleInput label="Static &amp; Read-only" value="Can't touch this" static readOnly />
+      <Input label="Disabled" value="Can't touch this" disabled />
+      <Input label="Read-only" value="Can't touch this" disabled readOnly />
+      <Input label="Static" value="Can touch this" static />
+      <Input label="Static &amp; Read-only" value="Can't touch this" static readOnly />
     </div>
   ))
   .add("Addons", () => (

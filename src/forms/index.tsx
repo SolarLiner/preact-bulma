@@ -180,10 +180,11 @@ export function Textarea(props: RenderableProps<ITextareaProps>) {
   );
 }
 
-interface ISelectProps {
+export interface ISelectProps {
   options: string[];
   multiple?: boolean;
   fullWidth?: boolean;
+  loading?: boolean;
   color?: string;
   rounded?: boolean;
   size?: "small" | "medium" | "large";
@@ -192,6 +193,7 @@ interface ISelectProps {
 export function Select(props: RenderableProps<ISelectProps>) {
   const classes = classnames("select", {
     "is-fullwidth": props.fullWidth,
+    "is-loading": props.loading,
     "is-multiple": !!props.multiple,
     "is-rounded": !!props.rounded,
     [`is-${props.color}`]: !!props.color,
@@ -208,7 +210,7 @@ export function Select(props: RenderableProps<ISelectProps>) {
   );
 }
 
-interface ICheckboxProps {
+export interface ICheckboxProps {
   value?: boolean;
   disabled?: boolean;
   onChanged?: (ev: Event) => void;
@@ -225,7 +227,7 @@ export function Checkbox(props: RenderableProps<ICheckboxProps>) {
 
 // TODO: Make Radio inputs
 
-interface IFileInputProps {
+export interface IFileInputProps {
   label?: string;
   icon?: string;
   right?: boolean;
