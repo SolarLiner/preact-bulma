@@ -2,11 +2,17 @@ import classnames from "classnames";
 import { Component, ComponentChild, h, RenderableProps } from "preact";
 
 const GROUP_ALIGNMENTS = {
-  left: "",
-  center: "-centered",
-  right: "-right",
-  multiline: "-multiline"
+  left: "is-grouped",
+  center: "is-grouped-centered",
+  right: "is-grouped-right",
+  multiline: "is-grouped-multiline"
 };
+
+const ALIGNMENTS = {
+  left: "",
+  center: "is-centered",
+  right: "is-right"
+}
 
 export interface IFieldProps {
   expanded?: boolean;
@@ -27,7 +33,7 @@ export function Field(props: RenderableProps<IFieldProps>) {
     "has-addons": !!props.hasAddons,
     "is-expanded": !!props.expanded,
     "is-narrow": !!props.narrow,
-    [`is-grouped${GROUP_ALIGNMENTS[props.group]}`]: !!props.group
+    [`${GROUP_ALIGNMENTS[props.group]}`]: !!props.group
   });
   if (props.label) {
     label = <label class="label">{props.label}</label>;
@@ -198,6 +204,74 @@ export function Select(props: RenderableProps<ISelectProps>) {
           <option>{el}</option>
         ))}
       </select>
+    </div>
+  );
+}
+
+interface ICheckboxProps {
+  value?: boolean;
+  disabled?: boolean;
+  onChanged?: (ev: Event) => void;
+}
+
+export function Checkbox(props: RenderableProps<ICheckboxProps>) {
+  return (
+    <label class="checkbox">
+      <input type="checkbox" disabled={props.disabled} />
+      {props.children}
+    </label>
+  );
+}
+
+// TODO: Make Radio inputs
+
+interface IFileInputProps {
+  label?: string;
+  icon?: string;
+  right?: boolean;
+  name?: string;
+  fullWidth?: boolean;
+  boxed?: boolean;
+  color?: string;
+  size?: "small" | "medium" | "large";
+  align?: keyof typeof ALIGNMENTS;
+}
+
+export function FileInput(props: RenderableProps<IFileInputProps>) {
+  let label;
+  let icon;
+  let name;
+  const classes = classnames("file", {
+    "is-fullwidth": !!props.fullWidth,
+    "is-right": !!props.right,
+    "is-boxed": !!props.boxed,
+    "has-name": !!props.name,
+    [`is-${props.color}`]: !!props.color,
+    [`is-${props.size}`]: !!props.size,
+    [ALIGNMENTS[props.align]]: !!props.align
+  });
+  if (props.label) {
+    label = <span class="file-label">{props.label}</span>
+  }
+  if (props.icon) {
+    icon = (
+      <span className="file-icon">
+        <i class={props.icon} />
+      </span>
+    );
+  }
+  if (props.name) {
+    name = <span class="file-name">{props.name}</span>;
+  }
+  return (
+    <div class={classes}>
+      <label class="file-label">
+        <input class="file-input" type="file" />
+        <span class="file-cta">
+          {icon}
+          {label}
+        </span>
+      </label>
     </div>
   );
 }
