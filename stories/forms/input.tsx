@@ -1,17 +1,12 @@
 import { action, storiesOf } from "@storybook/react";
 import { h } from "preact";
 
-import { SingleInput, TextInput, Control, Field } from "../../src/forms";
+import { Control, Field, SingleInput, TextInput } from "../../src/forms";
 
 storiesOf("Forms/Input", module)
   .addDecorator(story => (
     <form onSubmit={ev => ev.preventDefault()}>
       {story()}
-      <div class="field">
-        <div class="control">
-          <input type="submit" value="Submit" class="button is-link is-outlined" />
-        </div>
-      </div>
     </form>
   ))
   .add("Simple", () => (
@@ -42,7 +37,7 @@ storiesOf("Forms/Input", module)
   )).add("Addons", () => (
     <Field hasAddons group="center" label="Donation amount" help="Any amount is appreciated! :)">
       <Control>
-        <a class="button" disabled>$</a>
+        <a class="button is-static">$</a>
       </Control>
       <Control>
         <TextInput placeholder="5.00" />
