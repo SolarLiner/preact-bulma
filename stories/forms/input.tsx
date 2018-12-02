@@ -1,7 +1,7 @@
 import { action, storiesOf } from "@storybook/react";
 import { h } from "preact";
 
-import { Control, Field, HorizontalGroup, Select, SingleInput, TextArea, TextInput } from "../../src/forms";
+import { Control, Field, SingleInput, TextInput } from "../../src/forms";
 
 storiesOf("Forms/Input", module)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)

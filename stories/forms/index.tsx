@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { h } from "preact";
-import { Control, Field, HorizontalGroup, Select, SingleInput, TextArea, TextInput } from "../../src/forms";
+import { Control, Field, HorizontalGroup, Select, SingleInput, Textarea, TextInput } from "../../src/forms";
 
 storiesOf("Forms", module).add("Horizontal form", () => (
   <div class="container">
@@ -48,7 +48,7 @@ storiesOf("Forms", module).add("Horizontal form", () => (
     <HorizontalGroup label="Body">
       <Field>
         <Control>
-          <TextArea placeholder="Explain how we can help you" />
+          <Textarea placeholder="Explain how we can help you" />
         </Control>
       </Field>
     </HorizontalGroup>
