@@ -118,6 +118,7 @@ interface IInputProps {
   placeholder?: string;
   readOnly?: boolean;
   rounded?: boolean;
+  static?: boolean;
   type?: "text" | "password" | "email" | "tel";
   value?: string;
 }
@@ -125,9 +126,10 @@ interface IInputProps {
 export function TextInput(props: RenderableProps<IInputProps>) {
   const classes = classnames("input", {
     "is-active": !!props.active,
-    "is-rounded": !!props.rounded,
-    "is-loading": !!props.loading,
     "is-focuded": !!props.focused,
+    "is-loading": !!props.loading,
+    "is-rounded": !!props.rounded,
+    "is-static": !!props.static,
     [`is-${props.color}`]: !!props.color
   });
   return (
