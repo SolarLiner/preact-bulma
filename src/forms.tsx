@@ -116,6 +116,7 @@ interface IInputProps {
   onFocus?: (ev: Event) => void;
   onInput?: (ev: Event) => void;
   placeholder?: string;
+  readOnly?: boolean;
   rounded?: boolean;
   type?: "text" | "password" | "email" | "tel";
   value?: string;
@@ -137,6 +138,7 @@ export function TextInput(props: RenderableProps<IInputProps>) {
       onFocus={props.onFocus}
       onInput={props.onInput}
       placeholder={props.placeholder}
+      readOnly={props.readOnly}
       type={props.type}
       value={props.value}
     />

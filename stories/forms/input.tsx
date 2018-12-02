@@ -36,7 +36,7 @@ storiesOf("Forms/Input", module)
   .add("States", () => (
     <div>
       <SingleInput label="Disabled" disabled />
-      <SingleInput label="Read-only" disabled readonly />
+      <SingleInput label="Read-only" disabled readOnly />
     </div>
   ))
   .add("Addons", () => (
