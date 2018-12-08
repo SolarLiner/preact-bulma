@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "outDir": "./lib",
     "declaration": true,
-    "declarationDir": "./lib/types"
   },
   "include": [
     "src/**/*.ts",
