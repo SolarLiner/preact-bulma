@@ -1,9 +1,9 @@
+import { action, storiesOf } from "@storybook/react";
 import { h } from "preact";
-import { storiesOf, action } from "@storybook/react";
 
 import Modal from "../../src/components/Modal";
 
-storiesOf("Modal", module)
+storiesOf("Components/Modal", module)
   .add("Simple", () => (
     <Modal.Modal active onClose={action("close")}>
       <div class="box">

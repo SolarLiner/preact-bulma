@@ -1,5 +1,5 @@
-import { h, Component, RenderableProps } from "preact";
 import classnames from "classnames";
+import { Component, h, RenderableProps } from "preact";
 
 interface IModalCardProps {
   active?: boolean;
@@ -16,19 +16,11 @@ export class ModalCard extends Component<IModalCardProps, {}> {
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">{props.title}</p>
-            <button
-              class="delete"
-              aria-label="delete"
-              onClick={this.handleClose.bind(this)}
-            />
+            <button class="delete" aria-label="delete" onClick={this.handleClose.bind(this)} />
           </header>
           {children}
         </div>
-        <div
-          class="modal-close is-large"
-          aria-label="close"
-          onClick={this.handleClose.bind(this)}
-        />
+        <div class="modal-close is-large" aria-label="close" onClick={this.handleClose.bind(this)} />
       </div>
     );
   }

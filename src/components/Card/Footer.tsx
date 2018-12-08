@@ -8,10 +8,7 @@ interface ICardFooterItemProps {
   href?: string;
 }
 
-export function CardFooterItem({
-  children,
-  ...props
-}: RenderableProps<ICardFooterItemProps>) {
+export function CardFooterItem({ children, ...props }: RenderableProps<ICardFooterItemProps>) {
   return (
     <a href={props.href || "#"} class="card-footer-item">
       {children}

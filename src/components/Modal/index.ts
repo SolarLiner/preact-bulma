@@ -1,7 +1,8 @@
 import ModalWidget from "./Modal";
-import { ModalCard, ModalCardFooter, ModalCardBody } from "./ModalCard";
+import { ModalCard, ModalCardBody, ModalCardFooter } from "./ModalCard";
 import ModalImage from "./ModalImage";
 
+// tslint:disable-next-line:variable-name
 const Modal = {
   Modal: ModalWidget,
   Image: ModalImage,

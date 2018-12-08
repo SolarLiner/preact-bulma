@@ -5,9 +5,7 @@ interface INavbarDropdownProps {
   icon?: string;
 }
 
-export default function NavbarDropdown(
-  props: RenderableProps<INavbarDropdownProps>
-) {
+export default function NavbarDropdown(props: RenderableProps<INavbarDropdownProps>) {
   return (
     <div class="navbar-item has-dropdown">
       <a class="navbar-link">{props.title}</a>
@@ -20,9 +18,7 @@ interface INavbarDropdownItemProps {
   href?: string;
 }
 
-export function NavbarDropdownItem(
-  props: RenderableProps<INavbarDropdownItemProps>
-) {
+export function NavbarDropdownItem(props: RenderableProps<INavbarDropdownItemProps>) {
   if (props.href) {
     return (
       <a class="navbar-item" href={props.href}>
@@ -35,5 +31,5 @@ export function NavbarDropdownItem(
 }
 
 export function NavbarDropdownDivider() {
-  return <hr class="navbar-divider"/>
+  return <hr class="navbar-divider" />;
 }

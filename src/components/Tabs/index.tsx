@@ -1,11 +1,11 @@
-import { h, RenderableProps } from "preact";
 import classnames from "classnames";
+import { h, RenderableProps } from "preact";
 
 const ALIGNMENT = {
   left: "",
   center: "is-centered",
   right: "is-right"
-}
+};
 
 interface ITabsProps {
   align?: keyof typeof ALIGNMENT;
@@ -44,6 +44,6 @@ export function TabsTab(props: RenderableProps<ITabsTabProps>) {
 }
 
 export default {
-  Tabs: Tabs,
+  Tabs,
   Tab: TabsTab
-}
+};

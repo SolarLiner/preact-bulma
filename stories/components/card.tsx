@@ -1,9 +1,9 @@
-import { h } from "preact";
 import { storiesOf } from "@storybook/react";
+import { h } from "preact";
 
 import Card from "../../src/components/Card";
 
-storiesOf("Card", module)
+storiesOf("Components/Card", module)
   .add("Simple", () => (
     <Card.Card>
       <Card.Header

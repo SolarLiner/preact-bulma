@@ -1,0 +1,99 @@
+# This file is a template, and might need editing before it works on your project.
+# Official framework image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/node/tags/
+image: node:latest
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+  key: "${CI_COMMIT_REF_SLUG}"
+
+stages:
+  - setup
+  - test
+  - build
+  - deploy
+
+setup:
+  stage: setup
+  script: yarn install
+  cache:
+    policy: push
+
+audit/devel:
+  stage: test
+  script: yarn audit
+  allow_failure: true
+  cache:
+    policy: pull
+
+audit/master:
+  stage: test
+  script: yarn audit
+  allow_failure: false
+  only:
+    - master
+  cache:
+    policy: pull
+
+lint:
+  stage: test
+  script: yarn lint
+  allow_failure: true
+  when: always
+  cache:
+    policy: pull
+
+build/devel:
+  stage: build
+  script:
+    - yarn build
+    - npm package
+    - rm -rf lib
+  artifacts:
+    untracked: true
+    expire_in: 30 days
+  except:
+    - master
+  cache:
+    policy: pull
+
+build/master:
+  stage: build
+  script:
+    - yarn build
+    - npm pack
+    - rm -rf lib
+  artifacts:
+    untracked: true
+  only:
+    - master
+  cache:
+    policy: pull
+
+pages:
+  stage: build
+  script: yarn docs
+  after_script:
+    - mv docs public
+  artifacts:
+    untracked: false
+    paths:
+      - public
+    expire_in: 30 days
+  cache:
+    policy: pull
+
+deploy:
+  variables:
+    GIT_STRATEGY: none
+  dependencies:
+    - build/master
+  stage: deploy
+  script:
+    - npm publish
+  only:
+    - master
+  cache: {}

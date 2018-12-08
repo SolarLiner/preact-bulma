@@ -1,9 +1,9 @@
+import { action, storiesOf } from "@storybook/react";
 import { h } from "preact";
-import { storiesOf, action } from "@storybook/react";
 
 import Tabs from "../../src/components/Tabs";
 
-storiesOf("Tabs", module)
+storiesOf("Components/Tabs", module)
   .add("Simple", () => (
     <Tabs.Tabs>
       <Tabs.Tab>Documents</Tabs.Tab>
