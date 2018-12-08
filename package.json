@@ -1,15 +1,14 @@
 {
   "name": "preact-bulma",
-  "version": "0.3.0",
+  "version": "0.3.1a",
   "description": "Preact components for the Bulma framework",
   "main": "lib/entry.module.js",
-  "types": "lib/types/entry.module.d.ts",
   "author": "Nathan Graule",
   "license": "MIT",
   "private": false,
   "files": [
     "lib/**/*.js",
-    "lib/types/*.d.ts"
+    "lib/**/*.d.ts"
   ],
   "scripts": {
     "build": "tsc --build",
