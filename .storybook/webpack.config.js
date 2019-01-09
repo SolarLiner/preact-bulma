@@ -14,7 +14,5 @@ module.exports = (baseConfig, env, config) => {
     loader: require.resolve("ts-loader")
   });
   config.resolve.extensions.push(".ts", ".tsx");
-  config.resolve.alias.react = "preact-compat";
-  config.resolve.alias["react-dom"] = "preact-compat";
   return config;
 }
