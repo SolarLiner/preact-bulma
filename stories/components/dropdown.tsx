@@ -1,4 +1,4 @@
-import { storiesOf } from "@storybook/react";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Dropdown from "../../src/components/Dropdown";

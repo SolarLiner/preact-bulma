@@ -1,4 +1,4 @@
-import { action, storiesOf } from "@storybook/react";
+import { action, storiesOf } from "@storybook/preact";
 import { h } from "preact";
 import { Control, Field, HorizontalGroup, Select, Textarea, TextInput } from "../../src/forms";
 import { Input } from "../../src/forms/singles";

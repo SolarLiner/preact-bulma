@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, addDecorator } from "@storybook/react";
+import { configure, addDecorator } from "@storybook/preact";
 
 import "bulma/css/bulma.min.css";
 

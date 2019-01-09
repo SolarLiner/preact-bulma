@@ -1,4 +1,4 @@
-import { action, storiesOf } from "@storybook/react";
+import { action, storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Tabs from "../../src/components/Tabs";
