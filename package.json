@@ -27,6 +27,7 @@
     "@types/node": "^10.9.4",
     "babel-core": "^6.26.3",
     "node-sass": "^4.9.3",
+    "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
     "prettier": "^1.15.3",
     "ts-loader": "^3.0.0",
