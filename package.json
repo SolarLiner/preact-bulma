@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
-    "@storybook/react": "~3.4.10",
+    "@storybook/preact": "^4.2.0-alpha.11",
     "@types/classnames": "^2.2.6",
     "@types/node": "^10.9.4",
     "babel-core": "^6.26.3",
