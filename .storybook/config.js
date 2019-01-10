@@ -1,4 +1,5 @@
-import React from "react";
+/** @jsx h */
+import { h } from "preact";
 import { configure, addDecorator } from "@storybook/preact";
 
 import "bulma/css/bulma.min.css";
