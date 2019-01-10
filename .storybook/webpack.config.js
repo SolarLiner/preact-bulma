@@ -4,5 +4,12 @@ module.exports = (baseConfig, env, config) => {
     loader: require.resolve("ts-loader")
   });
   config.resolve.extensions.push(".ts", ".tsx");
+
+  config.module.rules.push({
+    test: /\.[jt]sx?$/,
+    loader: require.resolve('@storybook/addon-storysource/loader'),
+    options: {parser: "typescript"},
+    enforce: 'pre',
+  });
   return config;
 }
