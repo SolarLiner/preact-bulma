@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { h, RenderableProps } from "preact";
 
-const ALIGNMENT = {
+export const ALIGNMENT = {
   left: "",
   center: "is-centered",
   right: "is-right"
