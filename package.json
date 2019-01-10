@@ -24,6 +24,7 @@
     "@babel/core": "^7.0.1",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-typescript": "^7.1.0",
+    "@storybook/addon-knobs": "^4.1.6",
     "@storybook/preact": "^4.2.0-alpha.11",
     "@types/classnames": "^2.2.6",
     "@types/node": "^10.9.4",
