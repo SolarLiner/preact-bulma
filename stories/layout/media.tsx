@@ -3,57 +3,8 @@ import { h } from "preact";
 
 import { Level, Media } from "../../src/layout";
 
-storiesOf("Layout/Media Object", module)
-  .add("Simple", () => (
-    <Media.Media>
-      <Media.Left>
-        <p class="image is-64x64">
-          <img
-            src="https://bulma.io/images/placeholders/128x128.png"
-            alt="Media image (placeholder)"
-          />
-        </p>
-      </Media.Left>
-      <Media.Content>
-        <div class="content">
-          <p>
-            <strong>John Smith</strong> <small>@johnsmith</small>{" "}
-            <small>31m</small>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-            ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
-            non massa sem. Etiam finibus odio quis feugiat facilisis.
-          </p>
-        </div>
-        <Level.Level mobile>
-          <Level.Left>
-            <Level.Item>
-              <a>
-                <span class="icon is-small">
-                  <i class="fas fa-reply" />
-                </span>
-              </a>
-            </Level.Item>
-            <Level.Item>
-              <a>
-                <span class="icon is-small">
-                  <i class="fas fa-retweet" />
-                </span>
-              </a>
-            </Level.Item>
-            <Level.Item>
-              <a>
-                <span class="icon is-small">
-                  <i class="fas fa-heart" />
-                </span>
-              </a>
-            </Level.Item>
-          </Level.Left>
-        </Level.Level>
-      </Media.Content>
-    </Media.Media>
-  ))
-  .add("Nested", () => (
+storiesOf("Layout", module)
+  .add("Media object", () => (
     <div>
       <Media.Media>
         <Media.Left>

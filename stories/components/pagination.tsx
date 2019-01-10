@@ -1,25 +1,42 @@
+import { number, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Pagination from "../../src/components/Pagination";
 
-storiesOf("Components/Pagination", module)
-  .add("Few pages", () => (
-    <div>
-      <Pagination pages={[1, 2, 3]} current={1} />
-      <Pagination pages={[1, 2, 3]} current={2} />
-      <Pagination pages={[1, 2, 3]} current={3} />
-    </div>
-  ))
-  .add("Many pages", () => (
-    <div>
-      <Pagination pages={[1, null, 245, 246, 247, null, 349]} current={246} />
-      <Pagination pages={[1, null, 245, 246, 247, null, 349]} current={246} />
-      <Pagination pages={[1, null, 245, 246, 247, null, 349]} current={246} />
-    </div>
-  ))
-  .add("Rounded", () => (
-    <div>
-      <Pagination pages={[1, 2, 3, 4, 5, null]} current={4} class="is-rounded" />
-    </div>
-  ));
+function pagination(current: number, last: number, delta = 2) {
+  const left = current - delta;
+  const right = current + delta + 1;
+  const range = [];
+  const rangeWithDots = [];
+  let l: number;
+
+  for (let i = 1; i <= last; i++) {
+    if (i === 1 || i === last || (i >= left && i < right)) {
+      range.push(i);
+    }
+  }
+
+  for (const i of range) {
+    if (l) {
+      if (i - l === 2) {
+        rangeWithDots.push(l + 1);
+      } else if (i - l !== 1) {
+        rangeWithDots.push(null);
+      }
+    }
+    rangeWithDots.push(i);
+    l = i;
+  }
+
+  return rangeWithDots;
+}
+
+storiesOf("Components", module)
+  .addDecorator(withKnobs)
+  .add("Pagination", () => {
+    const page = number("Page", 1, { range: true, min: 1, max: 500, step: 1 });
+    const pages = number("Pages", 100, { range: true, min: 1, max: 500, step: 5 });
+
+    return <Pagination pages={pagination(page, pages)} current={page} />;
+  });
