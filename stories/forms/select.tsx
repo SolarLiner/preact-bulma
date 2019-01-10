@@ -1,4 +1,5 @@
-import { action, storiesOf } from "@storybook/react";
+import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, Select } from "../../src/forms";
@@ -57,21 +58,25 @@ const OPTIONS = [
   "Wyoming"
 ];
 
-storiesOf("Forms/Select", module)
+const COLORS = {
+  None: "",
+  Primary: "primary",
+  Light: "light",
+  Dark: "dark",
+  Info: "info",
+  Warning: "warning",
+  Danger: "danger"
+};
+
+storiesOf("Forms", module)
+  .addDecorator(withKnobs)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)
-  .add("Colors", () => (
-    <div class="container">
-      <SingleSelect options={OPTIONS} />
-      <SingleSelect options={OPTIONS} color="primary" />
-      <SingleSelect options={OPTIONS} color="info" />
-      <SingleSelect options={OPTIONS} color="warning" />
-      <SingleSelect options={OPTIONS} color="danger" />
-    </div>
-  ))
-  .add("States", () => (
-    <div className="container">
-      <SingleSelect label="Default" options={OPTIONS} />
-      <SingleSelect label="Loading" options={OPTIONS} loading />
-      <SingleSelect label="With icon" options={OPTIONS} iconsLeft="fas fa-globe" />
-    </div>
+  .add("Select", () => (
+    <SingleSelect
+      options={OPTIONS}
+      color={select("Color", COLORS, "None")}
+      iconsLeft={text("Icon left", "fas-fa-globe")}
+      iconsRight={text("Icon right", "")}
+      loading={boolean("Loading", false)}
+    />
   ));

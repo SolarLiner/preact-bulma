@@ -1,18 +1,13 @@
-import { action, storiesOf } from "@storybook/react";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 import { Control, Field, HorizontalGroup, Select, Textarea, TextInput } from "../../src/forms";
 import { Input } from "../../src/forms/singles";
-
-const withPreventDefault = (handler: (ev: Event) => void) => (e: Event) => {
-  e.preventDefault();
-  handler(e);
-}
 
 storiesOf("Forms", module)
   .addDecorator(story => (
     <section className="section">
       <div className="container">
-        <form onSubmit={withPreventDefault(action("submit"))}>{story()}</form>
+        <form>{story()}</form>
       </div>
     </section>
   ))

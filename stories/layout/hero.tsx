@@ -1,29 +1,24 @@
-import { storiesOf } from "@storybook/react";
+import { boolean, select, withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Navbar from "../../src/components/Navbar";
 import { Hero } from "../../src/layout";
 
+const COLORS = {
+  None: "",
+  Primary: "primary",
+  Light: "light",
+  Dark: "dark",
+  Info: "info",
+  Warning: "warning",
+  Danger: "danger"
+};
+
 storiesOf("Layout/Hero", module)
-  .addDecorator(story => story())
-  .add("Simple", () => (
-    <Hero.Hero>
-      <Hero.Body>
-        <h1 class="title">Title</h1>
-        <h3 class="subtitle">Subtitle</h3>
-      </Hero.Body>
-    </Hero.Hero>
-  ))
-  .add("With colors", () => (
-    <Hero.Hero color="primary">
-      <Hero.Body>
-        <h1 class="title">Title</h1>
-        <h3 class="subtitle">Subtitle</h3>
-      </Hero.Body>
-    </Hero.Hero>
-  ))
-  .add("Bold", () => (
-    <Hero.Hero bold color="primary">
+  .addDecorator(withKnobs)
+  .add("Hero", () => (
+    <Hero.Hero color={select("Color", COLORS, "None")} bold={boolean("Bold", false)} >
       <Hero.Body>
         <h1 class="title">Title</h1>
         <h3 class="subtitle">Subtitle</h3>
@@ -31,7 +26,7 @@ storiesOf("Layout/Hero", module)
     </Hero.Hero>
   ))
   .add("Fully featured", () => (
-    <Hero.Hero color="primary" bold>
+    <Hero.Hero color={select("Color", COLORS, "Primary")} bold={boolean("Bold", true)}>
       <Hero.Header>
         <Navbar.Navbar>
           <Navbar.Brand>

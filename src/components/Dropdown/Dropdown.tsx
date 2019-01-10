@@ -3,7 +3,7 @@ import { Component, h, RenderableProps } from "preact";
 import "../../utils/array_include";
 import randomString from "../../utils/rndString";
 
-const ALIGNMENT = {
+export const ALIGNMENT = {
   left: "",
   right: "is-right"
 };

@@ -1,10 +1,10 @@
-import { storiesOf } from "@storybook/react";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Card from "../../src/components/Card";
 
 storiesOf("Components/Card", module)
-  .add("Simple", () => (
+  .add("Card", () => (
     <Card.Card>
       <Card.Header
         title="Physics breakthrough"
@@ -19,7 +19,7 @@ storiesOf("Components/Card", module)
       </Card.Footer>
     </Card.Card>
   ))
-  .add("With image", () => (
+  .add("Card with image", () => (
     <Card.Card>
       <Card.Header title="Card with image" />
       <Card.Image
