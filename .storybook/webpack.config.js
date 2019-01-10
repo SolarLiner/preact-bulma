@@ -7,9 +7,14 @@ module.exports = (baseConfig, env, config) => {
 
   config.module.rules.push({
     test: /\.[jt]sx?$/,
-    loader: require.resolve('@storybook/addon-storysource/loader'),
-    options: {parser: "typescript"},
-    enforce: 'pre',
+    loader: require.resolve("@storybook/addon-storysource/loader"),
+    options: {
+      parser: "typescript",
+      prettierConfig: {
+        printWidth: 80
+      }
+    },
+    enforce: "pre"
   });
   return config;
-}
+};
