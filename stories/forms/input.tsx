@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
@@ -15,12 +16,7 @@ const COLORS = {
   Danger: "is-danger"
 };
 
-const INPUT_TYPES = [
-  "text",
-  "email",
-  "tel",
-  "password"
-];
+const INPUT_TYPES = ["text", "email", "tel", "password"];
 
 storiesOf("Forms/Input", module)
   .addDecorator(withKnobs)
@@ -39,6 +35,9 @@ storiesOf("Forms/Input", module)
       disabled={boolean("Disabled", false)}
       static={boolean("Static", false)}
       readOnly={boolean("Read only", false)}
+      onInput={action("input")}
+      onFocus={action("focus")}
+      onBlur={action("blur")}
     />
   ))
   .add("Addons", () => (
@@ -47,10 +46,17 @@ storiesOf("Forms/Input", module)
         <a class="button is-static">$</a>
       </Control>
       <Control>
-        <TextInput placeholder="5.00" />
+        <TextInput
+          placeholder="5.00"
+          onInput={action("input[input]")}
+          onFocus={action("focus[input]")}
+          onBlur={action("blur[input]")}
+        />
       </Control>
       <Control>
-        <a class="button is-primary">Donate !</a>
+        <a class="button is-primary" onClick={action("click[Donate !]")}>
+          Donate !
+        </a>
       </Control>
     </Field>
   ));

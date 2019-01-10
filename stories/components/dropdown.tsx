@@ -25,18 +25,18 @@ storiesOf("Components/Dropdown", module)
   .add("Dropup", () => (
     <div style="margin-top: 120px;">
       <Dropdown.Dropdown
-      title="Dropdown"
-      icon="fas fa-angle-up"
-      align={select("Align", Object.keys(ALIGNMENT), "left")}
-      hoverable={boolean("hoverable", false)}
+        title="Dropdown"
+        icon="fas fa-angle-up"
+        align={select("Align", Object.keys(ALIGNMENT), "left")}
+        hoverable={boolean("hoverable", false)}
         active={boolean("Active", true)}
         dropup
-    >
-      <Dropdown.Item>Link</Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item isContent>
-        Hello, <b>friend</b>!
-      </Dropdown.Item>
-    </Dropdown.Dropdown>
+      >
+        <Dropdown.Item>Link</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item isContent>
+          Hello, <b>friend</b>!
+        </Dropdown.Item>
+      </Dropdown.Dropdown>
     </div>
   ));

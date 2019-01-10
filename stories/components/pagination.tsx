@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { number, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
@@ -38,5 +39,5 @@ storiesOf("Components", module)
     const page = number("Page", 1, { range: true, min: 1, max: 500, step: 1 });
     const pages = number("Pages", 100, { range: true, min: 1, max: 500, step: 5 });
 
-    return <Pagination pages={pagination(page, pages)} current={page} />;
+    return <Pagination pages={pagination(page, pages)} current={page} onPageChange={action("pageChange")} />;
   });

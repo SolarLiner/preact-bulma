@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { boolean, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
@@ -7,7 +8,7 @@ import Modal from "../../src/components/Modal";
 storiesOf("Components/Modal", module)
   .addDecorator(withKnobs)
   .add("Modal", () => (
-    <Modal.Modal active={boolean("Active", true)}>
+    <Modal.Modal active={boolean("Active", true)} onClose={action("close")}>
       <div class="box">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat assumenda molestiae ullam quibusdam nisi facere
         soluta totam rerum odit velit, vitae veritatis earum quos laborum odio ipsa, blanditiis consectetur perferendis.
@@ -15,10 +16,15 @@ storiesOf("Components/Modal", module)
     </Modal.Modal>
   ))
   .add("Image", () => (
-    <Modal.Image src="https://source.unsplash.com/random/800x600" alt="Modal image" active={boolean("Active", true)} />
+    <Modal.Image
+      onClose={action("close")}
+      src="https://source.unsplash.com/random/800x600"
+      alt="Modal image"
+      active={boolean("Active", true)}
+    />
   ))
   .add("Card", () => (
-    <Modal.Card title="Login" active={boolean("Active", true)}>
+    <Modal.Card title="Login" active={boolean("Active", true)} onClose={action("close")}>
       <Modal.CardBody>
         <div class="form">
           <div class="field">

@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
@@ -21,6 +22,7 @@ storiesOf("Components/Message", module)
       class={select("Color", COLORS, "None")}
       canClose={boolean("Can close", true)}
       title={text("Title", "You've got mail!")}
+      onClose={action("close")}
     >
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, aspernatur! Error delectus necessitatibus
       voluptatibus, vitae quia sunt laborum doloribus facilis ipsam nulla officiis sit unde cupiditate quisquam

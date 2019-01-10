@@ -75,7 +75,10 @@ storiesOf("Forms", module)
     <SingleSelect
       options={OPTIONS}
       color={select("Color", COLORS, "None")}
-      iconsLeft={text("Icon left", "fas-fa-globe")}
+      multiple={boolean("Multiple", false)}
+      rounded={boolean("Rounded", false)}
+      fullWidth={boolean("Full width", false)}
+      iconsLeft={text("Icon left", "fas fa-globe")}
       iconsRight={text("Icon right", "")}
       loading={boolean("Loading", false)}
     />

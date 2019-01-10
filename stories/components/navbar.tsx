@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
@@ -20,7 +21,7 @@ storiesOf("Components", module)
     const isActive = boolean("Active (mobile)", true);
     return (
       <Navbar.Navbar class={select("Color", COLORS, "None")}>
-        <Navbar.Brand active={isActive}>
+        <Navbar.Brand active={isActive} onToggleExpand={action("toggleExpand")}>
           <span>Preact Bulma</span>
         </Navbar.Brand>
         <Navbar.Menu active={isActive}>

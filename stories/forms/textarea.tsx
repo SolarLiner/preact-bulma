@@ -35,5 +35,6 @@ storiesOf("Forms", module)
       disabled={boolean("Disabled", false)}
       readOnly={boolean("Read-only", false)}
       static={boolean("Static", false)}
+      fixed={boolean("Fixed", false)}
     />
   ));
