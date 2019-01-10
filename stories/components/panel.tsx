@@ -1,8 +1,8 @@
-import { storiesOf } from "@storybook/react";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 import Panel from "../../src/components/Panel";
 
-storiesOf("Components/Panel", module).add("Simple", () => (
+storiesOf("Components", module).add("Panel", () => (
   <Panel.Panel>
     <Panel.Heading>Repositories</Panel.Heading>
     <Panel.Block>

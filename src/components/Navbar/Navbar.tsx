@@ -11,7 +11,7 @@ export default function Navbar(props: RenderableProps<INavbarProps>) {
 
 interface INavbarBrandProps {
   href?: string;
-  expanded?: boolean;
+  active?: boolean;
   onToggleExpand?(): void;
 }
 
@@ -25,7 +25,7 @@ export function NavbarBrand(props: RenderableProps<INavbarBrandProps>) {
         role="button"
         class="navbar-burger"
         aria-label="menu"
-        aria-expanded={!!props.expanded}
+        aria-expanded={!!props.active}
         onClick={_ev => props.onToggleExpand && props.onToggleExpand()}
       >
         <span aria-hidden="true" />

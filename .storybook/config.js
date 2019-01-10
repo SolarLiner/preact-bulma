@@ -1,5 +1,8 @@
-import React from "react";
-import { configure, addDecorator } from "@storybook/react";
+/** @jsx h */
+import { withOptions } from "@storybook/addon-options";
+import { configure, addDecorator } from "@storybook/preact";
+
+import { h } from "preact";
 
 import "bulma/css/bulma.min.css";
 
@@ -8,6 +11,11 @@ addDecorator(story => (
     <div className="container">{story()}</div>
   </section>
 ));
+addDecorator(withOptions({
+  name: "Preact Bulma",
+  url: "https://github.com/solarliner/preact-bulma",
+  addonPanelInRight: true,
+}));
 
 function loadStories() {
   require("../stories");

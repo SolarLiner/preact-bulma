@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { h, RenderableProps } from "preact";
 
-const ALIGNMENT = {
+export const ALIGNMENT = {
   left: "",
   center: "is-centered",
   right: "is-right"
@@ -25,13 +25,14 @@ export function Tabs(props: RenderableProps<ITabsProps>) {
 interface ITabsTabProps {
   active?: boolean;
   icon?: string;
+  href?: string;
   onClick?(ev: MouseEvent): void;
 }
 
 export function TabsTab(props: RenderableProps<ITabsTabProps>) {
   return (
     <li class={classnames({ "is-active": props.active })}>
-      <a onClick={ev => props.onClick && props.onClick(ev)}>
+      <a href={props.href} onClick={ev => props.onClick && props.onClick(ev)}>
         {props.icon && (
           <span class="icon is-small">
             <i class={props.icon} />

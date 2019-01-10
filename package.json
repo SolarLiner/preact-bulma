@@ -18,18 +18,27 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "peerDependencies": {
-    "preact": "^8.3.1"
+    "preact": "^8.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
-    "@storybook/react": "~3.4.10",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-typescript": "^7.1.0",
+    "@storybook/addon-actions": "^4.1.6",
+    "@storybook/addon-knobs": "^4.1.6",
+    "@storybook/addon-options": "^4.1.6",
+    "@storybook/addon-storysource": "^4.1.6",
+    "@storybook/preact": "^4.2.0-alpha.11",
     "@types/classnames": "^2.2.6",
     "@types/node": "^10.9.4",
     "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-preset-preact": "tomasdev/babel-preset-preact#patch-1",
     "node-sass": "^4.9.3",
+    "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
     "prettier": "^1.15.3",
-    "ts-loader": "^3.0.0",
+    "ts-loader": "^5.3.3",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-plugin-prettier": "^2.0.1",
@@ -38,7 +47,6 @@
   },
   "dependencies": {
     "bulma": "^0.7.1",
-    "classnames": "^2.2.6",
-    "preact": "^8.3.1"
+    "classnames": "^2.2.6"
   }
 }

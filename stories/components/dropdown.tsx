@@ -1,29 +1,20 @@
-import { storiesOf } from "@storybook/react";
+import { boolean, select, withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Dropdown from "../../src/components/Dropdown";
+import { ALIGNMENT } from "../../src/components/Dropdown/Dropdown";
 
 storiesOf("Components/Dropdown", module)
-  .add("Simple", () => (
-    <div>
-      <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down">
-        <Dropdown.Item>Link</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item isContent>
-          Hello, <b>friend</b>!
-        </Dropdown.Item>
-      </Dropdown.Dropdown>
-      <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down" active>
-        <Dropdown.Item>Link</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item isContent>
-          Hello, <b>friend</b>!
-        </Dropdown.Item>
-      </Dropdown.Dropdown>
-    </div>
-  ))
-  .add("Hoverable", () => (
-    <Dropdown.Dropdown title="Dropdown" icon="fas fa-angle-down" hoverable>
+  .addDecorator(withKnobs)
+  .add("Dropdown", () => (
+    <Dropdown.Dropdown
+      title="Dropdown"
+      icon="fas fa-angle-down"
+      align={select("Align", Object.keys(ALIGNMENT), "left")}
+      hoverable={boolean("hoverable", false)}
+      active={boolean("Active", true)}
+    >
       <Dropdown.Item>Link</Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item isContent>
@@ -31,37 +22,14 @@ storiesOf("Components/Dropdown", module)
       </Dropdown.Item>
     </Dropdown.Dropdown>
   ))
-  .add("Left/Right aligned", () => (
-    <div class="level is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-          <Dropdown.Dropdown
-            title="Left-aligned"
-            icon="fas fa-angle-down"
-            align="left"
-          >
-            <Dropdown.Item>Link</Dropdown.Item>
-          </Dropdown.Dropdown>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="level item">
-          <Dropdown.Dropdown
-            title="Right-aligned"
-            icon="fas fa-angle-down"
-            align="right"
-          >
-            <Dropdown.Item>Link</Dropdown.Item>
-          </Dropdown.Dropdown>
-        </div>
-      </div>
-    </div>
-  ))
   .add("Dropup", () => (
     <div style="margin-top: 120px;">
       <Dropdown.Dropdown
         title="Dropdown"
         icon="fas fa-angle-up"
+        align={select("Align", Object.keys(ALIGNMENT), "left")}
+        hoverable={boolean("hoverable", false)}
+        active={boolean("Active", true)}
         dropup
       >
         <Dropdown.Item>Link</Dropdown.Item>

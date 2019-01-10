@@ -1,9 +1,9 @@
-import { storiesOf } from "@storybook/react";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Menu from "../../src/components/Menu";
 
-storiesOf("Components/Side menu", module).add("Simple", () => (
+storiesOf("Components", module).add("Side menu", () => (
   <Menu.Menu>
     <Menu.Label>Community</Menu.Label>
     <Menu.List>
