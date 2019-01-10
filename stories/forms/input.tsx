@@ -1,4 +1,4 @@
-import { action, storiesOf } from "@storybook/preact";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, TextInput } from "../../src/forms";
@@ -11,9 +11,6 @@ storiesOf("Forms/Input", module)
       label="Name"
       placeholder="John Doe"
       help="Enter your name here."
-      onBlur={action("onBlur")}
-      onFocus={action("onFocus")}
-      onInput={action("onInput")}
       iconsLeft="fas fa-user"
     />
   ))

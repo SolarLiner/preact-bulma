@@ -1,4 +1,4 @@
-import { action, storiesOf } from "@storybook/preact";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, Select } from "../../src/forms";

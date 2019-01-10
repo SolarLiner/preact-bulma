@@ -1,11 +1,11 @@
-import { action, storiesOf } from "@storybook/preact";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Navbar from "../../src/components/Navbar";
 
 storiesOf("Components/Navbar", module).add("Simple", () => (
   <Navbar.Navbar>
-    <Navbar.Brand onToggleExpand={action("toggleExpand")}>
+    <Navbar.Brand>
       <span>Preact Bulma</span>
     </Navbar.Brand>
     <Navbar.Menu active>
@@ -22,7 +22,7 @@ storiesOf("Components/Navbar", module).add("Simple", () => (
   </Navbar.Navbar>
 )).add("Deactivated (mobile)", () => (
   <Navbar.Navbar>
-    <Navbar.Brand onToggleExpand={action("toggleExpand")}>
+    <Navbar.Brand>
       <span>Preact Bulma</span>
     </Navbar.Brand>
     <Navbar.Menu>
@@ -39,7 +39,7 @@ storiesOf("Components/Navbar", module).add("Simple", () => (
   </Navbar.Navbar>
   )).add("Navbar start + end", () => (
   <Navbar.Navbar>
-    <Navbar.Brand onToggleExpand={action("toggleExpand")}>
+    <Navbar.Brand>
       <span>Preact Bulma</span>
     </Navbar.Brand>
     <Navbar.Menu active>

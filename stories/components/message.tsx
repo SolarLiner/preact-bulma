@@ -1,11 +1,11 @@
-import { action, storiesOf } from "@storybook/preact";
+import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import Message from "../../src/components/Message";
 
 storiesOf("Components/Message", module)
   .add("Simple", () => (
-    <Message canClose title="You've got mail!" onClose={action("close")}>
+    <Message canClose title="You've got mail!">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt,
       aspernatur! Error delectus necessitatibus voluptatibus, vitae quia sunt
       laborum doloribus facilis ipsam nulla officiis sit unde cupiditate
