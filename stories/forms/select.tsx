@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, Select } from "../../src/forms";
-import { Select as SingleSelect } from "../../src/forms/singles";
 
 const OPTIONS = [
   "Alabama",
@@ -72,14 +71,16 @@ storiesOf("Forms", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)
   .add("Select", () => (
-    <SingleSelect
-      options={OPTIONS}
-      color={select("Color", COLORS, "None")}
-      multiple={boolean("Multiple", false)}
-      rounded={boolean("Rounded", false)}
-      fullWidth={boolean("Full width", false)}
-      iconsLeft={text("Icon left", "fas fa-globe")}
-      iconsRight={text("Icon right", "")}
-      loading={boolean("Loading", false)}
-    />
+    <Field>
+      <Control iconsLeft={text("Icon left", "fas fa-globe")} iconsRight={text("Icon right", "")}>
+        <Select
+          options={OPTIONS}
+          color={select("Color", COLORS, "None")}
+          multiple={boolean("Multiple", false)}
+          rounded={boolean("Rounded", false)}
+          fullWidth={boolean("Full width", false)}
+          loading={boolean("Loading", false)}
+        />
+      </Control>
+    </Field>
   ));

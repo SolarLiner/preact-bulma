@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, Textarea } from "../../src/forms";
-import { Textarea as SingleTextarea } from "../../src/forms/singles";
 
 const COLORS = {
   None: "",
@@ -26,15 +25,17 @@ storiesOf("Forms", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)
   .add("Textarea", () => (
-    <SingleTextarea
-      label="Textarea"
-      placeholder="Lorem ipsum etc."
-      color={select("Color", COLORS, "None")}
-      size={select("Size", SIZES, "Default")}
-      loading={boolean("Loading", false)}
-      disabled={boolean("Disabled", false)}
-      readOnly={boolean("Read-only", false)}
-      static={boolean("Static", false)}
-      fixed={boolean("Fixed", false)}
-    />
+    <Field label="Textarea">
+      <Control loading={boolean("Loading", false)}>
+        <Textarea
+          placeholder="Lorem ipsum etc."
+          color={select("Color", COLORS, "None")}
+          size={select("Size", SIZES, "Default")}
+          disabled={boolean("Disabled", false)}
+          readOnly={boolean("Read-only", false)}
+          static={boolean("Static", false)}
+          fixed={boolean("Fixed", false)}
+        />
+      </Control>
+    </Field>
   ));

@@ -4,7 +4,6 @@ import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, TextInput } from "../../src/forms";
-import { Input } from "../../src/forms/singles";
 
 const COLORS = {
   None: "",
@@ -22,23 +21,26 @@ storiesOf("Forms/Input", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)
   .add("Input", () => (
-    <Input
-      label="Name"
-      placeholder="John Doe"
-      help={text("Help", "Enter your username")}
-      iconsLeft={text("Icons left", "fas fa-user")}
-      iconsRight={text("Icons right", "")}
-      loading={boolean("Loading", false)}
-      rounded={boolean("Rounded", false)}
-      color={select("Color", COLORS, "None")}
-      type={select("Type", INPUT_TYPES, "text")}
-      disabled={boolean("Disabled", false)}
-      static={boolean("Static", false)}
-      readOnly={boolean("Read only", false)}
-      onInput={action("input")}
-      onFocus={action("focus")}
-      onBlur={action("blur")}
-    />
+    <Field label="Name" help={text("Help", "Enter your username")}>
+      <Control
+        iconsLeft={text("Icons left", "fas fa-user")}
+        iconsRight={text("Icons right", "")}
+        loading={boolean("Loading", false)}
+      >
+        <TextInput
+          placeholder="John Doe"
+          rounded={boolean("Rounded", false)}
+          color={select("Color", COLORS, "None")}
+          type={select("Type", INPUT_TYPES, "text")}
+          disabled={boolean("Disabled", false)}
+          static={boolean("Static", false)}
+          readOnly={boolean("Read only", false)}
+          onInput={action("input")}
+          onFocus={action("focus")}
+          onBlur={action("blur")}
+        />
+      </Control>
+    </Field>
   ))
   .add("Addons", () => (
     <Field hasAddons group="center" label="Donation amount" help="Any amount is appreciated! :)">
