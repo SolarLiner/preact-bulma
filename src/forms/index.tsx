@@ -128,6 +128,8 @@ export interface IInputProps {
   rounded?: boolean;
   static?: boolean;
   type?: "text" | "password" | "email" | "tel";
+  id?: string;
+  name?: string;
   value?: string;
 }
 
@@ -148,6 +150,8 @@ export function TextInput(props: RenderableProps<IInputProps>) {
       onInput={props.onInput}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
+      id={props.id}
+      name={props.name}
       type={props.type}
       value={props.value}
     />
@@ -188,6 +192,8 @@ export interface ISelectProps {
   color?: string;
   rounded?: boolean;
   size?: "small" | "medium" | "large";
+  id?: string;
+  name?: string;
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
@@ -201,7 +207,7 @@ export function Select(props: RenderableProps<ISelectProps>) {
   });
   return (
     <div class={classes}>
-      <select>
+      <select id={props.id} name={props.id}>
         {props.options.map(el => (
           <option>{el}</option>
         ))}
@@ -214,12 +220,14 @@ export interface ICheckboxProps {
   value?: boolean;
   disabled?: boolean;
   onChanged?: (ev: Event) => void;
+  id?: string;
+  name?: string;
 }
 
 export function Checkbox(props: RenderableProps<ICheckboxProps>) {
   return (
     <label class="checkbox">
-      <input type="checkbox" disabled={props.disabled} />
+      <input type="checkbox" disabled={props.disabled} id={props.id} name={props.name} />
       {props.children}
     </label>
   );
@@ -231,23 +239,25 @@ export interface IFileInputProps {
   label?: string;
   icon?: string;
   right?: boolean;
-  name?: string;
   fullWidth?: boolean;
   boxed?: boolean;
   color?: string;
   size?: "small" | "medium" | "large";
   align?: keyof typeof ALIGNMENTS;
+  filename?: string;
+  name?: string;
+  id?: string;
 }
 
 export function FileInput(props: RenderableProps<IFileInputProps>) {
-  let label;
-  let icon;
-  let name;
+  let label: JSX.Element;
+  let icon: JSX.Element;
+  let filename: JSX.Element;
   const classes = classnames("file", {
     "is-fullwidth": !!props.fullWidth,
     "is-right": !!props.right,
     "is-boxed": !!props.boxed,
-    "has-name": !!props.name,
+    "has-name": !!props.filename,
     [`is-${props.color}`]: !!props.color,
     [`is-${props.size}`]: !!props.size,
     [ALIGNMENTS[props.align]]: !!props.align
@@ -262,13 +272,13 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
       </span>
     );
   }
-  if (props.name) {
-    name = <span class="file-name">{props.name}</span>;
+  if (props.filename) {
+    filename = <span class="file-name">{props.filename}</span>;
   }
   return (
     <div class={classes}>
       <label class="file-label">
-        <input class="file-input" type="file" />
+        <input class="file-input" type="file" id={props.id} name={props.name} />
         <span class="file-cta">
           {icon}
           {label}
