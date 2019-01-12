@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
-import { Control, Field, HorizontalGroup, Select, Textarea, TextInput } from "../../src/forms";
+import { Control, Field, HorizontalGroup, Select, Textarea, TextInput, RadioButton } from "../../src/forms";
 import { Input } from "../../src/forms/singles";
 
 function preventDefault(fn: (ev: Event, ...args: any[]) => any, ...args: any[]) {
@@ -23,8 +23,8 @@ storiesOf("Forms", module)
     <div class="container">
       <form onSubmit={preventDefault(action("submit"))}>
         <HorizontalGroup label="From">
-          <Input placeholder="John Doe" iconsLeft="fas fa-user" />
-          <Input type="email" placeholder="john@doe.com" iconsLeft="fas fa-envelope" />
+          <Input placeholder="John Doe" iconsLeft="fas fa-user" name="firstName" />
+          <Input type="email" placeholder="john@doe.com" iconsLeft="fas fa-envelope" name="email" />
         </HorizontalGroup>
         <HorizontalGroup label=" ">
           <Field expanded hasAddons>
@@ -32,13 +32,13 @@ storiesOf("Forms", module)
               <a class="button is-static">+44</a>
             </Control>
             <Control expanded>
-              <TextInput type="tel" placeholder="6 43 32 21 10" />
+              <TextInput type="tel" placeholder="6 43 32 21 10" name="telephone" />
             </Control>
           </Field>
         </HorizontalGroup>
         <HorizontalGroup label="Department">
           <Control>
-            <Select options={["Business development", "Marketing", "Sales"]} />
+            <Select options={["Business development", "Marketing", "Sales"]} name="department" />
           </Control>
         </HorizontalGroup>
         <HorizontalGroup label="Already a member?">
