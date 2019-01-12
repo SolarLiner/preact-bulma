@@ -44,14 +44,10 @@ storiesOf("Forms", module)
         <HorizontalGroup label="Already a member?">
           <Field narrow>
             <Control>
-              <label className="radio">
-                <input type="radio" name="member" /> Yes
-              </label>
+              <RadioButton name="member">Yes</RadioButton>
             </Control>
             <Control>
-              <label className="radio">
-                <input type="radio" name="member" /> No
-              </label>
+              <RadioButton name="member">No</RadioButton>
             </Control>
           </Field>
         </HorizontalGroup>

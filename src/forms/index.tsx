@@ -12,7 +12,7 @@ const ALIGNMENTS = {
   left: "",
   center: "is-centered",
   right: "is-right"
-}
+};
 
 export interface IFieldProps {
   expanded?: boolean;
@@ -233,7 +233,16 @@ export function Checkbox(props: RenderableProps<ICheckboxProps>) {
   );
 }
 
-// TODO: Make Radio inputs
+export interface IRadioButtonProps {
+  name: string;
+}
+export function RadioButton(props: RenderableProps<IRadioButtonProps>) {
+  return (
+    <label>
+      <input type="radio" name={props.name} /> {props.children}
+    </label>
+  );
+}
 
 export interface IFileInputProps {
   label?: string;
@@ -263,7 +272,7 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
     [ALIGNMENTS[props.align]]: !!props.align
   });
   if (props.label) {
-    label = <span class="file-label">{props.label}</span>
+    label = <span class="file-label">{props.label}</span>;
   }
   if (props.icon) {
     icon = (
