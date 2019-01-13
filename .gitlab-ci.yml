@@ -7,7 +7,7 @@ image: node:latest
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
   paths:
-    - node_modules/
+    - node_modules
   key: "${CI_COMMIT_REF_SLUG}"
 
 stages:
@@ -64,7 +64,7 @@ build/master:
   stage: build
   script:
     - yarn build
-    - npm pack
+    - yarn pack
     - rm -rf lib
   artifacts:
     untracked: true
