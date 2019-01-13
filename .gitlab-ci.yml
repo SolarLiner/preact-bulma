@@ -10,6 +10,10 @@ cache:
     - node_modules
   key: "${CI_COMMIT_REF_SLUG}"
 
+before_script:
+  - ls -alh
+  - yarn
+
 stages:
   - setup
   - test
@@ -18,7 +22,7 @@ stages:
 
 setup:
   stage: setup
-  script: yarn install
+  script: yarn
   cache:
     policy: push
 
