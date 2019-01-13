@@ -165,14 +165,12 @@ export interface ITextareaProps {
   cols?: number;
   rows?: number;
   readOnly?: boolean;
-  static?: boolean;
   disabled?: boolean;
   fixed?: boolean;
 }
 
 export function Textarea(props: RenderableProps<ITextareaProps>) {
   const classes = classnames("textarea", {
-    "is-static": !!props.static,
     "has-fixed-size": !!props.fixed,
     [`is-${props.color}`]: !!props.color,
     [`is-${props.size}`]: !!props.size
