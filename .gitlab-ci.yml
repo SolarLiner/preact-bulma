@@ -85,3 +85,16 @@ deploy:
   only:
     - master
   cache: {}
+
+deploy/next:
+  variables:
+    GIT_STRATEGY: none
+  dependencies:
+    - build/devel
+  stage: deploy
+  script:
+    - npm publish `ls preact-bulma*.tgz | head -n1` --dry-run
+  except:
+    - master
+    - tags
+  cache: {}
