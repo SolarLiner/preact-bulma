@@ -33,7 +33,6 @@ storiesOf("Forms", module)
           size={select("Size", SIZES, "Default")}
           disabled={boolean("Disabled", false)}
           readOnly={boolean("Read-only", false)}
-          static={boolean("Static", false)}
           fixed={boolean("Fixed", false)}
         />
       </Control>
