@@ -1,8 +1,8 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
-import { Control, Field, HorizontalGroup, Select, Textarea, TextInput } from "../../src/forms";
-import { Input } from "../../src/forms/singles";
+import { Control, Field, HorizontalGroup, RadioButton, Select, Textarea, TextInput } from "../../src/forms";
+import Button from "../../src/elements/button";
 
 function preventDefault(fn: (ev: Event, ...args: any[]) => any, ...args: any[]) {
   return (ev: Event) => {
@@ -23,8 +23,16 @@ storiesOf("Forms", module)
     <div class="container">
       <form onSubmit={preventDefault(action("submit"))}>
         <HorizontalGroup label="From">
-          <Input placeholder="John Doe" iconsLeft="fas fa-user" />
-          <Input type="email" placeholder="john@doe.com" iconsLeft="fas fa-envelope" />
+          <Field>
+            <Control iconsLeft="fas fa-user">
+              <TextInput placeholder="John Doe" name="firstName" />
+            </Control>
+          </Field>
+          <Field>
+            <Control iconsLeft="fas fa-envelope">
+              <TextInput type="email" placeholder="john@doe.com" name="email" />
+            </Control>
+          </Field>
         </HorizontalGroup>
         <HorizontalGroup label=" ">
           <Field expanded hasAddons>
@@ -32,36 +40,31 @@ storiesOf("Forms", module)
               <a class="button is-static">+44</a>
             </Control>
             <Control expanded>
-              <TextInput type="tel" placeholder="6 43 32 21 10" />
+              <TextInput type="tel" placeholder="6 43 32 21 10" name="telephone" />
             </Control>
           </Field>
         </HorizontalGroup>
         <HorizontalGroup label="Department">
           <Control>
-            <Select options={["Business development", "Marketing", "Sales"]} />
+            <Select options={["Business development", "Marketing", "Sales"]} name="department" />
           </Control>
         </HorizontalGroup>
         <HorizontalGroup label="Already a member?">
           <Field narrow>
             <Control>
-              <label className="radio">
-                <input type="radio" name="member" /> Yes
-              </label>
+              <RadioButton name="member">Yes</RadioButton>
             </Control>
             <Control>
-              <label className="radio">
-                <input type="radio" name="member" /> No
-              </label>
+              <RadioButton name="member">No</RadioButton>
             </Control>
           </Field>
         </HorizontalGroup>
         <HorizontalGroup label="Subject">
-          <Input
-            color="danger"
-            placeholder="eg. Partnership opportunity"
-            help="This field is required"
-            helpColor="danger"
-          />
+          <Field help="This field is required" helpColor="danger">
+            <Control>
+              <TextInput color="danger" placeholder="eg. Partnership opportunity" />
+            </Control>
+          </Field>
         </HorizontalGroup>
         <HorizontalGroup label="Body">
           <Field>
@@ -75,10 +78,10 @@ storiesOf("Forms", module)
           {/* Empty label to preserve alignment */}
           <Field hasAddons>
             <Control>
-              <input class="button is-outlined is-primary" type="submit" value="Submit" />
+              <Button outlined color="primary" type="submit">Submit</Button>
             </Control>
             <Control>
-              <input class="button is-outlined" type="reset" value="Reset" />
+              <Button outlined type="reset">Reset</Button>
             </Control>
           </Field>
         </HorizontalGroup>

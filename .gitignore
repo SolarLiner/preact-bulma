@@ -74,3 +74,4 @@ typings/
 
 # Compiled library code
 lib
+.rts2_cache*

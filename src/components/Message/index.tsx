@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import { Component, h, RenderableProps } from "preact";
+import Delete from "../../elements/delete";
 
 interface IMessageProps {
   canClose?: boolean;
@@ -16,7 +17,7 @@ export default class Message extends Component<IMessageProps, {}> {
         <article class={classes}>
           <div class="message-header">
             <p>{props.title}</p>
-            {props.canClose && <button class="delete" aria-label="delete" onClick={this.handleDelete.bind(this)} />}
+            {props.canClose && <Delete onClick={this.handleDelete.bind(this)} />}
           </div>
           <div class="message-body">{props.children}</div>
         </article>

@@ -7,27 +7,21 @@ image: node:latest
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
   paths:
-    - node_modules/
+    - node_modules
   key: "${CI_COMMIT_REF_SLUG}"
 
+before_script:
+  - yarn
+
 stages:
-  - setup
   - test
   - build
   - deploy
-
-setup:
-  stage: setup
-  script: yarn install
-  cache:
-    policy: push
 
 audit/devel:
   stage: test
   script: yarn audit
   allow_failure: true
-  cache:
-    policy: pull
 
 audit/master:
   stage: test
@@ -35,39 +29,35 @@ audit/master:
   allow_failure: false
   only:
     - master
-  cache:
-    policy: pull
 
 lint:
   stage: test
   script: yarn lint
   allow_failure: true
   when: always
-  cache:
-    policy: pull
 
 build/devel:
   stage: build
   script:
     - yarn build
-    - npm package
+    - yarn pack
     - rm -rf lib
   artifacts:
-    untracked: true
+    paths:
+      - preact-bulma*.tgz
     expire_in: 30 days
   except:
     - master
-  cache:
-    policy: pull
 
 build/master:
   stage: build
   script:
     - yarn build
-    - npm pack
+    - yarn pack
     - rm -rf lib
   artifacts:
-    untracked: true
+    paths:
+      - preact-bulma*.tgz
   only:
     - master
   cache:
@@ -83,8 +73,6 @@ pages:
     paths:
       - public
     expire_in: 30 days
-  cache:
-    policy: pull
 
 deploy:
   variables:
@@ -93,7 +81,20 @@ deploy:
     - build/master
   stage: deploy
   script:
-    - npm publish
+    - npm publish `ls preact-bulma*.tgz | head -n1`
   only:
     - master
+  cache: {}
+
+deploy/next:
+  variables:
+    GIT_STRATEGY: none
+  dependencies:
+    - build/devel
+  stage: deploy
+  script:
+    - npm publish `ls preact-bulma*.tgz | head -n1` --dry-run
+  except:
+    - master
+    - tags
   cache: {}

@@ -1,8 +1,12 @@
 {
   "name": "preact-bulma",
-  "version": "0.3.1a",
+  "version": "1.0.0a",
   "description": "Preact components for the Bulma framework",
-  "main": "lib/entry.module.js",
+  "main": "lib/preact-bulma.js",
+  "umd:main": "lib/preact-bulma.umd.js",
+  "module": "lib/preact-bulma.mjs",
+  "source": "src/entry.module.ts",
+  "typings": "lib/preact-bulma.d.ts",
   "author": "Nathan Graule",
   "license": "MIT",
   "private": false,
@@ -11,11 +15,12 @@
     "lib/**/*.d.ts"
   ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "microbundle build",
     "lint": "tslint -p tsconfig.json",
     "lint:fix": "tslint -p tsconfig.json --fix",
     "docs": "build-storybook -c .storybook -o docs",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "prepack": "microbundle build"
   },
   "peerDependencies": {
     "preact": "^8.4.2"
@@ -34,6 +39,8 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
     "babel-preset-preact": "tomasdev/babel-preset-preact#patch-1",
+    "dts-bundle": "^0.7.3",
+    "microbundle": "^0.9.0",
     "node-sass": "^4.9.3",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
@@ -46,7 +53,7 @@
     "webpack": "^4.19.0"
   },
   "dependencies": {
-    "bulma": "^0.7.1",
+    "bulma": "^0.7.2",
     "classnames": "^2.2.6"
   }
 }
