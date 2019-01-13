@@ -13,6 +13,8 @@ A collection of components to build interfaces with Bulma.
 npm install preact-bulma
 ```
 
+<sup>v1 but still in alpha! [Here's why](#but-why-1.0.0-when-its-still-in-alpha).</sup>
+
 ## Getting started
 
 ### 1. Install
@@ -84,3 +86,8 @@ function MyCard() {
 
 - **Storybook with all components**: https://solarliner.github.io/preact-bulma
 - **Wiki with usage notes**: https://github.com/solarliner/preact-bulma/wiki
+
+## But why `1.0.0` when it's still alpha?
+
+The `preact-bulma` package was being squatted before npm transfered the ownership to me. To their advice, I'm pushing a
+major release to prevent problems and compatibility issues.
