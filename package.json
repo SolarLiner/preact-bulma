@@ -1,6 +1,6 @@
 {
   "name": "preact-bulma",
-  "version": "0.3.1a",
+  "version": "1.0.0a",
   "description": "Preact components for the Bulma framework",
   "main": "lib/preact-bulma.js",
   "umd:main": "lib/preact-bulma.umd.js",
