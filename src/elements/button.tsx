@@ -1,14 +1,11 @@
 import classnames from "classnames";
 import { h, RenderableProps } from "preact";
-
-export function Box(props: RenderableProps<{}>) {
-  return <div class="box">{props.children}</div>;
-}
+import Icon from "./icon";
 
 interface IButtonProps {
   color?: string;
   size?: "small" | "medium" | "large";
-  submit?: boolean;
+  type?: "submit" | "reset";
   fullWidth?: boolean;
   outlined?: boolean;
   inverted?: boolean;
@@ -21,8 +18,8 @@ interface IButtonProps {
   icon?: string;
   onClick?: (ev: MouseEvent) => void;
 }
-export function Button(props: RenderableProps<IButtonProps>) {
-  if (props.submit) return <SubmitButton {...props} />;
+export default function Button(props: RenderableProps<IButtonProps>) {
+  if (props.type) return <InputButton {...props} />;
   return (
     <a href={props.href} class={genClasses(props)} onClick={props.onClick} disabled={!!props.disabled}>
       <ButtonIcon icon={props.icon} size={props.size} />
@@ -31,12 +28,12 @@ export function Button(props: RenderableProps<IButtonProps>) {
   );
 }
 
-export function SubmitButton(props: RenderableProps<IButtonProps>) {
+export function InputButton(props: RenderableProps<IButtonProps>) {
   return (
     <input
       onClick={props.onClick}
       class={genClasses(props)}
-      type="submit"
+      type={props.type!}
       value={props.children as string}
       disabled={!!props.disabled}
     />
@@ -81,15 +78,7 @@ interface IButtonIconProps {
 function ButtonIcon(props: RenderableProps<IButtonIconProps>) {
   if (!props.icon) return null;
   const size = ICON_SIZE_MAP[props.size || "default"];
-  return (
-    <span
-      class={classnames("icon", {
-        [`is-${size}`]: !!size
-      })}
-    >
-      <i class={props.icon} />
-    </span>
-  );
+  return <Icon icon={props.icon} size={size} />;
 }
 
 const ICON_SIZE_MAP = {

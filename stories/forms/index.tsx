@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 import { Control, Field, HorizontalGroup, RadioButton, Select, Textarea, TextInput } from "../../src/forms";
+import Button from "../../src/elements/button";
 
 function preventDefault(fn: (ev: Event, ...args: any[]) => any, ...args: any[]) {
   return (ev: Event) => {
@@ -77,10 +78,10 @@ storiesOf("Forms", module)
           {/* Empty label to preserve alignment */}
           <Field hasAddons>
             <Control>
-              <input class="button is-outlined is-primary" type="submit" value="Submit" />
+              <Button outlined color="primary" type="submit">Submit</Button>
             </Control>
             <Control>
-              <input class="button is-outlined" type="reset" value="Reset" />
+              <Button outlined type="reset">Reset</Button>
             </Control>
           </Field>
         </HorizontalGroup>

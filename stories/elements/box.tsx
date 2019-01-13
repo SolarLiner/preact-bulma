@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
-import { Box } from "../../src/elements";
+import Box from "../../src/elements/box";
 
 storiesOf("Elements", module).add("Box", () => (
   <Box>

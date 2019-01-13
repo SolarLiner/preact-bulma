@@ -3,7 +3,7 @@ import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
-import { Box, Button, Buttons } from "../../src/elements";
+import Button, { Buttons } from "../../src/elements/button";
 
 const COLORS = {
   None: "",
@@ -44,7 +44,7 @@ storiesOf("Elements", module)
   .add("Submit button", () => (
     <form>
       <Button
-        submit
+        type="submit"
         color={select("Color", COLORS, "primary")}
         size={select("Size", SIZES, "")}
         fullWidth={boolean("Full width")}
