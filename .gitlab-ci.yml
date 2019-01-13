@@ -43,7 +43,8 @@ build/devel:
     - yarn pack
     - rm -rf lib
   artifacts:
-    untracked: true
+    paths:
+      - /*.tgz
     expire_in: 30 days
   except:
     - master
@@ -55,7 +56,8 @@ build/master:
     - yarn pack
     - rm -rf lib
   artifacts:
-    untracked: true
+    paths:
+      - /*.tgz
   only:
     - master
   cache:
@@ -79,7 +81,7 @@ deploy:
     - build/master
   stage: deploy
   script:
-    - npm publish
+    - npm publish `ls preact-bulma*.tgz | head -n1`
   only:
     - master
   cache: {}
