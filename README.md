@@ -13,7 +13,7 @@ A collection of components to build interfaces with Bulma.
 npm install preact-bulma
 ```
 
-<sup>v1 but still in alpha! [Here's why](#but-why-1.0.0-when-its-still-in-alpha).</sup>
+<sup>v1 but still in alpha! [Here's why](#but-why-100-when-its-still-alpha).</sup>
 
 ## Getting started
 
