@@ -44,7 +44,7 @@ build/devel:
     - rm -rf lib
   artifacts:
     paths:
-      - /*.tgz
+      - preact-bulma*.tgz
     expire_in: 30 days
   except:
     - master
@@ -57,7 +57,7 @@ build/master:
     - rm -rf lib
   artifacts:
     paths:
-      - /*.tgz
+      - preact-bulma*.tgz
   only:
     - master
   cache:
