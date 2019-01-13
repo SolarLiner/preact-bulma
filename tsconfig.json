@@ -3,7 +3,7 @@
     "jsx": "react",
     "jsxFactory": "h",
     "target": "es6",
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./lib",
     "declaration": true,
