@@ -50,7 +50,7 @@
     "webpack": "^4.19.0"
   },
   "dependencies": {
-    "bulma": "^0.7.1",
+    "bulma": "^0.7.2",
     "classnames": "^2.2.6"
   }
 }
