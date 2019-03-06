@@ -23,7 +23,7 @@
     "prepack": "microbundle build"
   },
   "peerDependencies": {
-    "preact": "^8.4.2"
+    "preact": "^10.0.0-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
@@ -42,7 +42,7 @@
     "dts-bundle": "^0.7.3",
     "microbundle": "^0.9.0",
     "node-sass": "^4.9.3",
-    "preact": "^8.4.2",
+    "preact": "^10.0.0-alpha.0",
     "preact-compat": "^3.18.4",
     "prettier": "^1.15.3",
     "ts-loader": "^5.3.3",
