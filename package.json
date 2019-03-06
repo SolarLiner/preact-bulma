@@ -40,7 +40,7 @@
     "babel-loader": "^8.0.5",
     "babel-preset-preact": "tomasdev/babel-preset-preact#patch-1",
     "dts-bundle": "^0.7.3",
-    "microbundle": "^0.9.0",
+    "microbundle": "^0.11.0",
     "node-sass": "^4.11.0",
     "preact": "^10.0.0-alpha.0",
     "preact-compat": "^3.18.4",
