@@ -1,6 +1,6 @@
 {
   "name": "preact-bulma",
-  "version": "1.0.0a",
+  "version": "1.1.0-next.0",
   "description": "Preact components for the Bulma framework",
   "main": "lib/preact-bulma.js",
   "umd:main": "lib/preact-bulma.umd.js",
@@ -23,37 +23,37 @@
     "prepack": "microbundle build"
   },
   "peerDependencies": {
-    "preact": "^8.4.2"
+    "preact": "^10.0.0-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-typescript": "^7.1.0",
-    "@storybook/addon-actions": "^4.1.6",
-    "@storybook/addon-knobs": "^4.1.6",
-    "@storybook/addon-options": "^4.1.6",
-    "@storybook/addon-storysource": "^4.1.6",
-    "@storybook/preact": "^4.2.0-alpha.11",
-    "@types/classnames": "^2.2.6",
-    "@types/node": "^10.9.4",
+    "@storybook/addon-actions": "^5.0.0",
+    "@storybook/addon-knobs": "^5.0.0",
+    "@storybook/addon-options": "^5.0.0",
+    "@storybook/addon-storysource": "^5.0.0",
+    "@storybook/preact": "^5.0.0",
+    "@types/classnames": "^2.2.7",
+    "@types/node": "^11.10.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
     "babel-preset-preact": "tomasdev/babel-preset-preact#patch-1",
     "dts-bundle": "^0.7.3",
-    "microbundle": "^0.9.0",
-    "node-sass": "^4.9.3",
-    "preact": "^8.4.2",
+    "microbundle": "^0.11.0",
+    "node-sass": "^4.11.0",
+    "preact": "^10.0.0-alpha.0",
     "preact-compat": "^3.18.4",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.4",
     "ts-loader": "^5.3.3",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.17.0",
+    "tslint": "^5.13.1",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.0.3",
-    "webpack": "^4.19.0"
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6"
   },
   "dependencies": {
-    "bulma": "^0.7.2",
+    "bulma": "^0.7.4",
     "classnames": "^2.2.6"
   }
 }

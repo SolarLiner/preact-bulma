@@ -1,4 +1,4 @@
-# Preact Bulma ⚛
+# Preact Bulma ⚛️
 
 A collection of components to build interfaces with Bulma.
 
@@ -11,6 +11,12 @@ A collection of components to build interfaces with Bulma.
 
 ```bash
 npm install preact-bulma
+```
+
+For the version targeting Preact X, use
+
+```bash
+npm install preact-bulma@next
 ```
 
 <sup>v1 but still in alpha! [Here's why](#but-why-100-when-its-still-alpha).</sup>
