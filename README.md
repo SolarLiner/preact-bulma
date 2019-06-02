@@ -19,8 +19,6 @@ For the version targeting Preact X, use
 npm install preact-bulma@next
 ```
 
-<sup>v1 but still in alpha! [Here's why](#but-why-100-when-its-still-alpha).</sup>
-
 ## Getting started
 
 ### 1. Install
@@ -92,8 +90,3 @@ function MyCard() {
 
 - **Storybook with all components**: https://solarliner.github.io/preact-bulma
 - **Wiki with usage notes**: https://github.com/solarliner/preact-bulma/wiki
-
-## But why `1.0.0` when it's still alpha?
-
-The `preact-bulma` package was being squatted before npm transfered the ownership to me. To their advice, I'm pushing a
-major release to prevent problems and compatibility issues.
