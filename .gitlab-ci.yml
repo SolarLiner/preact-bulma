@@ -22,6 +22,10 @@ audit/devel:
   stage: test
   script: yarn audit
   allow_failure: true
+  except:
+    - master
+    - tags
+    - /release\/.*/i
 
 audit/master:
   stage: test
@@ -48,6 +52,7 @@ build/devel:
     expire_in: 30 days
   except:
     - master
+    - tags
 
 build/master:
   stage: build
