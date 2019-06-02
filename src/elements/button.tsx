@@ -23,7 +23,7 @@ export default function Button(props: RenderableProps<IButtonProps>) {
   return (
     <a href={props.href} class={genClasses(props)} onClick={props.onClick} disabled={!!props.disabled}>
       <ButtonIcon icon={props.icon} size={props.size} />
-      {props.children}
+      <span>{props.children}</span>
     </a>
   );
 }
