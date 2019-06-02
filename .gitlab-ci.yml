@@ -28,7 +28,8 @@ audit/master:
   script: yarn audit
   allow_failure: false
   only:
-    - master
+    - tags
+    - /release\/.*/i
 
 lint:
   stage: test
@@ -39,7 +40,6 @@ lint:
 build/devel:
   stage: build
   script:
-    - yarn build
     - yarn pack
     - rm -rf lib
   artifacts:
@@ -52,15 +52,17 @@ build/devel:
 build/master:
   stage: build
   script:
-    - yarn build
     - yarn pack
     - rm -rf lib
   artifacts:
     paths:
       - preact-bulma*.tgz
   only:
-    - master
+    - tags
   cache:
+    paths:
+      - node_modules
+    key: "${CI_COMMIT_REF_SLUG}"
     policy: pull
 
 pages:
@@ -83,7 +85,7 @@ deploy:
   script:
     - npm publish `ls preact-bulma*.tgz | head -n1`
   only:
-    - master
+    - tags
   cache: {}
 
 deploy/next:
