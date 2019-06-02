@@ -23,7 +23,7 @@ storiesOf("Components/Dropdown", module)
     </Dropdown.Dropdown>
   ))
   .add("Dropup", () => (
-    <div style="margin-top: 120px;">
+    <div style={{ marginTop: "120px" }}>
       <Dropdown.Dropdown
         title="Dropdown"
         icon="fas fa-angle-up"
