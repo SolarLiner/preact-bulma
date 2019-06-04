@@ -75,3 +75,4 @@ typings/
 # Compiled library code
 lib
 .rts2_cache*
+.rpt2_cache*
