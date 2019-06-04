@@ -1,12 +1,12 @@
 {
   "name": "preact-bulma",
-  "version": "1.2.0-next.0",
+  "version": "1.2.0-next.1",
   "description": "Preact components for the Bulma framework",
   "main": "lib/preact-bulma.js",
   "umd:main": "lib/preact-bulma.umd.js",
   "module": "lib/preact-bulma.mjs",
   "source": "src/entry.module.ts",
-  "typings": "lib/preact-bulma.d.ts",
+  "typings": "lib/entry.module.d.ts",
   "author": "Nathan Graule",
   "license": "MIT",
   "private": false,
@@ -15,12 +15,14 @@
     "lib/**/*.d.ts"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "yarn build:js && yarn build:dts",
+    "build:js": "rollup -c",
+    "build:dts": "tsc -p tsconfig.json --declaration --emitDeclarationOnly",
     "lint": "tslint -p tsconfig.json",
     "lint:fix": "tslint -p tsconfig.json --fix",
     "docs": "build-storybook -c .storybook -o docs",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "prepack": "rollup -c"
+    "prepack": "yarn build"
   },
   "peerDependencies": {
     "preact": "^10.0.0-beta.2"
