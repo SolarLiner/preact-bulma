@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { Component, ComponentChild, h, RenderableProps } from "preact";
+import { Component, ComponentChild, JSX, h, RenderableProps } from "preact";
 
 const GROUP_ALIGNMENTS = {
   left: "is-grouped",
