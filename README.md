@@ -58,7 +58,7 @@ import "styles/app.scss";
 
 You can now use the provided components into your project as you would with any component.
 
-```javascript
+```jsx
 import { Card } from "preact-bulma";
 function MyCard() {
   <Card.Card>
