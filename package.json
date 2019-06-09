@@ -2,17 +2,17 @@
   "name": "preact-bulma",
   "version": "1.1.0-next.0",
   "description": "Preact components for the Bulma framework",
-  "main": "lib/preact-bulma.js",
-  "umd:main": "lib/preact-bulma.umd.js",
-  "module": "lib/preact-bulma.mjs",
+  "main": "dist/preact-bulma.js",
+  "umd:main": "dist/preact-bulma.umd.js",
+  "module": "dist/preact-bulma.mjs",
   "source": "src/entry.module.ts",
-  "typings": "lib/preact-bulma.d.ts",
-  "author": "Nathan Graule",
+  "typings": "dist/preact-bulma.d.ts",
+  "author": "Nathan Graule <solarliner@gmail.com> (https://solarliner.me)",
   "license": "MIT",
   "private": false,
   "files": [
-    "lib/**/*.js",
-    "lib/**/*.d.ts"
+    "src",
+    "dist"
   ],
   "scripts": {
     "build": "microbundle build",
