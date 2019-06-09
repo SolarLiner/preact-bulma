@@ -83,7 +83,7 @@ export default class Dropdown extends Component<IDropdownProps, IDropdownState> 
   }
 
   private clickedOutside(ev: MouseEvent) {
-    if (!this.triggerWhitelist.includes(ev.srcElement)) this.toggleActive(false);
+    if (!this.triggerWhitelist.includes(ev.srcElement as HTMLElement)) this.toggleActive(false);
   }
 }
 

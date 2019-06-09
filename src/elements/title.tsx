@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { createElement as h, RenderableProps } from "preact";
 
 interface ITitleProps {
   size?: 1 | 2 | 3 | 4 | 5 | 6;

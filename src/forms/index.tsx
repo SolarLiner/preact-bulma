@@ -257,9 +257,9 @@ export interface IFileInputProps {
 }
 
 export function FileInput(props: RenderableProps<IFileInputProps>) {
-  let label: JSX.Element;
-  let icon: JSX.Element;
-  let filename: JSX.Element;
+  let label: preact.JSX.Element;
+  let icon: preact.JSX.Element;
+  let filename: preact.JSX.Element;
   const classes = classnames("file", {
     "is-fullwidth": !!props.fullWidth,
     "is-right": !!props.right,

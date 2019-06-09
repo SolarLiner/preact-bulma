@@ -23,21 +23,34 @@ export default function Button(props: RenderableProps<IButtonProps>) {
   return (
     <a href={props.href} class={genClasses(props)} onClick={props.onClick} disabled={!!props.disabled}>
       <ButtonIcon icon={props.icon} size={props.size} />
-      {props.children}
+      <span>{props.children}</span>
     </a>
   );
 }
 
 export function InputButton(props: RenderableProps<IButtonProps>) {
-  return (
-    <input
-      onClick={props.onClick}
-      class={genClasses(props)}
-      type={props.type!}
-      value={props.children as string}
-      disabled={!!props.disabled}
-    />
-  );
+  if (props.loading || (props.icon !== undefined || props.icon !== ""))
+    return (
+      <button
+        onClick={props.onClick}
+        class={genClasses(props)}
+        type={props.type || "submit"}
+        disabled={!!props.disabled}
+      >
+        <ButtonIcon icon={props.icon} size={props.size} />
+        <span>{props.children}</span>
+      </button>
+    );
+  else
+    return (
+      <input
+        onClick={props.onClick}
+        class={genClasses(props)}
+        type={props.type || "submit"}
+        value={props.children as string}
+        disabled={!!props.disabled}
+      />
+    );
 }
 
 interface IButtonsProps {

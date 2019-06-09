@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, TextInput } from "../../src/forms";
+import { DropdownDivider } from "../../src/components/Dropdown/Dropdown";
 
 const COLORS = {
   None: "",
@@ -43,22 +44,27 @@ storiesOf("Forms/Input", module)
     </Field>
   ))
   .add("Addons", () => (
-    <Field hasAddons group="center" label="Donation amount" help="Any amount is appreciated! :)">
-      <Control>
-        <a class="button is-static">$</a>
-      </Control>
-      <Control>
-        <TextInput
-          placeholder="5.00"
-          onInput={action("input[input]")}
-          onFocus={action("focus[input]")}
-          onBlur={action("blur[input]")}
-        />
-      </Control>
-      <Control>
-        <a class="button is-primary" onClick={action("click[Donate !]")}>
-          Donate !
-        </a>
-      </Control>
-    </Field>
+    <div className="container">
+      <p className="content">
+        Note that fields with addons <b>don't support extra arguments</b>.
+      </p>
+      <Field hasAddons>
+        <Control>
+          <a class="button is-static">$</a>
+        </Control>
+        <Control>
+          <TextInput
+            placeholder="5.00"
+            onInput={action("input[input]")}
+            onFocus={action("focus[input]")}
+            onBlur={action("blur[input]")}
+          />
+        </Control>
+        <Control>
+          <a class="button is-primary" onClick={action("click[Donate !]")}>
+            Donate !
+          </a>
+        </Control>
+      </Field>
+    </div>
   ));

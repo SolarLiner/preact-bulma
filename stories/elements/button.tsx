@@ -41,10 +41,10 @@ storiesOf("Elements", module)
       {text("Content", "Hello Internet 🌍")}
     </Button>
   ))
-  .add("Submit button", () => (
+  .add("Input button", () => (
     <form>
       <Button
-        type="submit"
+        type={select("Type", { Submit: "submit", Reset: "reset" }, "submit")}
         color={select("Color", COLORS, "primary")}
         size={select("Size", SIZES, "")}
         fullWidth={boolean("Full width")}
@@ -54,6 +54,7 @@ storiesOf("Elements", module)
         loading={boolean("Loading")}
         static={boolean("Static")}
         disabled={boolean("Disabled")}
+        icon={text("Icon class", "fas fa-globe")}
         onClick={action("click")}
       >
         {text("Content", "Submit")}
