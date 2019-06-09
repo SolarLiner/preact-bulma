@@ -33,4 +33,33 @@ storiesOf("Layout/Level", module)
         </div>
       </Level.Item>
     </Level.Level>
+  ))
+  .add("Level with sides", () => (
+    <Level.Level mobile={boolean("Mobile", false)}>
+      <Level.Left>
+        <Level.Item>
+          <a href="#">Left 1</a>
+        </Level.Item>
+        <Level.Item>
+          <a href="#">Left 2</a>
+        </Level.Item>
+        <Level.Item>
+          <a href="#">Left 3</a>
+        </Level.Item>
+      </Level.Left>
+      <Level.Item>
+        <a href="#">Center</a>
+      </Level.Item>
+      <Level.Right>
+        <Level.Item>
+          <a href="#">Right 1</a>
+        </Level.Item>
+        <Level.Item>
+          <a href="#">Right 2</a>
+        </Level.Item>
+        <Level.Item>
+          <a href="#">Right 3</a>
+        </Level.Item>
+      </Level.Right>
+    </Level.Level>
   ));

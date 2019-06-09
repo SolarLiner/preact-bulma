@@ -40,8 +40,8 @@ function LevelSide({ children, side }: RenderableProps<ILevelSideProps>) {
 export const Level = {
   Level: LevelWidget,
   Item: LevelItem,
-  Left: ({ children }) => <LevelSide side="left">{children}</LevelSide>,
-  Right: ({ children }) => <LevelSide side="right">{children}</LevelSide>,
+  Left: ({ children }: RenderableProps<{}>) => <LevelSide side="left">{children}</LevelSide>,
+  Right: ({ children }: RenderableProps<{}>) => <LevelSide side="right">{children}</LevelSide>,
   Side: LevelSide
 };
 
