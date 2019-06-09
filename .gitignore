@@ -73,5 +73,5 @@ typings/
 .serverless
 
 # Compiled library code
-lib
+dist
 .rts2_cache*
