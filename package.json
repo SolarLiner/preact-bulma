@@ -6,7 +6,7 @@
   "umd:main": "dist/preact-bulma.umd.js",
   "module": "dist/preact-bulma.mjs",
   "source": "src/entry.module.ts",
-  "typings": "dist/preact-bulma.d.ts",
+  "types": "dist/entry.module.d.ts",
   "author": "Nathan Graule <solarliner@gmail.com> (https://solarliner.me)",
   "license": "MIT",
   "private": false,
