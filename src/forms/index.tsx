@@ -277,11 +277,24 @@ export function Checkbox(props: RenderableProps<ICheckboxProps>) {
 
 export interface IRadioButtonProps {
   name: string;
+  id?: string;
+  checked: boolean;
+  disabled?: boolean;
+  onChange: (ev: Event) => void;
 }
+
 export function RadioButton(props: RenderableProps<IRadioButtonProps>) {
   return (
     <label>
-      <input type="radio" name={props.name} /> {props.children}
+      <input
+        type="radio"
+        id={props.id}
+        name={props.name}
+        checked={props.checked}
+        disabled={props.disabled}
+        onChange={props.onChange}
+      />{" "}
+      {props.children}
     </label>
   );
 }
