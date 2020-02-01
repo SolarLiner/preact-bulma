@@ -167,6 +167,12 @@ export interface ITextareaProps {
   readOnly?: boolean;
   disabled?: boolean;
   fixed?: boolean;
+  value: string;
+  id?: string;
+  name?: string;
+  onInput: (ev: Event) => void;
+  onBlur?: (ev: Event) => void;
+  onFocus?: (ev: Event) => void;
 }
 
 export function Textarea(props: RenderableProps<ITextareaProps>) {
@@ -176,7 +182,19 @@ export function Textarea(props: RenderableProps<ITextareaProps>) {
     [`is-${props.size}`]: !!props.size
   });
   return (
-    <textarea class={classes} {...(props as any)}>
+    <textarea
+      class={classes}
+      disabled={props.disabled}
+      onBlur={props.onBlur}
+      onFocus={props.onFocus}
+      onInput={props.onInput}
+      placeholder={props.placeholder}
+      readOnly={props.readOnly}
+      id={props.id}
+      name={props.name}
+      value={props.value}
+      {...(props as any)}
+    >
       {props.children}
     </textarea>
   );
