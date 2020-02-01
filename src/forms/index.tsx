@@ -213,8 +213,8 @@ export interface ISelectProps {
   disabled?: boolean;
   value: string;
   onChange: (ev: Event) => void;
-  onFocus: (ev: Event) => void;
-  onBlur: (ev: Event) => void;
+  onFocus?: (ev: Event) => void;
+  onBlur?: (ev: Event) => void;
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
