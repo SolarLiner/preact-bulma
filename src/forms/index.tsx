@@ -309,11 +309,16 @@ export interface IFileInputProps {
   size?: "small" | "medium" | "large";
   align?: keyof typeof ALIGNMENTS;
   filename?: string;
+  filenames?: string[];
   name?: string;
   id?: string;
+  multiple?: boolean;
+  disabled?: boolean;
+  onChange: (ev: Event) => void;
 }
 
 export function FileInput(props: RenderableProps<IFileInputProps>) {
+  const hasFiles = !!props.filename || !!props.filenames;
   let label: preact.JSX.Element;
   let icon: preact.JSX.Element;
   let filename: preact.JSX.Element;
@@ -321,7 +326,7 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
     "is-fullwidth": !!props.fullWidth,
     "is-right": !!props.right,
     "is-boxed": !!props.boxed,
-    "has-name": !!props.filename,
+    "has-name": hasFiles,
     [`is-${props.color}`]: !!props.color,
     [`is-${props.size}`]: !!props.size,
     [ALIGNMENTS[props.align]]: !!props.align
@@ -339,14 +344,32 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
   if (props.filename) {
     filename = <span class="file-name">{props.filename}</span>;
   }
+  if (props.filenames && props.filenames.length > 0) {
+    const count = props.filenames.length;
+    const copy = count === 1 ? "File" : "Files";
+    filename = (
+      <span class="file-name">
+        {count} {copy}
+      </span>
+    );
+  }
   return (
     <div class={classes}>
       <label class="file-label">
-        <input class="file-input" type="file" id={props.id} name={props.name} />
+        <input
+          class="file-input"
+          type="file"
+          id={props.id}
+          name={props.name}
+          multiple={props.multiple}
+          disabled={props.disabled}
+          onChange={props.onChange}
+        />
         <span class="file-cta">
           {icon}
           {label}
         </span>
+        {filename}
       </label>
     </div>
   );
