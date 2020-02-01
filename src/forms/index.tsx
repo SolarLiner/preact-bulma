@@ -176,7 +176,7 @@ export function Textarea(props: RenderableProps<ITextareaProps>) {
     [`is-${props.size}`]: !!props.size
   });
   return (
-    <textarea class={classes} {...props as any}>
+    <textarea class={classes} {...(props as any)}>
       {props.children}
     </textarea>
   );
@@ -215,17 +215,28 @@ export function Select(props: RenderableProps<ISelectProps>) {
 }
 
 export interface ICheckboxProps {
-  value?: boolean;
+  checked?: boolean;
   disabled?: boolean;
   onChanged?: (ev: Event) => void;
   id?: string;
   name?: string;
+  onFocus?: (ev: Event) => void;
+  onBlur?: (ev: Event) => void;
 }
 
 export function Checkbox(props: RenderableProps<ICheckboxProps>) {
   return (
     <label class="checkbox">
-      <input type="checkbox" disabled={props.disabled} id={props.id} name={props.name} />
+      <input
+        type="checkbox"
+        checked={props.checked}
+        disabled={props.disabled}
+        id={props.id}
+        name={props.name}
+        onChange={props.onChanged}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+      />
       {props.children}
     </label>
   );
