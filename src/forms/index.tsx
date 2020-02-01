@@ -192,6 +192,11 @@ export interface ISelectProps {
   size?: "small" | "medium" | "large";
   id?: string;
   name?: string;
+  disabled?: boolean;
+  value: string;
+  onChange: (ev: Event) => void;
+  onFocus: (ev: Event) => void;
+  onBlur: (ev: Event) => void;
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
@@ -205,9 +210,19 @@ export function Select(props: RenderableProps<ISelectProps>) {
   });
   return (
     <div class={classes}>
-      <select id={props.id} name={props.id}>
+      <select
+        id={props.id}
+        name={props.id}
+        value={props.value}
+        onChange={props.onChange}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+        disabled={props.disabled}
+      >
         {props.options.map(el => (
-          <option>{el}</option>
+          <option key={el} value={el}>
+            {el}
+          </option>
         ))}
       </select>
     </div>
