@@ -14,8 +14,10 @@ storiesOf("Forms", module)
         <Checkbox
           disabled={boolean("disabled", false)}
           onChanged={action("onChanged")}
+          onChange={action("onChange")}
           onFocus={action("onFocus")}
           onBlur={action("onBlur")}
+          value={boolean("value", false)}
           checked={boolean("checked", true)}
         >
           {text("children", "Checkbox children")}

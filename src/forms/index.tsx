@@ -1,6 +1,9 @@
 import classnames from "classnames";
 import { Component, ComponentChild, JSX, h, RenderableProps } from "preact";
 
+const NODE_ENV = process.env.NODE_ENV;
+const IS_DEVELOPMENT = NODE_ENV === "development";
+
 const GROUP_ALIGNMENTS = {
   left: "is-grouped",
   center: "is-grouped-centered",
@@ -248,9 +251,11 @@ export function Select(props: RenderableProps<ISelectProps>) {
 }
 
 export interface ICheckboxProps {
+  value?: boolean;
   checked?: boolean;
   disabled?: boolean;
   onChanged?: (ev: Event) => void;
+  onChange?: (ev: Event) => void;
   id?: string;
   name?: string;
   onFocus?: (ev: Event) => void;
@@ -258,15 +263,25 @@ export interface ICheckboxProps {
 }
 
 export function Checkbox(props: RenderableProps<ICheckboxProps>) {
+  if (IS_DEVELOPMENT && props.value) {
+    console.warn("Checkbox.value will be deprecated in a future release. Please use Checkbox.checked instead.");
+  }
+  if (IS_DEVELOPMENT && props.onChanged) {
+    console.warn("Checkbox.onChanged will be deprecated in a future release. Please use Checkbox.onChange instead.");
+  }
+
+  const changeEvent = props.onChanged || props.onChange;
+  const checked = props.value || props.checked;
+
   return (
     <label class="checkbox">
       <input
         type="checkbox"
-        checked={props.checked}
+        checked={checked}
         disabled={props.disabled}
         id={props.id}
         name={props.name}
-        onChange={props.onChanged}
+        onChange={changeEvent}
         onFocus={props.onFocus}
         onBlur={props.onBlur}
       />
