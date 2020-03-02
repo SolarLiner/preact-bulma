@@ -270,8 +270,8 @@ export function Checkbox(props: RenderableProps<ICheckboxProps>) {
     console.warn("Checkbox.onChanged will be deprecated in a future release. Please use Checkbox.onChange instead.");
   }
 
-  const changeEvent = props.onChanged || props.onChange;
-  const checked = props.value || props.checked;
+  const changeEvent = props.onChange || props.onChanged;
+  const checked = props.checked || props.value;
 
   return (
     <label class="checkbox">
@@ -333,6 +333,10 @@ export interface IFileInputProps {
 }
 
 export function FileInput(props: RenderableProps<IFileInputProps>) {
+  if (IS_DEVELOPMENT && props.filename) {
+    console.warn("FileInput.filename will be deprecated in a future release. Please use FileInput.filenames instead.");
+  }
+
   const hasFiles = !!props.filename || !!props.filenames;
   let label: preact.JSX.Element;
   let icon: preact.JSX.Element;
@@ -356,17 +360,12 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
       </span>
     );
   }
-  if (props.filename) {
-    filename = <span class="file-name">{props.filename}</span>;
-  }
-  if (props.filenames && props.filenames.length > 0) {
+  if ((props.filenames && props.filenames.length === 1) || props.filename) {
+    const copy = (props.filenames && props.filenames[0]) || props.filename;
+    filename = <span class="file-name">{copy}</span>;
+  } else if (props.filenames && props.filenames.length > 1) {
     const count = props.filenames.length;
-    const copy = count === 1 ? "File" : "Files";
-    filename = (
-      <span class="file-name">
-        {count} {copy}
-      </span>
-    );
+    filename = <span class="file-name">{count} Files</span>;
   }
   return (
     <div class={classes}>
