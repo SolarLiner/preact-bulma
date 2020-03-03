@@ -1,6 +1,9 @@
 import classnames from "classnames";
 import { Component, ComponentChild, JSX, h, RenderableProps } from "preact";
 
+const NODE_ENV = process.env.NODE_ENV;
+const IS_DEVELOPMENT = NODE_ENV === "development";
+
 const GROUP_ALIGNMENTS = {
   left: "is-grouped",
   center: "is-grouped-centered",
@@ -167,6 +170,12 @@ export interface ITextareaProps {
   readOnly?: boolean;
   disabled?: boolean;
   fixed?: boolean;
+  value: string;
+  id?: string;
+  name?: string;
+  onInput: (ev: Event) => void;
+  onBlur?: (ev: Event) => void;
+  onFocus?: (ev: Event) => void;
 }
 
 export function Textarea(props: RenderableProps<ITextareaProps>) {
@@ -176,7 +185,19 @@ export function Textarea(props: RenderableProps<ITextareaProps>) {
     [`is-${props.size}`]: !!props.size
   });
   return (
-    <textarea class={classes} {...props as any}>
+    <textarea
+      class={classes}
+      disabled={props.disabled}
+      onBlur={props.onBlur}
+      onFocus={props.onFocus}
+      onInput={props.onInput}
+      placeholder={props.placeholder}
+      readOnly={props.readOnly}
+      id={props.id}
+      name={props.name}
+      value={props.value}
+      {...(props as any)}
+    >
       {props.children}
     </textarea>
   );
@@ -192,6 +213,11 @@ export interface ISelectProps {
   size?: "small" | "medium" | "large";
   id?: string;
   name?: string;
+  disabled?: boolean;
+  value: string;
+  onChange: (ev: Event) => void;
+  onFocus?: (ev: Event) => void;
+  onBlur?: (ev: Event) => void;
 }
 
 export function Select(props: RenderableProps<ISelectProps>) {
@@ -205,9 +231,19 @@ export function Select(props: RenderableProps<ISelectProps>) {
   });
   return (
     <div class={classes}>
-      <select id={props.id} name={props.id}>
+      <select
+        id={props.id}
+        name={props.id}
+        value={props.value}
+        onChange={props.onChange}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+        disabled={props.disabled}
+      >
         {props.options.map(el => (
-          <option>{el}</option>
+          <option key={el} value={el}>
+            {el}
+          </option>
         ))}
       </select>
     </div>
@@ -216,16 +252,39 @@ export function Select(props: RenderableProps<ISelectProps>) {
 
 export interface ICheckboxProps {
   value?: boolean;
+  checked?: boolean;
   disabled?: boolean;
   onChanged?: (ev: Event) => void;
+  onChange?: (ev: Event) => void;
   id?: string;
   name?: string;
+  onFocus?: (ev: Event) => void;
+  onBlur?: (ev: Event) => void;
 }
 
 export function Checkbox(props: RenderableProps<ICheckboxProps>) {
+  if (IS_DEVELOPMENT && props.value) {
+    console.warn("Checkbox.value will be deprecated in a future release. Please use Checkbox.checked instead.");
+  }
+  if (IS_DEVELOPMENT && props.onChanged) {
+    console.warn("Checkbox.onChanged will be deprecated in a future release. Please use Checkbox.onChange instead.");
+  }
+
+  const changeEvent = props.onChange || props.onChanged;
+  const checked = props.checked || props.value;
+
   return (
     <label class="checkbox">
-      <input type="checkbox" disabled={props.disabled} id={props.id} name={props.name} />
+      <input
+        type="checkbox"
+        checked={checked}
+        disabled={props.disabled}
+        id={props.id}
+        name={props.name}
+        onChange={changeEvent}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+      />
       {props.children}
     </label>
   );
@@ -233,11 +292,24 @@ export function Checkbox(props: RenderableProps<ICheckboxProps>) {
 
 export interface IRadioButtonProps {
   name: string;
+  id?: string;
+  checked: boolean;
+  disabled?: boolean;
+  onChange: (ev: Event) => void;
 }
+
 export function RadioButton(props: RenderableProps<IRadioButtonProps>) {
   return (
     <label>
-      <input type="radio" name={props.name} /> {props.children}
+      <input
+        type="radio"
+        id={props.id}
+        name={props.name}
+        checked={props.checked}
+        disabled={props.disabled}
+        onChange={props.onChange}
+      />{" "}
+      {props.children}
     </label>
   );
 }
@@ -252,11 +324,20 @@ export interface IFileInputProps {
   size?: "small" | "medium" | "large";
   align?: keyof typeof ALIGNMENTS;
   filename?: string;
+  filenames?: string[];
   name?: string;
   id?: string;
+  multiple?: boolean;
+  disabled?: boolean;
+  onChange: (ev: Event) => void;
 }
 
 export function FileInput(props: RenderableProps<IFileInputProps>) {
+  if (IS_DEVELOPMENT && props.filename) {
+    console.warn("FileInput.filename will be deprecated in a future release. Please use FileInput.filenames instead.");
+  }
+
+  const hasFiles = !!props.filename || !!props.filenames;
   let label: preact.JSX.Element;
   let icon: preact.JSX.Element;
   let filename: preact.JSX.Element;
@@ -264,7 +345,7 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
     "is-fullwidth": !!props.fullWidth,
     "is-right": !!props.right,
     "is-boxed": !!props.boxed,
-    "has-name": !!props.filename,
+    "has-name": hasFiles,
     [`is-${props.color}`]: !!props.color,
     [`is-${props.size}`]: !!props.size,
     [ALIGNMENTS[props.align]]: !!props.align
@@ -279,17 +360,30 @@ export function FileInput(props: RenderableProps<IFileInputProps>) {
       </span>
     );
   }
-  if (props.filename) {
-    filename = <span class="file-name">{props.filename}</span>;
+  if ((props.filenames && props.filenames.length === 1) || props.filename) {
+    const copy = (props.filenames && props.filenames[0]) || props.filename;
+    filename = <span class="file-name">{copy}</span>;
+  } else if (props.filenames && props.filenames.length > 1) {
+    const count = props.filenames.length;
+    filename = <span class="file-name">{count} Files</span>;
   }
   return (
     <div class={classes}>
       <label class="file-label">
-        <input class="file-input" type="file" id={props.id} name={props.name} />
+        <input
+          class="file-input"
+          type="file"
+          id={props.id}
+          name={props.name}
+          multiple={props.multiple}
+          disabled={props.disabled}
+          onChange={props.onChange}
+        />
         <span class="file-cta">
           {icon}
           {label}
         </span>
+        {filename}
       </label>
     </div>
   );

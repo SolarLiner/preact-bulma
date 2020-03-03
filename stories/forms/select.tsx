@@ -1,10 +1,12 @@
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/preact";
 import { h } from "preact";
 
 import { Control, Field, Select } from "../../src/forms";
 
 const OPTIONS = [
+  "",
   "Alabama",
   "Alaska",
   "Arizona",
@@ -71,7 +73,7 @@ storiesOf("Forms", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <form onSubmit={ev => ev.preventDefault()}>{story()}</form>)
   .add("Select", () => (
-    <Field>
+    <Field label={text("label", "Field Label")} help={text("help", "Field help text")}>
       <Control iconsLeft={text("Icon left", "fas fa-globe")} iconsRight={text("Icon right", "")}>
         <Select
           options={OPTIONS}
@@ -80,6 +82,11 @@ storiesOf("Forms", module)
           rounded={boolean("Rounded", false)}
           fullWidth={boolean("Full width", false)}
           loading={boolean("Loading", false)}
+          disabled={boolean("Disabled", false)}
+          value={text("Value", "")}
+          onChange={action("onChange")}
+          onFocus={action("onFocus")}
+          onBlur={action("onBlur")}
         />
       </Control>
     </Field>
