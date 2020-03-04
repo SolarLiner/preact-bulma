@@ -11,6 +11,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install
       uses: Borales/actions-yarn@v2.1.0
+      with:
+        frozen-lockfile: true
     - name: Build
       uses: Borales/actions-yarn@v2.1.0
       with:
