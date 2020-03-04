@@ -1,0 +1,30 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install
+      uses: Borales/actions-yarn@v2.1.0
+      with:
+        frozen-lockfile: true
+    - name: Build
+      uses: Borales/actions-yarn@v2.1.0
+      with:
+        cmd: build
+    - name: Pack
+      uses: Borales/actions-yarn@v2.1.0
+      with:
+        cmd: pack
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: '*.tgz'
+        # Directory containing files to upload
+        path: .
