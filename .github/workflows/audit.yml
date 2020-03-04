@@ -1,4 +1,4 @@
-name: Audit
+name: Audits
 
 on: [push]
 
@@ -9,9 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: GitHub Action for Yarn
+    - name: Audits
       uses: Borales/actions-yarn@v2.1.0
       with:
         # Yarn command
         cmd: audit
-      continue-on-error: true
