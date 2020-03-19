@@ -1,4 +1,5 @@
 import { storiesOf } from "@storybook/preact";
+import { h } from "preact";
 
 import Card from "../../src/components/Card";
 

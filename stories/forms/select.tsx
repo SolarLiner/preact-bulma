@@ -5,7 +5,7 @@ import { h } from "preact";
 
 import { Control, Field, Select } from "../../src/forms";
 
-const OPTIONS = [
+const OPTIONS = makeObject([
   "",
   "Alabama",
   "Alaska",
@@ -57,7 +57,12 @@ const OPTIONS = [
   "West Virginia",
   "Wisconsin",
   "Wyoming"
-];
+]);
+
+function makeObject<T>(arr: T[]): Record<string, T> {
+  let i = 0;
+  return arr.reduce((acc, v) => ({ ...acc, [(i++).toFixed()]: v }), {});
+}
 
 const COLORS = {
   None: "",

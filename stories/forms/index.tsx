@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/preact";
 import { Control, Field, HorizontalGroup, RadioButton, Select, Textarea, TextInput } from "../../src/forms";
 import Button from "../../src/elements/button";
+import { h } from "preact";
 
 function preventDefault(fn: (ev: Event, ...args: any[]) => any, ...args: any[]) {
   return (ev: Event) => {
