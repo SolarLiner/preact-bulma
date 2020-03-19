@@ -6,12 +6,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./lib",
-    "declaration": false,
+    "declaration": true,
+    "noEmit": true
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "stories/**/*.tsx"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "src/entry.dev.tsx"
