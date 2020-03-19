@@ -171,7 +171,7 @@ export interface ISelectProps extends Omit<JSX.HTMLAttributes, "size"> {
   color?: string;
   rounded?: boolean;
   size?: "small" | "medium" | "large";
-  divProps?: JSX.HTMLAttributes;
+  divProps?: Omit<JSX.HTMLAttributes, "ref">;
 }
 
 export function Select({ options, fullWidth, loading, color, rounded, size, divProps, children, class: klass, ...props }: RenderableProps<ISelectProps>) {
@@ -198,7 +198,7 @@ export function Select({ options, fullWidth, loading, color, rounded, size, divP
 
 export interface ICheckboxProps extends Omit<JSX.HTMLAttributes, "value"> {
   value?: boolean;
-  labelProps?: JSX.HTMLAttributes;
+  labelProps?: Omit<JSX.HTMLAttributes, "ref">;
   onChanged?: (e: Event) => void;
 }
 
@@ -252,8 +252,8 @@ export interface IFileInputProps extends Omit<JSX.HTMLAttributes, "size"> {
   filename?: string;
   filenames?: string[];
   icon?: string;
-  divProps?: JSX.HTMLAttributes;
-  labelProps?: JSX.HTMLAttributes;
+  divProps?: Omit<JSX.HTMLAttributes, "ref">;
+  labelProps?: Omit<JSX.HTMLAttributes, "ref">;
 }
 
 export function FileInput({ right, fullWidth, boxed, color, size, align, filename: _filename, filenames, icon, label, divProps, labelProps, children, class: klass, ...props }: RenderableProps<IFileInputProps>) {
