@@ -1,8 +1,8 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps, toChildArray } from "preact";
 import Icon from "./icon";
 
-interface IButtonProps {
+interface IButtonProps extends Omit<JSX.HTMLAttributes, "size"> {
   color?: string;
   size?: "small" | "medium" | "large";
   type?: "submit" | "reset";
@@ -16,56 +16,58 @@ interface IButtonProps {
   selected?: boolean;
   href?: string;
   icon?: string;
-  onClick?: (ev: MouseEvent) => void;
 }
 export default function Button(props: RenderableProps<IButtonProps>) {
+  const { color, size, type, fullWidth, outlined, inverted, rounded, loading, static: statik, disabled, selected, href, icon, ..._props } = props;
+  const { class: klass, children, ...otherProps } = _props;
   if (props.type) return <InputButton {...props} />;
   return (
-    <a href={props.href} class={genClasses(props)} onClick={props.onClick} disabled={!!props.disabled}>
-      <ButtonIcon icon={props.icon} size={props.size} />
-      <span>{props.children}</span>
+    <a {...otherProps} href={href} class={genClasses(props)} disabled={!!disabled}>
+      <ButtonIcon icon={icon} size={size}/>
+      <span>{children}</span>
     </a>
   );
 }
 
 export function InputButton(props: RenderableProps<IButtonProps>) {
-  if (props.loading || (props.icon !== undefined || props.icon !== ""))
+  const { color, size, type, fullWidth, outlined, inverted, rounded, loading, static: statik, disabled, selected, href, icon, ..._props } = props;
+  const { class: klass, children, ...otherProps } = _props;
+  if (loading || (icon !== undefined || icon !== ""))
     return (
-      <button
-        onClick={props.onClick}
-        class={genClasses(props)}
-        type={props.type || "submit"}
-        disabled={!!props.disabled}
+      <button {...otherProps}
+              class={genClasses(props)}
+              type={type || "submit"}
+              disabled={!!disabled}
       >
-        <ButtonIcon icon={props.icon} size={props.size} />
-        <span>{props.children}</span>
+        <ButtonIcon icon={icon} size={size}/>
+        <span>{children}</span>
       </button>
     );
   else
     return (
-      <input
-        onClick={props.onClick}
-        class={genClasses(props)}
-        type={props.type || "submit"}
-        value={props.children as string}
-        disabled={!!props.disabled}
+      <input {...otherProps}
+             class={genClasses(props)}
+             type={type || "submit"}
+             value={toChildArray(children)[0] as unknown as string}
+             disabled={!!disabled}
       />
     );
 }
 
-interface IButtonsProps {
+interface IButtonsProps extends Omit<JSX.HTMLAttributes, "size"> {
   size?: "small" | "medium" | "large";
   hasAddons?: boolean;
 }
-export function Buttons(props: RenderableProps<IButtonsProps>) {
+
+export function Buttons({ size, hasAddons, children, class: klass, ...props }: RenderableProps<IButtonsProps>) {
   return (
-    <div
-      class={classnames("buttons", {
-        [`are-${props.size}`]: !!props.size,
-        "has-addons": !!props.hasAddons
-      })}
+    <div {...props}
+         class={classnames("buttons", {
+           [`are-${size}`]: !!size,
+           "has-addons": !!hasAddons
+         }, klass)}
     >
-      {props.children}
+      {children}
     </div>
   );
 }
@@ -81,17 +83,18 @@ function genClasses(props: IButtonProps) {
     "is-rounded": !!props.rounded,
     "is-loading": !!props.loading,
     "is-static": !!props.static
-  });
+  }, props.class);
 }
 
-interface IButtonIconProps {
+interface IButtonIconProps extends Omit<JSX.HTMLAttributes, "size"> {
   icon?: string;
   size?: "small" | "medium" | "large";
 }
-function ButtonIcon(props: RenderableProps<IButtonIconProps>) {
-  if (!props.icon) return null;
-  const size = ICON_SIZE_MAP[props.size || "default"];
-  return <Icon icon={props.icon} size={size} />;
+
+function ButtonIcon({ icon, size, children, class: klass, ...props }: RenderableProps<IButtonIconProps>) {
+  if (!icon) return null;
+  const mappedSize = ICON_SIZE_MAP[size || "default"];
+  return <Icon {...props} icon={icon} size={mappedSize}/>;
 }
 
 const ICON_SIZE_MAP = {

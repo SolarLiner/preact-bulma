@@ -1,9 +1,10 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface IContentProps {
+interface IContentProps extends Omit<JSX.HTMLAttributes, "size"> {
   size?: "small" | "medium" | "large";
 }
-export default function Content(props: RenderableProps<IContentProps>) {
-  return <p class={classnames("content", { [`is-${props.size}`]: !!props.size })}>{props.children}</p>;
+
+export default function Content({ size, children, class: klass, ...props }: RenderableProps<IContentProps>) {
+  return <p {...props} class={classnames("content", { [`is-${size}`]: !!size }, klass)}>{children}</p>;
 }

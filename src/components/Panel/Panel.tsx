@@ -1,35 +1,35 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-export default function Panel(props: RenderableProps<{}>) {
-  return <nav class="panel">{props.children}</nav>;
+export default function Panel({ children, class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <nav {...props} class={classnames("panel", klass)}>{children}</nav>;
 }
 
-export function PanelHeading(props: RenderableProps<{}>) {
-  return <p class="panel-heading">{props.children}</p>;
+export function PanelHeading({ children, class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <p {...props} class={classnames("panel-heading", klass)}>{children}</p>;
 }
 
-interface IPanelBlockProps {
+interface IPanelBlockProps extends JSX.HTMLAttributes {
   active?: boolean;
   tabs?: boolean;
   icon?: string;
 }
 
-export function PanelBlock(props: RenderableProps<IPanelBlockProps>) {
+export function PanelBlock({ active, tabs, icon, class: klass, children, ...props }: RenderableProps<IPanelBlockProps>) {
   const classes = classnames({
-    "panel-block": !props.tabs,
-    "panel-tabs": props.tabs,
-    "is-active": !!props.active
-  });
+    "panel-block": !tabs,
+    "panel-tabs": tabs,
+    "is-active": !!active
+  }, klass);
 
   return (
-    <div class={classes}>
-      {props.icon && (
+    <div {...props} class={classes}>
+      {icon && (
         <span class="panel-icon">
-          <i class={props.icon} aria-hidden="true" />
+          <i class={icon} aria-hidden="true"/>
         </span>
       )}
-      {props.children}
+      {children}
     </div>
   );
 }

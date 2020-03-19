@@ -1,10 +1,10 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface IPaginationProps {
-  class?: string;
+interface IPaginationProps extends JSX.HTMLAttributes {
   pages: number[];
   current: number;
+
   onPageChange?(page: number): void;
 }
 
@@ -39,11 +39,11 @@ function generatePagination(props: IPaginationProps) {
   return <ul class="pagination-list">{pages}</ul>;
 }
 
-export default function Pagination(props: RenderableProps<IPaginationProps>) {
-  const classes = classnames("pagination", props.class);
+export default function Pagination({ pages, current, onPageChange, class: klass, children: _, ...props }: RenderableProps<IPaginationProps>) {
+  const classes = classnames("pagination", klass);
   return (
     <nav class={classes} role="pagination" aria-label="pagination">
-      {generatePagination(props)}
+      {generatePagination({ pages, current, onPageChange })}
     </nav>
   );
 }

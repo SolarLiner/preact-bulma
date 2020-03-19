@@ -1,21 +1,22 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface ITableProps {
+interface ITableProps extends JSX.HTMLAttributes {
   bordered?: boolean;
   striped?: boolean;
   narrow?: boolean;
   hoverable?: boolean;
   fullWidth?: boolean;
 }
-export default function Table(props: RenderableProps<ITableProps>) {
+
+export default function Table({ bordered, striped, narrow, hoverable, fullWidth, class: klass, children, ...props }: RenderableProps<ITableProps>) {
   return (
-    <table class={classnames("table", {
-      "is-bordered": !!props.bordered,
-      "is-striped": !!props.striped,
-      "is-narrow": !!props.narrow,
-      "is-hoverable": !!props.hoverable,
-      "is-fullwidth":!!props.fullWidth
-    })}>{props.children}</table>
-  )
+    <table {...props} class={classnames("table", {
+      "is-bordered": !!bordered,
+      "is-striped": !!striped,
+      "is-narrow": !!narrow,
+      "is-hoverable": !!hoverable,
+      "is-fullwidth": !!fullWidth
+    }, klass)}>{children}</table>
+  );
 }

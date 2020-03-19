@@ -1,26 +1,27 @@
 import classnames from "classnames";
-import { Component, h, RenderableProps } from "preact";
+import { Component, h, JSX, RenderableProps } from "preact";
 
-interface IModalCardProps {
+interface IModalCardProps extends JSX.HTMLAttributes {
   active?: boolean;
   title: string;
+
   onClose?(): void;
 }
 
 export class ModalCard extends Component<IModalCardProps, {}> {
   public render() {
-    const { children, ...props } = this.props;
+    const { active, title, onClose: _, class: klass, children, ...props } = this.props;
     return (
-      <div class={classnames("modal", { "is-active": props.active })}>
-        <div class="modal-background" onClick={this.handleClose.bind(this)} />
+      <div {...props} class={classnames("modal", { "is-active": active }, klass)}>
+        <div class="modal-background" onClick={this.handleClose.bind(this)}/>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title">{props.title}</p>
-            <button class="delete" aria-label="delete" onClick={this.handleClose.bind(this)} />
+            <p class="modal-card-title">{title}</p>
+            <button class="delete" aria-label="delete" onClick={this.handleClose.bind(this)}/>
           </header>
           {children}
         </div>
-        <div class="modal-close is-large" aria-label="close" onClick={this.handleClose.bind(this)} />
+        <div class="modal-close is-large" aria-label="close" onClick={this.handleClose.bind(this)}/>
       </div>
     );
   }
@@ -29,10 +30,10 @@ export class ModalCard extends Component<IModalCardProps, {}> {
   }
 }
 
-export function ModalCardBody({ children }: RenderableProps<{}>) {
-  return <section class="modal-card-body">{children}</section>;
+export function ModalCardBody({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <section {...props} class={classnames("modal-card-body", klass)}>{children}</section>;
 }
 
-export function ModalCardFooter({ children }: RenderableProps<{}>) {
-  return <footer class="modal-card-foot">{children}</footer>;
+export function ModalCardFooter({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <footer {...props} class={classnames("modal-card-body", klass)}>{children}</footer>;
 }

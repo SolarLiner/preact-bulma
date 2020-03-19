@@ -1,6 +1,5 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/preact";
-import { h } from "preact";
 import { Control, Field, HorizontalGroup, RadioButton, Select, Textarea, TextInput } from "../../src/forms";
 import Button from "../../src/elements/button";
 
@@ -46,7 +45,7 @@ storiesOf("Forms", module)
         </HorizontalGroup>
         <HorizontalGroup label="Department">
           <Control>
-            <Select options={["Business development", "Marketing", "Sales"]} name="department" />
+            <Select options={{ "0": "Business development", "1": "Marketing", "2": "Sales" }} name="department"/>
           </Control>
         </HorizontalGroup>
         <HorizontalGroup label="Already a member?">

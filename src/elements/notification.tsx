@@ -1,18 +1,19 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
 import Delete from "./delete";
 
-interface INotificationProps {
+interface INotificationProps extends JSX.HTMLAttributes {
   color?: string;
   persistent?: boolean;
   onClose?: () => void;
 }
-export default function Notification(props: RenderableProps<INotificationProps>) {
+
+export default function Notification({ color, persistent, onClose, class: klass, children, ...props }: RenderableProps<INotificationProps>) {
   return (
-    <div class={classnames("notification", { [`is-${props.color}`]: !!props.color })}>
-      {!props.persistent && <Delete onClick={props.onClose} />}
-      {props.children}
+    <div {...props} class={classnames("notification", { [`is-${color}`]: !!color }, klass)}>
+      {!persistent && <Delete onClick={onClose}/>}
+      {children}
     </div>
   );
 }

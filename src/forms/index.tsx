@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { Component, ComponentChild, JSX, h, RenderableProps } from "preact";
+import { ComponentChild, h, JSX, RenderableProps } from "preact";
 
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEVELOPMENT = NODE_ENV === "development";
@@ -17,7 +17,7 @@ const ALIGNMENTS = {
   right: "is-right"
 };
 
-export interface IFieldProps {
+export interface IFieldProps extends JSX.HTMLAttributes {
   expanded?: boolean;
   group?: keyof typeof GROUP_ALIGNMENTS;
   hasAddons?: boolean;
@@ -28,41 +28,41 @@ export interface IFieldProps {
   narrow?: boolean;
 }
 
-export function Field(props: RenderableProps<IFieldProps>) {
+export function Field({ expanded, group, hasAddons, help, helpColor, horizontal, label, narrow, class: klass, children, ...props }: RenderableProps<IFieldProps>) {
   // TODO: Fix weird layout of has-addon fields with labels and/or help
-  let label;
-  let help;
+  let labeln;
+  let helpn;
   const classes = classnames("field", {
-    "has-addons": !!props.hasAddons,
-    "is-expanded": !!props.expanded,
-    "is-narrow": !!props.narrow,
-    [`${GROUP_ALIGNMENTS[props.group]}`]: !!props.group
-  });
-  if (props.label) {
-    label = <label class="label">{props.label}</label>;
+    "has-addons": !!hasAddons,
+    "is-expanded": !!expanded,
+    "is-narrow": !!narrow,
+    [`${GROUP_ALIGNMENTS[group]}`]: !!group
+  }, klass);
+  if (label) {
+    labeln = <label class="label">{label}</label>;
   }
-  if (props.help) {
+  if (help) {
     const helpClasses = classnames("help", {
-      [`is-${props.helpColor}`]: !!props.helpColor
+      [`is-${helpColor}`]: !!helpColor
     });
-    help = <p class={helpClasses}>{props.help}</p>;
+    helpn = <p class={helpClasses}>{help}</p>;
   }
   return (
-    <div class={classes}>
-      {label}
-      {props.children}
-      {help}
+    <div {...props} class={classes}>
+      {labeln}
+      {children}
+      {helpn}
     </div>
   );
 }
 
-export function HorizontalGroup(props: RenderableProps<IFieldProps>) {
-  const classes = classnames("field is-horizontal");
-  let label;
-  if (props.label) {
-    label = (
+export function HorizontalGroup({ expanded, group, hasAddons, help, helpColor, horizontal, label, narrow, class: klass, children, ...props }: RenderableProps<IFieldProps>) {
+  const classes = classnames("field is-horizontal", klass);
+  let labeln;
+  if (label) {
+    labeln = (
       <div class="field-label is-normal">
-        <label class="label">{props.label}</label>
+        <label class="label">{label}</label>
       </div>
     );
   }
@@ -70,14 +70,14 @@ export function HorizontalGroup(props: RenderableProps<IFieldProps>) {
   delete innerFieldProps.label;
   delete innerFieldProps.help;
   return (
-    <div class={classes}>
-      {label}
-      <div class="field-body">{props.children}</div>
+    <div {...props} class={classes}>
+      {labeln}
+      <div class="field-body">{children}</div>
     </div>
   );
 }
 
-export interface IControlProps {
+export interface IControlProps extends Omit<JSX.HTMLAttributes, "size"> {
   expanded?: boolean;
   iconsLeft?: string;
   iconsRight?: string;
@@ -85,164 +85,110 @@ export interface IControlProps {
   size?: "small" | "medium" | "large";
 }
 
-export function Control(props: RenderableProps<IControlProps>) {
-  let iconsLeft;
-  let iconsRight;
+export function Control({ expanded, iconsLeft, iconsRight, loading, size, class: klass, children, ...props }: RenderableProps<IControlProps>) {
+  let iconsLeftn;
+  let iconsRightn;
   const classes = classnames("control", {
-    "has-icons-left": !!props.iconsLeft,
-    "has-icons-right": !!props.iconsRight,
-    "is-expanded": !!props.expanded,
-    "is-loading": !!props.loading,
-    [`is-${props.size}`]: !!props.size
-  });
-  if (props.iconsLeft) {
-    iconsLeft = (
+    "has-icons-left": !!iconsLeft,
+    "has-icons-right": !!iconsRight,
+    "is-expanded": !!expanded,
+    "is-loading": !!loading,
+    [`is-${size}`]: !!size
+  }, klass);
+  if (iconsLeft) {
+    iconsLeftn = (
       <span class="icon is-small is-left">
-        <i class={props.iconsLeft} />
+        <i class={iconsLeft}/>
       </span>
     );
   }
-  if (props.iconsRight) {
-    iconsRight = (
+  if (iconsRight) {
+    iconsRightn = (
       <span class="icon is-small is-right">
-        <i class={props.iconsRight} />
+        <i class={iconsRight}/>
       </span>
     );
   }
   return (
-    <div class={classes}>
-      {props.children}
-      {iconsLeft}
-      {iconsRight}
+    <div {...props} class={classes}>
+      {children}
+      {iconsLeftn}
+      {iconsRightn}
     </div>
   );
 }
 
-export interface IInputProps {
+export interface IInputProps extends JSX.HTMLAttributes {
   active?: boolean;
   color?: string;
-  disabled?: boolean;
   focused?: boolean;
-  onBlur?: (ev: Event) => void;
-  onFocus?: (ev: Event) => void;
-  onInput?: (ev: Event) => void;
-  placeholder?: string;
   readOnly?: boolean;
   rounded?: boolean;
   static?: boolean;
-  type?: "text" | "password" | "email" | "tel";
-  id?: string;
-  name?: string;
-  value?: string;
 }
 
-export function TextInput(props: RenderableProps<IInputProps>) {
+export function TextInput({ active, color, focused, readOnly, rounded, static: statik, children: _, class: klass, ...props }: RenderableProps<IInputProps>) {
   const classes = classnames("input", {
-    "is-active": !!props.active,
-    "is-focuded": !!props.focused,
-    "is-rounded": !!props.rounded,
-    "is-static": !!props.static,
-    [`is-${props.color}`]: !!props.color
-  });
+    "is-active": !!active,
+    "is-focuded": !!focused,
+    "is-rounded": !!rounded,
+    "is-static": !!statik,
+    [`is-${color}`]: !!color
+  }, props);
   return (
-    <input
-      class={classes}
-      disabled={props.disabled}
-      onBlur={props.onBlur}
-      onFocus={props.onFocus}
-      onInput={props.onInput}
-      placeholder={props.placeholder}
-      readOnly={props.readOnly}
-      id={props.id}
-      name={props.name}
-      type={props.type}
-      value={props.value}
+    <input {...props}
+           class={classes}
+           readOnly={readOnly}
     />
   );
 }
 
-export interface ITextareaProps {
-  placeholder?: string;
+export interface ITextareaProps extends Omit<JSX.HTMLAttributes, "size"> {
   color?: string;
   size?: "small" | "medium" | "large";
-  cols?: number;
-  rows?: number;
-  readOnly?: boolean;
-  disabled?: boolean;
   fixed?: boolean;
-  value: string;
-  id?: string;
-  name?: string;
-  onInput: (ev: Event) => void;
-  onBlur?: (ev: Event) => void;
-  onFocus?: (ev: Event) => void;
 }
 
-export function Textarea(props: RenderableProps<ITextareaProps>) {
+export function Textarea({ color, size, fixed, children, class: klass, ...props }: RenderableProps<ITextareaProps>) {
   const classes = classnames("textarea", {
-    "has-fixed-size": !!props.fixed,
-    [`is-${props.color}`]: !!props.color,
-    [`is-${props.size}`]: !!props.size
-  });
+    "has-fixed-size": !!fixed,
+    [`is-${color}`]: !!color,
+    [`is-${size}`]: !!size
+  }, klass);
   return (
-    <textarea
-      class={classes}
-      disabled={props.disabled}
-      onBlur={props.onBlur}
-      onFocus={props.onFocus}
-      onInput={props.onInput}
-      placeholder={props.placeholder}
-      readOnly={props.readOnly}
-      id={props.id}
-      name={props.name}
-      value={props.value}
-      {...(props as any)}
+    <textarea {...props}
+              class={classes}
     >
-      {props.children}
+      {children}
     </textarea>
   );
 }
 
-export interface ISelectProps {
-  options: string[];
-  multiple?: boolean;
+export interface ISelectProps extends Omit<JSX.HTMLAttributes, "size"> {
+  options: Record<string, ComponentChild>;
   fullWidth?: boolean;
   loading?: boolean;
   color?: string;
   rounded?: boolean;
   size?: "small" | "medium" | "large";
-  id?: string;
-  name?: string;
-  disabled?: boolean;
-  value: string;
-  onChange: (ev: Event) => void;
-  onFocus?: (ev: Event) => void;
-  onBlur?: (ev: Event) => void;
+  divProps?: JSX.HTMLAttributes;
 }
 
-export function Select(props: RenderableProps<ISelectProps>) {
+export function Select({ options, fullWidth, loading, color, rounded, size, divProps, children, class: klass, ...props }: RenderableProps<ISelectProps>) {
   const classes = classnames("select", {
-    "is-fullwidth": props.fullWidth,
-    "is-loading": props.loading,
+    "is-fullwidth": fullWidth,
+    "is-loading": loading,
     "is-multiple": !!props.multiple,
-    "is-rounded": !!props.rounded,
-    [`is-${props.color}`]: !!props.color,
-    [`is-${props.size}`]: !!props.size
-  });
+    "is-rounded": !!rounded,
+    [`is-${color}`]: !!color,
+    [`is-${size}`]: !!size
+  }, klass);
   return (
-    <div class={classes}>
-      <select
-        id={props.id}
-        name={props.id}
-        value={props.value}
-        onChange={props.onChange}
-        onFocus={props.onFocus}
-        onBlur={props.onBlur}
-        disabled={props.disabled}
-      >
-        {props.options.map(el => (
-          <option key={el} value={el}>
-            {el}
+    <div {...divProps} class={classes}>
+      <select {...props}>
+        {Object.entries(options).map(([key, val]) => (
+          <option key={key} value={key}>
+            {val}
           </option>
         ))}
       </select>
@@ -250,47 +196,34 @@ export function Select(props: RenderableProps<ISelectProps>) {
   );
 }
 
-export interface ICheckboxProps {
+export interface ICheckboxProps extends Omit<JSX.HTMLAttributes, "value"> {
   value?: boolean;
-  checked?: boolean;
-  disabled?: boolean;
-  onChanged?: (ev: Event) => void;
-  onChange?: (ev: Event) => void;
-  id?: string;
-  name?: string;
-  onFocus?: (ev: Event) => void;
-  onBlur?: (ev: Event) => void;
+  labelProps?: JSX.HTMLAttributes;
+  onChanged?: (e: Event) => void;
 }
 
-export function Checkbox(props: RenderableProps<ICheckboxProps>) {
-  if (IS_DEVELOPMENT && props.value) {
+export function Checkbox({ value, onChanged, labelProps, children, class: klass, ...props }: RenderableProps<ICheckboxProps>) {
+  if (IS_DEVELOPMENT && value) {
     console.warn("Checkbox.value will be deprecated in a future release. Please use Checkbox.checked instead.");
   }
-  if (IS_DEVELOPMENT && props.onChanged) {
+  if (IS_DEVELOPMENT && onChanged) {
     console.warn("Checkbox.onChanged will be deprecated in a future release. Please use Checkbox.onChange instead.");
   }
 
-  const changeEvent = props.onChange || props.onChanged;
-  const checked = props.checked || props.value;
-
+  const changeEvent = props.onChange || onChanged;
   return (
-    <label class="checkbox">
-      <input
-        type="checkbox"
-        checked={checked}
-        disabled={props.disabled}
-        id={props.id}
-        name={props.name}
-        onChange={changeEvent}
-        onFocus={props.onFocus}
-        onBlur={props.onBlur}
+    <label {...labelProps} class={classnames("checkbox", klass)}>
+      <input {...props}
+             type="checkbox"
+             checked={value}
+             onChange={changeEvent}
       />
-      {props.children}
+      {children}
     </label>
   );
 }
 
-export interface IRadioButtonProps {
+export interface IRadioButtonProps extends JSX.HTMLAttributes {
   name: string;
   id?: string;
   checked: boolean;
@@ -298,25 +231,18 @@ export interface IRadioButtonProps {
   onChange: (ev: Event) => void;
 }
 
-export function RadioButton(props: RenderableProps<IRadioButtonProps>) {
+export function RadioButton({ children, class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
   return (
     <label>
-      <input
-        type="radio"
-        id={props.id}
-        name={props.name}
-        checked={props.checked}
-        disabled={props.disabled}
-        onChange={props.onChange}
+      <input {...props}
+             type="radio"
       />{" "}
-      {props.children}
+      {children}
     </label>
   );
 }
 
-export interface IFileInputProps {
-  label?: string;
-  icon?: string;
+export interface IFileInputProps extends Omit<JSX.HTMLAttributes, "size"> {
   right?: boolean;
   fullWidth?: boolean;
   boxed?: boolean;
@@ -325,65 +251,58 @@ export interface IFileInputProps {
   align?: keyof typeof ALIGNMENTS;
   filename?: string;
   filenames?: string[];
-  name?: string;
-  id?: string;
-  multiple?: boolean;
-  disabled?: boolean;
-  onChange: (ev: Event) => void;
+  icon?: string;
+  divProps?: JSX.HTMLAttributes;
+  labelProps?: JSX.HTMLAttributes;
 }
 
-export function FileInput(props: RenderableProps<IFileInputProps>) {
-  if (IS_DEVELOPMENT && props.filename) {
+export function FileInput({ right, fullWidth, boxed, color, size, align, filename: _filename, filenames, icon, label, divProps, labelProps, children, class: klass, ...props }: RenderableProps<IFileInputProps>) {
+  if (IS_DEVELOPMENT && _filename) {
     console.warn("FileInput.filename will be deprecated in a future release. Please use FileInput.filenames instead.");
   }
 
-  const hasFiles = !!props.filename || !!props.filenames;
-  let label: preact.JSX.Element;
-  let icon: preact.JSX.Element;
-  let filename: preact.JSX.Element;
+  const hasFiles = !!_filename || !!filenames;
+  let labeln: JSX.Element;
+  let iconn: JSX.Element;
+  let filenamen: JSX.Element;
   const classes = classnames("file", {
-    "is-fullwidth": !!props.fullWidth,
-    "is-right": !!props.right,
-    "is-boxed": !!props.boxed,
+    "is-fullwidth": !!fullWidth,
+    "is-right": !!right,
+    "is-boxed": !!boxed,
     "has-name": hasFiles,
-    [`is-${props.color}`]: !!props.color,
-    [`is-${props.size}`]: !!props.size,
-    [ALIGNMENTS[props.align]]: !!props.align
-  });
-  if (props.label) {
-    label = <span class="file-label">{props.label}</span>;
+    [`is-${color}`]: !!color,
+    [`is-${size}`]: !!size,
+    [ALIGNMENTS[align]]: !!align
+  }, klass);
+  if (label) {
+    labeln = <span class="file-label">{label}</span>;
   }
-  if (props.icon) {
-    icon = (
+  if (icon) {
+    iconn = (
       <span className="file-icon">
-        <i class={props.icon} />
+        <i class={icon}/>
       </span>
     );
   }
-  if ((props.filenames && props.filenames.length === 1) || props.filename) {
-    const copy = (props.filenames && props.filenames[0]) || props.filename;
-    filename = <span class="file-name">{copy}</span>;
-  } else if (props.filenames && props.filenames.length > 1) {
-    const count = props.filenames.length;
-    filename = <span class="file-name">{count} Files</span>;
+  if ((filenames && filenames.length === 1) || _filename) {
+    const copy = (filenames && filenames[0]) || _filename;
+    filenamen = <span class="file-name">{copy}</span>;
+  } else if (filenames && filenames.length > 1) {
+    const count = filenames.length;
+    filenamen = <span class="file-name">{count} Files</span>;
   }
   return (
-    <div class={classes}>
-      <label class="file-label">
-        <input
-          class="file-input"
-          type="file"
-          id={props.id}
-          name={props.name}
-          multiple={props.multiple}
-          disabled={props.disabled}
-          onChange={props.onChange}
+    <div {...divProps} class={classes}>
+      <label {...labelProps} class="file-label">
+        <input {...props}
+               class="file-input"
+               type="file"
         />
         <span class="file-cta">
-          {icon}
-          {label}
+          {iconn}
+          {labeln}
         </span>
-        {filename}
+        {filenamen}
       </label>
     </div>
   );

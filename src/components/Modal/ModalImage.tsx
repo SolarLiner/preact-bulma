@@ -1,23 +1,23 @@
 import classnames from "classnames";
-import { Component, h, RenderableProps } from "preact";
+import { Component, h, JSX } from "preact";
 import Modal from "./Modal";
 
-interface IModalImageProps {
+interface IModalImageProps extends JSX.HTMLAttributes {
   active?: boolean;
-  class?: string;
   src: string;
   alt: string;
+
   onClose?(): void;
 }
 
 export default class ModalImage extends Component<IModalImageProps, {}> {
   public render() {
-    const { children, ...props } = this.props;
-    const imgClasses = classnames("image", props.class);
+    const { active, src, alt, onClose: _, class: klass, children, ...props } = this.props;
+    const imgClasses = classnames("image", klass);
     return (
-      <Modal active={props.active} onClose={this.handleClose.bind(this)}>
+      <Modal {...props} active={active} onClose={this.handleClose.bind(this)}>
         <p class={imgClasses}>
-          <img src={props.src} alt={props.alt} />
+          <img src={src} alt={alt}/>
         </p>
       </Modal>
     );

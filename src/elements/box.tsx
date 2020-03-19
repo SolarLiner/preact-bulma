@@ -1,5 +1,6 @@
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
+import classNames from "classnames";
 
-export default function Box(props: RenderableProps<{}>) {
-  return <div class="box">{props.children}</div>;
+export default function Box({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classNames("box", klass)}>{children}</div>;
 }
