@@ -1,7 +1,7 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface IImageProps {
+interface IImageProps extends JSX.HTMLAttributes {
   src: string;
   alt: string;
   size?: 16 | 24 | 32 | 48 | 64 | 96 | 128;
@@ -23,15 +23,16 @@ interface IImageProps {
     | "1by2"
     | "1by3";
 }
-export default function Image(props: RenderableProps<IImageProps>) {
+
+export default function Image({ src, alt, size, ratio, class: klass, children: _, ...props }: RenderableProps<IImageProps>) {
   return (
-    <figure
-      class={classnames("image", {
-        [`is-${props.ratio}`]: !!props.ratio,
-        [`is-${props.size}x${props.size}`]: !!props.size
-      })}
+    <figure {...props}
+            class={classnames("image", {
+              [`is-${ratio}`]: !!ratio,
+              [`is-${size}x${size}`]: !!size
+            }, klass)}
     >
-      <img src={props.src} alt={props.alt} />
+      <img src={src} alt={alt}/>
     </figure>
   );
 }

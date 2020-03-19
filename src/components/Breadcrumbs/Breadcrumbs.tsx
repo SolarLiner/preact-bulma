@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
 export const ALIGNMENT = {
   left: "",
@@ -14,31 +14,30 @@ export const SEPARATORS = {
   succeeds: "has-succeeds-separator"
 };
 
-interface IBreadcrumbProps {
+interface IBreadcrumbProps extends JSX.HTMLAttributes {
   align?: keyof typeof ALIGNMENT;
   separator?: keyof typeof SEPARATORS;
-  class?: string;
 }
 
-export function Breadcrumb(props: RenderableProps<IBreadcrumbProps>) {
-  const classes = classnames("breadcrumb", ALIGNMENT[props.align], SEPARATORS[props.separator]);
+export function Breadcrumb({ align, separator, children, class: klass, ...props }: RenderableProps<IBreadcrumbProps>) {
+  const classes = classnames("breadcrumb", klass, ALIGNMENT[align], SEPARATORS[separator]);
   return (
-    <nav class={classes}>
-      <ul>{props.children}</ul>
+    <nav {...props} class={classes}>
+      <ul>{children}</ul>
     </nav>
   );
 }
 
-interface IBreadcrumbLinkProps {
+interface IBreadcrumbLinkProps extends JSX.HTMLAttributes {
   href?: string;
   active?: boolean;
 }
 
-export function BreadcrumbLink(props: RenderableProps<IBreadcrumbLinkProps>) {
-  const classes = classnames({ "is-active": props.active });
+export function BreadcrumbLink({ href, active, children, class: klass, ...props }: RenderableProps<IBreadcrumbLinkProps>) {
+  const classes = classnames({ "is-active": active });
   return (
-    <li class={classes}>
-      <a href={props.href || "#"}>{props.children}</a>
+    <li {...props} class={classes}>
+      <a href={href || "#"}>{children}</a>
     </li>
   );
 }

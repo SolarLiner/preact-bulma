@@ -1,71 +1,69 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface INavbarProps {
-  class?: string;
+export default function Navbar({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <nav {...props} class={classnames("navbar", klass)}>{children}</nav>;
 }
 
-export default function Navbar(props: RenderableProps<INavbarProps>) {
-  return <nav class={classnames("navbar", props.class)}>{props.children}</nav>;
-}
-
-interface INavbarBrandProps {
+interface INavbarBrandProps extends JSX.HTMLAttributes {
   href?: string;
   active?: boolean;
+
   onToggleExpand?(): void;
 }
 
-export function NavbarBrand(props: RenderableProps<INavbarBrandProps>) {
+export function NavbarBrand({ href, active, onToggleExpand, children, class: klass, ...props }: RenderableProps<INavbarBrandProps>) {
+  const classes = classnames("navbar-brand", klass);
   return (
-    <div class="navbar-brand">
-      <a class="navbar-item" href={props.href || "#"}>
-        {props.children}
+    <div class={classes}>
+      <a class="navbar-item" href={href || "#"}>
+        {children}
       </a>
       <a
         role="button"
-        class="navbar-burger"
+        class={classnames("navbar-burger", { "is-active": !!active })}
         aria-label="menu"
-        aria-expanded={!!props.active}
-        onClick={_ev => props.onToggleExpand && props.onToggleExpand()}
+        aria-expanded={!!active}
+        onClick={_ev => onToggleExpand && onToggleExpand()}
       >
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
+        <span aria-hidden="true"/>
+        <span aria-hidden="true"/>
+        <span aria-hidden="true"/>
       </a>
     </div>
   );
 }
 
-interface INavbarMenuProps {
+interface INavbarMenuProps extends JSX.HTMLAttributes {
   active?: boolean;
   side?: "start" | "end";
 }
 
-export function NavbarMenu(props: RenderableProps<INavbarMenuProps>) {
+export function NavbarMenu({ active, side, class: klass, children, ...props }: RenderableProps<INavbarMenuProps>) {
   const classes = classnames({
-    "navbar-menu": !props.side,
-    "is-active": !props.side && props.active,
-    [`navbar-${props.side}`]: props.side
-  });
-  return <div class={classes}>{props.children}</div>;
+    "navbar-menu": !side,
+    "is-active": !side && active,
+    [`navbar-${side}`]: side
+  }, klass);
+  return <div {...props} class={classes}>{children}</div>;
 }
 
-interface INavbarMenuItemProps {
+interface INavbarMenuItemProps extends JSX.HTMLAttributes {
   href?: string;
   active?: boolean;
 }
 
-export function NavbarMenuItem(props: RenderableProps<INavbarMenuItemProps>) {
+export function NavbarMenuItem({ active, href, children, class: klass, ...props }: RenderableProps<INavbarMenuItemProps>) {
   const classes = classnames("navbar-item", {
-    "is-active": props.active
-  });
-  if (props.href)
+    "is-active": active
+  }, klass);
+  if (href)
     return (
-      <div class={classes}>
-        <a class="navbar-link" href={props.href}>
-          {props.children}
+      <div {...props} class={classes}>
+        <a class="navbar-link" href={href}>
+          {children}
         </a>
       </div>
     );
-  else return <div class={classes}>{props.children}</div>;
+  else return <div {...props} class={classes}>{children}</div>;
 }

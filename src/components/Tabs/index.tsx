@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
 export const ALIGNMENT = {
   left: "",
@@ -7,38 +7,39 @@ export const ALIGNMENT = {
   right: "is-right"
 };
 
-interface ITabsProps {
+interface ITabsProps extends JSX.HTMLAttributes {
   align?: keyof typeof ALIGNMENT;
 }
 
-export function Tabs(props: RenderableProps<ITabsProps>) {
+export function Tabs({ align, class: klass, children, ...props }: RenderableProps<ITabsProps>) {
   const classes = classnames("tabs", {
-    [ALIGNMENT[props.align]]: !!props.align
+    [ALIGNMENT[align]]: !!align
   });
   return (
     <div class={classes}>
-      <ul>{props.children}</ul>
+      <ul>{children}</ul>
     </div>
   );
 }
 
-interface ITabsTabProps {
+interface ITabsTabProps extends JSX.HTMLAttributes {
   active?: boolean;
   icon?: string;
   href?: string;
+
   onClick?(ev: MouseEvent): void;
 }
 
-export function TabsTab(props: RenderableProps<ITabsTabProps>) {
+export function TabsTab({ active, icon, href, onClick, class: klass, children, ...props }: RenderableProps<ITabsTabProps>) {
   return (
-    <li class={classnames({ "is-active": props.active })}>
-      <a href={props.href} onClick={ev => props.onClick && props.onClick(ev)}>
-        {props.icon && (
+    <li {...props} class={classnames({ "is-active": active }, klass)}>
+      <a href={href} onClick={ev => onClick && onClick(ev)}>
+        {icon && (
           <span class="icon is-small">
-            <i class={props.icon} />
+            <i class={icon}/>
           </span>
         )}
-        <span>{props.children}</span>
+        <span>{children}</span>
       </a>
     </li>
   );

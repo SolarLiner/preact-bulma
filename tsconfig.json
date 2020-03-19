@@ -6,7 +6,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./lib",
-    "declaration": false,
+    "declaration": true,
+    "noEmit": true
   },
   "include": [
     "src/**/*.ts",

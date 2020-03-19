@@ -1,30 +1,30 @@
 import classnames from "classnames";
-import { Component, h, RenderableProps } from "preact";
+import { Component, h, JSX, RenderableProps } from "preact";
 import Delete from "../../elements/delete";
 
-interface IMessageProps {
+interface IMessageProps extends JSX.HTMLAttributes {
   canClose?: boolean;
   title?: string;
-  class?: string;
+
   onClose?(): void;
 }
 
 export default class Message extends Component<IMessageProps, {}> {
-  public render(props: RenderableProps<IMessageProps>) {
-    const classes = classnames("message", props.class);
-    if (props.title) {
+  public render({ canClose, title, onClose: _, class: klass, ...props }: RenderableProps<IMessageProps>) {
+    const classes = classnames("message", klass);
+    if (title) {
       return (
-        <article class={classes}>
+        <article {...props} class={classes}>
           <div class="message-header">
-            <p>{props.title}</p>
-            {props.canClose && <Delete onClick={this.handleDelete.bind(this)} />}
+            <p>{title}</p>
+            {canClose && <Delete onClick={this.handleDelete.bind(this)}/>}
           </div>
           <div class="message-body">{props.children}</div>
         </article>
       );
     } else {
       return (
-        <article class={classes}>
+        <article {...props} class={classes}>
           <div class="message-body">{props.children}</div>
         </article>
       );

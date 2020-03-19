@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { Component, h, RenderableProps } from "preact";
+import { Component, h, JSX, RenderableProps } from "preact";
 import "../../utils/array_include";
 import randomString from "../../utils/rndString";
 
@@ -8,7 +8,7 @@ export const ALIGNMENT = {
   right: "is-right"
 };
 
-interface IDropdownProps {
+interface IDropdownProps extends JSX.HTMLAttributes {
   active?: boolean;
   hoverable?: boolean;
   dropup?: boolean;
@@ -17,7 +17,7 @@ interface IDropdownProps {
   icon?: string;
 }
 
-interface IDropdownState {
+interface IDropdownState extends JSX.HTMLAttributes {
   active: boolean;
   menuID: string;
 }
@@ -34,27 +34,27 @@ export default class Dropdown extends Component<IDropdownProps, IDropdownState> 
     });
   }
 
-  public render(props: RenderableProps<IDropdownProps>, state: IDropdownState) {
+  public render({ active, hoverable, dropup, align, title, icon, children, ...props }: RenderableProps<IDropdownProps>, state: IDropdownState) {
     const classes = classnames("dropdown", {
       "is-active": state.active,
-      [ALIGNMENT[props.align]]: !!props.align,
-      "is-hoverable": props.hoverable,
-      "is-up": props.dropup
+      [ALIGNMENT[align]]: !!align,
+      "is-hoverable": hoverable,
+      "is-up": dropup
     });
     return (
-      <div class={classes}>
+      <div {...props} class={classes}>
         <div class="dropdown-trigger" ref={el => (this.trigger = el)}>
           <a class="button" aria-haspopup="true" aria-controls={state.menuID} onClick={_ev => this.toggleActive()}>
-            <span>{props.title}</span>
-            {props.icon && (
+            <span>{title}</span>
+            {icon && (
               <span class="icon is-small">
-                <i class={props.icon} />
+                <i class={icon}/>
               </span>
             )}
           </a>
         </div>
         <div class="dropdown-menu" id={state.menuID} ref={el => (this.menu = el)} role="menu">
-          <div class="dropdown-content">{props.children}</div>
+          <div class="dropdown-content">{children}</div>
         </div>
       </div>
     );
@@ -83,34 +83,35 @@ export default class Dropdown extends Component<IDropdownProps, IDropdownState> 
   }
 
   private clickedOutside(ev: MouseEvent) {
-    if (!this.triggerWhitelist.includes(ev.srcElement)) this.toggleActive(false);
+    if (!this.triggerWhitelist.includes(ev.target as HTMLElement)) this.toggleActive(false);
   }
 }
 
-interface IDropdownItemProps {
+interface IDropdownItemProps extends JSX.HTMLAttributes {
   active?: boolean;
   href?: string;
   isContent?: boolean;
+
   onClick?(ev: MouseEvent): void;
 }
 
-export function DropdownItem({ children, ...props }: RenderableProps<IDropdownItemProps>) {
-  const classes = classnames("dropdown-item", { "is-active": props.active });
-  if (props.isContent) {
+export function DropdownItem({ active, href, isContent, onClick, children, ...props }: RenderableProps<IDropdownItemProps>) {
+  const classes = classnames("dropdown-item", { "is-active": active });
+  if (isContent) {
     return (
-      <div class={classes}>
+      <div {...props} class={classes}>
         <div class="content">{children}</div>
       </div>
     );
   } else {
     return (
-      <a href={props.href || "#"} class={classes} onClick={ev => props.onClick && props.onClick(ev)}>
+      <a {...props} href={href || "#"} class={classes} onClick={ev => onClick && onClick(ev)}>
         {children}
       </a>
     );
   }
 }
 
-export function DropdownDivider() {
-  return <hr class="dropdown-divider" />;
+export function DropdownDivider({ class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <hr {...props} class={classnames("dropdown-divider", klass)}/>;
 }

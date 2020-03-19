@@ -1,19 +1,20 @@
 import classname from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface ICardImageProps {
+interface ICardImageProps extends JSX.HTMLAttributes {
   src: string;
   alt: string;
-  class?: string;
+  figClass?: string;
 }
 
-export default function CardImage(props: RenderableProps<ICardImageProps>) {
-  const classes = classname("image", props.class);
+export default function CardImage({ src, alt, figClass, children: _, ...props }: RenderableProps<ICardImageProps>) {
+  const figClasses = classname("image", figClass);
+  const classes = classname("card-image", props.class);
 
   return (
-    <div class="card-image">
-      <figure class={classes}>
-        <img src={props.src} alt={props.alt} />
+    <div {...props} class={classes}>
+      <figure class={figClasses}>
+        <img src={src} alt={alt}/>
       </figure>
     </div>
   );

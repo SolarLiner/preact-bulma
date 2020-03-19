@@ -1,39 +1,39 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface IContainerProps {
+interface IContainerProps extends JSX.HTMLAttributes {
   fluid?: boolean;
   fullwidth?: string;
 }
 
-export function Container({ children, ...props }: RenderableProps<IContainerProps>) {
+export function Container({ fluid, fullwidth, class: klass, children, ...props }: RenderableProps<IContainerProps>) {
   const classes = classnames("container", {
-    "is-fluid": !!props.fluid,
-    [`is-${props.fullwidth}`]: !!props.fullwidth
-  });
-  return <div class={classes}>{children}</div>;
+    "is-fluid": !!fluid,
+    [`is-${fullwidth}`]: !!fullwidth
+  }, klass);
+  return <div {...props} class={classes}>{children}</div>;
 }
 
-interface ILevelProps {
+interface ILevelProps extends JSX.HTMLAttributes {
   mobile?: boolean;
 }
 
-function LevelWidget({ children, mobile }: RenderableProps<ILevelProps>) {
-  const classes = classnames("level", { "is-mobile": mobile });
-  return <div class={classes}>{children}</div>;
+function LevelWidget({ mobile, class: klass, children, ...props }: RenderableProps<ILevelProps>) {
+  const classes = classnames("level", { "is-mobile": mobile }, klass);
+  return <div {...props} class={classes}>{children}</div>;
 }
 
-function LevelItem({ children }: RenderableProps<{}>) {
-  return <div class="level-item">{children}</div>;
+function LevelItem({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classnames("level-item", klass)}>{children}</div>;
 }
 
-interface ILevelSideProps {
+interface ILevelSideProps extends JSX.HTMLAttributes {
   side: "left" | "right";
 }
 
-function LevelSide({ children, side }: RenderableProps<ILevelSideProps>) {
-  const classes = classnames(`level-${side}`);
-  return <div class={classes}>{children}</div>;
+function LevelSide({ side, class: klass, children, ...props }: RenderableProps<ILevelSideProps>) {
+  const classes = classnames(`level-${side}`, klass);
+  return <div {...props} class={classes}>{children}</div>;
 }
 
 // tslint:disable-next-line:variable-name
@@ -45,20 +45,20 @@ export const Level = {
   Side: LevelSide
 };
 
-function MediaWidget({ children }: RenderableProps<{}>) {
-  return <article class="media">{children}</article>;
+function MediaWidget({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <article {...props} class={classnames("media", klass)}>{children}</article>;
 }
 
-function MediaLeft({ children }: RenderableProps<{}>) {
-  return <figure class="media-left">{children}</figure>;
+function MediaLeft({ children, class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <figure {...props} class={classnames("media-left", klass)}>{children}</figure>;
 }
 
-function MediaRight({ children }: RenderableProps<{}>) {
-  return <div class="media-right">{children}</div>;
+function MediaRight({ children, class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classnames("media-right", klass)}>{children}</div>;
 }
 
-function MediaContent({ children }: RenderableProps<{}>) {
-  return <div class="media-content">{children}</div>;
+function MediaContent({ children, class: klass, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classnames("media-content", klass)}>{children}</div>;
 }
 
 // tslint:disable-next-line:variable-name
@@ -69,31 +69,31 @@ export const Media = {
   Right: MediaRight
 };
 
-interface IHeroProps {
+interface IHeroProps extends Omit<JSX.HTMLAttributes, "size"> {
   color?: string;
   bold?: boolean;
   size?: "medium" | "large" | "fullHeight";
 }
 
-function HeroWidget({ children, ...props }: RenderableProps<IHeroProps>) {
+function HeroWidget({ color, bold, size, class: klass, children, ...props }: RenderableProps<IHeroProps>) {
   const classes = classnames("hero", {
-    "is-bold": props.bold,
-    [`is-${props.color}`]: !!props.color,
-    [`is-${props.size && props.size.toLowerCase()}`]: !!props.size
-  });
-  return <section class={classes}>{children}</section>;
+    "is-bold": bold,
+    [`is-${color}`]: !!color,
+    [`is-${size && size.toLowerCase()}`]: !!size
+  }, klass);
+  return <section {...props} class={classes}>{children}</section>;
 }
 
-function HeroHead({ children }: RenderableProps<{}>) {
-  return <div class="hero-head">{children}</div>;
+function HeroHead({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classnames("hero-head", klass)}>{children}</div>;
 }
 
-function HeroBody({ children }: RenderableProps<{}>) {
-  return <div class="hero-body">{children}</div>;
+function HeroBody({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classnames("hero-body", klass)}>{children}</div>;
 }
 
-function HeroFoot({ children }: RenderableProps<{}>) {
-  return <div class="hero-foot">{children}</div>;
+function HeroFoot({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <div {...props} class={classnames("hero-foot", klass)}>{children}</div>;
 }
 
 // tslint:disable-next-line:variable-name
@@ -104,20 +104,20 @@ export const Hero = {
   Footer: HeroFoot
 };
 
-interface ISectionProps {
+interface ISectionProps extends Omit<JSX.HTMLAttributes, "size"> {
   size?: "medium" | "large";
 }
 
-export function Section({ children, ...props }: RenderableProps<ISectionProps>) {
-  const classes = classnames("section", { [`is-${props.size}`]: !!props.size });
-  return <section class="section">{children}</section>;
+export function Section({ size, children, class: klass, ...props }: RenderableProps<ISectionProps>) {
+  const classes = classnames("section", { [`is-${size}`]: !!size }, klass);
+  return <section {...props} class={classes}>{children}</section>;
 }
 
-export function Footer({ children }: RenderableProps<{}>) {
-  return <footer class="footer">{children}</footer>;
+export function Footer({ class: klass, children, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <footer {...props} class={classnames("footer", klass)}>{children}</footer>;
 }
 
-interface ITileProps {
+interface ITileProps extends Omit<JSX.HTMLAttributes, "size"> {
   ancestor?: boolean;
   parent?: boolean;
   child?: boolean;
@@ -126,15 +126,15 @@ interface ITileProps {
   size?: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12";
 }
 
-export function Tile({ children, ...props }: RenderableProps<ITileProps>) {
+export function Tile({ ancestor, parent, child, vertical, color, size, class: klass, children, ...props }: RenderableProps<ITileProps>) {
   const classes = classnames("tile", {
-    "is-ancestor": props.ancestor,
-    "is-parent": props.parent,
-    "is-child": props.child,
-    "is-vertical": props.vertical,
-    [`is-${props.color}`]: !!props.color,
-    [`is-${props.size}`]: !!props.size
-  });
+    "is-ancestor": ancestor,
+    "is-parent": parent,
+    "is-child": child,
+    "is-vertical": vertical,
+    [`is-${color}`]: !!color,
+    [`is-${size}`]: !!size
+  }, klass);
 
-  return <div class={classes}>{children}</div>;
+  return <div {...props} class={classes}>{children}</div>;
 }

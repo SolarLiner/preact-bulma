@@ -1,35 +1,37 @@
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
+import classNames from "classnames";
 
-interface INavbarDropdownProps {
+interface INavbarDropdownProps extends JSX.HTMLAttributes {
   title: string;
   icon?: string;
 }
 
-export default function NavbarDropdown(props: RenderableProps<INavbarDropdownProps>) {
+export default function NavbarDropdown({ title, icon, class: klass, children, ...props }: RenderableProps<INavbarDropdownProps>) {
+  const classes = classNames("navbar-item", "has-dropdown", klass);
   return (
-    <div class="navbar-item has-dropdown">
-      <a class="navbar-link">{props.title}</a>
-      <div class="navbar-dropdown">{props.children}</div>
+    <div {...props} class={classes}>
+      <a class="navbar-link">{title}</a>
+      <div class="navbar-dropdown">{children}</div>
     </div>
   );
 }
 
-interface INavbarDropdownItemProps {
+interface INavbarDropdownItemProps extends JSX.HTMLAttributes {
   href?: string;
 }
 
-export function NavbarDropdownItem(props: RenderableProps<INavbarDropdownItemProps>) {
-  if (props.href) {
+export function NavbarDropdownItem({ href, children, class: klass, ...props }: RenderableProps<INavbarDropdownItemProps>) {
+  if (href) {
     return (
-      <a class="navbar-item" href={props.href}>
-        {props.children}
+      <a class={classNames("navbar-item", klass)} href={href}>
+        {children}
       </a>
     );
   } else {
-    return <div class="navbar-item">{props.children}</div>;
+    return <div class={classNames("navbar-item", klass)}>{children}</div>;
   }
 }
 
-export function NavbarDropdownDivider() {
-  return <hr class="navbar-divider" />;
+export function NavbarDropdownDivider({ class: klass, children: _, ...props }: RenderableProps<JSX.HTMLAttributes>) {
+  return <hr {...props} class={classNames("navbar-divider", klass)}/>;
 }

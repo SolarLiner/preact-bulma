@@ -58,7 +58,7 @@ import "styles/app.scss";
 
 You can now use the provided components into your project as you would with any component.
 
-```javascript
+```jsx
 import { Card } from "preact-bulma";
 function MyCard() {
   <Card.Card>
@@ -92,8 +92,3 @@ function MyCard() {
 
 - **Storybook with all components**: https://solarliner.github.io/preact-bulma
 - **Wiki with usage notes**: https://github.com/solarliner/preact-bulma/wiki
-
-## But why `1.0.0` when it's still alpha?
-
-The `preact-bulma` package was being squatted before npm transfered the ownership to me. To their advice, I'm pushing a
-major release to prevent problems and compatibility issues.

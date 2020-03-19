@@ -23,7 +23,7 @@ storiesOf("Components/Card", module)
     <Card.Card>
       <Card.Header title="Card with image" />
       <Card.Image
-        class="is-4by3"
+        figClass="is-4by3"
         src="https://source.unsplash.com/random/800x600"
         alt="Card image"
       />

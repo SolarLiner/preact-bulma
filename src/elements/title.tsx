@@ -1,7 +1,7 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { createElement as h, JSX, RenderableProps } from "preact";
 
-interface ITitleProps {
+interface ITitleProps extends JSX.HTMLAttributes {
   size?: 1 | 2 | 3 | 4 | 5 | 6;
   el?: string;
   spaced?: boolean;
@@ -12,10 +12,10 @@ export const Title = createHeading("title");
 export const Subtitle = createHeading("subtitle");
 
 function createHeading(mode: string) {
-  return (props: RenderableProps<ITitleProps>) =>
+  return ({ size, el, spaced, children, class: klass, ...props }: RenderableProps<ITitleProps>) =>
     h(
-      props.el || "p",
-      { class: classnames(mode, { [`is-${props.size}`]: !!props.size, "is-spaced": !!props.spaced }) },
-      props.children
+      el || "p",
+      { ...props, class: classnames(mode, { [`is-${size}`]: !!size, "is-spaced": !!spaced }, klass) },
+      children
     );
 }

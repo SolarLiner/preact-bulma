@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectId" id="1ZM236zNGNfUCEmkwdKbDQc4M53" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="javascript.nodejs.core.library.configured.version" value="13.3.0" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.yarn" />
+    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v13.3.0/bin/node" />
+    <property name="nodejs_package_manager_path" value="$USER_HOME$/.yarn" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+  </component>
+</project>

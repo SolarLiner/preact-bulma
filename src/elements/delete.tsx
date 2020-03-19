@@ -1,20 +1,19 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface IDeleteProps {
+interface IDeleteProps extends Omit<JSX.HTMLAttributes, "size"> {
   size?: "small" | "medium" | "large";
-  onClick?: (ev: MouseEvent) => void;
 }
-export default function Delete(props: RenderableProps<IDeleteProps>) {
+
+export default function Delete({ size, class: klass, children, ...props }: RenderableProps<IDeleteProps>) {
   return (
-    <a
-      class={classnames("delete", {
-        [`is-${props.size}`]: !!props.size
-      })}
-      aria-class="delete"
-      onClick={props.onClick}
+    <a {...props}
+       class={classnames("delete", {
+         [`is-${size}`]: !!size
+       }, klass)}
+       aria-class="delete"
     >
-      {props.children}
+      {children}
     </a>
   );
 }

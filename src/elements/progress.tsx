@@ -1,20 +1,21 @@
 import classnames from "classnames";
-import { h, RenderableProps } from "preact";
+import { h, JSX, RenderableProps } from "preact";
 
-interface IProgressProps {
+interface IProgressProps extends Omit<JSX.HTMLAttributes, "size"> {
   color?: string;
   size?: "small" | "medium" | "large";
   value?: number;
   max?: number;
 }
-export default function Progress(props: RenderableProps<IProgressProps>) {
+
+export default function Progress({ color, size, value, max, class: klass, children, ...props }: RenderableProps<IProgressProps>) {
   return (
-    <progress
-      class={classnames("progress", { [`is-${props.color}`]: !!props.color, [`is-${props.size}`]: !!props.size })}
-      value={props.value}
-      max={props.max || 100}
+    <progress {...props}
+              class={classnames("progress", { [`is-${color}`]: !!color, [`is-${size}`]: !!size }, klass)}
+              value={value}
+              max={max || 100}
     >
-      {props.value} %
+      {value} %
     </progress>
   );
 }
