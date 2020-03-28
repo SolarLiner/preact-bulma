@@ -26,12 +26,10 @@ export default class Dropdown extends Component<IDropdownProps, IDropdownState> 
   private triggerWhitelist: Element[];
   private menu?: HTMLDivElement;
   private trigger?: HTMLDivElement;
-  constructor(props?: IDropdownProps, context?: any) {
-    super(props, context);
-    this.setState({
-      active: !!props.active,
-      menuID: `dropdown-${randomString(8)}`
-    });
+  state = { active: false, menuID: `dropdown-${randomString(8)}` };
+
+  componentWillReceiveProps(props: Readonly<IDropdownProps>): void {
+    this.setState({ active: !!props.active });
   }
 
   public render({ active, hoverable, dropup, align, title, icon, children, ...props }: RenderableProps<IDropdownProps>, state: IDropdownState) {
