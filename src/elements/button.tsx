@@ -2,7 +2,7 @@ import classnames from "classnames";
 import { h, JSX, RenderableProps, toChildArray } from "preact";
 import Icon from "./icon";
 
-interface IButtonProps extends Omit<JSX.HTMLAttributes, "size"> {
+interface IButtonProps extends Omit<JSX.HTMLAttributes, "size" | "loading"> {
   color?: string;
   size?: "small" | "medium" | "large";
   type?: "submit" | "reset";
