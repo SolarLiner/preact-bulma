@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import { ComponentChild, h, JSX, RenderableProps } from "preact";
+import {Override} from "../utils/types";
 
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEVELOPMENT = NODE_ENV === "development";
@@ -77,13 +78,14 @@ export function HorizontalGroup({ expanded, group, hasAddons, help, helpColor, h
   );
 }
 
-export interface IControlProps extends Omit<JSX.HTMLAttributes, "size"> {
+export interface ControlProps {
   expanded?: boolean;
   iconsLeft?: string;
   iconsRight?: string;
   loading?: boolean;
   size?: "small" | "medium" | "large";
 }
+export type IControlProps = Override<JSX.HTMLAttributes, ControlProps>
 
 export function Control({ expanded, iconsLeft, iconsRight, loading, size, class: klass, children, ...props }: RenderableProps<IControlProps>) {
   let iconsLeftn;
@@ -164,7 +166,7 @@ export function Textarea({ color, size, fixed, children, class: klass, ...props 
   );
 }
 
-export interface ISelectProps extends Omit<JSX.HTMLAttributes, "size"> {
+export interface SelectProps {
   options: Record<string, ComponentChild>;
   fullWidth?: boolean;
   loading?: boolean;
@@ -173,6 +175,7 @@ export interface ISelectProps extends Omit<JSX.HTMLAttributes, "size"> {
   size?: "small" | "medium" | "large";
   divProps?: Omit<JSX.HTMLAttributes, "ref">;
 }
+export type ISelectProps = Override<JSX.HTMLAttributes, SelectProps>;
 
 export function Select({ options, fullWidth, loading, color, rounded, size, divProps, children, class: klass, ...props }: RenderableProps<ISelectProps>) {
   const classes = classnames("select", {
